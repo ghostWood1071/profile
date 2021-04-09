@@ -6,6 +6,7 @@
         "level": "PHD",
         "university": [
           {
+            
             "name": "Department of Software Engineering",
             "link": "http://soict.hust.edu.vn/index.php/bo-mon-trung-tam/cong-nghe-phan-mem/gioi-thieu-chung"
           },
@@ -121,7 +122,7 @@
           {
             "name": "International Journals",
             "content": [
-              "Van-Quyet Nguyen, Quyet-Thang Huynh, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.",
+              "Van-Quyet Nguyen, <b>Quyet-Thang Huynh</b>, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.",
               "Nguyen Hung-Cuong, Huynh Quyet-Thang and Le Hai-Trieu. Different Ranking of NHPP Software Reliability Growth Models with Generalized Measure and Predictability. International Journal of Applied Information Systems, Series Volume 7, Number 11, November 2014. ISSN 2249: 0868. pp. 1-6. DOI: 10.5120/ijais14-451257.",
               "Thanh-Trung Pham, Xavier Defago, Quyet-Thang Huynh. Reliability prediction for component-based software systems: Dealing with concurrent and propagating errors. Journal of Science of Computer Programming, Volume 97, Part 4, 1 January 2015, ISSN 0167-6423, Pages 426-457. DOI: 10.1016/j.scico.2014.03.016 (ISI, Q2 Journal, IF=0.74)",
               "Nguyen Hung Cuong, Huynh Quyet Thang, Tru Ba Vuong. Rule-based techniques using abstract syntax tree for code optimization and secure programming in Java. Context-Aware Systems and Applications. Lecture Notes of the Institute for Computer Sciences, Social Informatics and Telecommunications Engineering, Volume 128, Springer 2014, ISBN 978-3-319-05938-9, pp.168-177. DOI 10.1007/978-3-319-05939-6_17. Revised Selected Papers from ICCASA 2013 (Thomson ISI- Proceedings)"
