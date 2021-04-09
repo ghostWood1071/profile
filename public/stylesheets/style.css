@@ -1,0 +1,336 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+  font-family: "Roboto", sans-serif !important;
+}
+
+nav {
+  position: sticky !important;
+  width: 100%;
+  top: 0;
+  z-index: 500;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  transition: 0.4s;
+}
+
+nav.sticky {
+  background-color: #fff;
+  border-radius: 0;
+}
+
+.navbar-brand {
+  padding-left: 8px;
+}
+
+.nav-item {
+  text-transform: capitalize !important;
+}
+
+.nav-link {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: var(--danger) !important;
+}
+
+.nav-item.active .nav-link {
+  color: var(--danger) !important;
+}
+
+.main {
+  /* background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+  background-color: #fff;
+  padding: 0 20px !important;
+  border-radius: 15px;
+  margin: 50px auto;
+  box-shadow: 0 0 50px 0 rgb(0 0 0 / 10%);
+}
+
+.wrap-about {
+  padding: 20px 9px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.avatar {
+  max-height: 295px;
+  position: relative;
+}
+.avatar img {
+  width: 100%;
+  max-height: 295px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.avatar label {
+  position: absolute;
+  opacity: 0;
+  transition: 0.6s;
+}
+
+.chosen-file {
+  display: none;
+}
+
+.avatar:hover img {
+  filter: blur(1px);
+}
+
+.avatar:hover .lable-file {
+  opacity: 1;
+}
+
+.about {
+  padding-left: 50px !important;
+}
+
+.name {
+  color: var(--danger);
+}
+
+.position {
+  font-size: 18px;
+  color: var(--gray);
+}
+
+.study {
+  font-size: 18px;
+  color: var(--dark);
+}
+.study div {
+  padding: 5px 0;
+}
+.study:hover {
+  cursor: pointer;
+  color: var(--danger);
+  text-decoration: underline;
+}
+
+.wrap-address h5 {
+  font-size: 18px;
+}
+
+.wrap-about:hover .edit {
+  opacity: 1;
+}
+
+.edit {
+  opacity: 0;
+}
+
+.save {
+  display: none;
+}
+
+.save.show {
+  display: block;
+}
+
+.title {
+  padding: 8px 24px;
+}
+
+.navbar-toggler {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.title h2 {
+  text-transform: uppercase;
+  color: var(--danger);
+  cursor: default;
+  font-size: 24px;
+  margin: 0;
+}
+
+.title h5 {
+  cursor: default;
+  color: var(--gray);
+  margin: 0;
+}
+
+.wrap-chosen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.edit {
+  opacity: 0;
+}
+
+.save {
+  display: none !important;
+}
+
+.save.show {
+  display: inline-block !important;
+}
+
+.content:hover .edit {
+  opacity: 1;
+  animation: Fade 0.6s ease;
+}
+
+.content {
+  margin-bottom: 20px;
+}
+
+.list-group {
+  font-size: 17px;
+}
+
+.h0 {
+  height: 0;
+}
+
+.content:hover .h0 {
+  height: 38px;
+}
+
+.list-group-item {
+  background-color: transparent !important;
+}
+
+/* #group1 .list-group-item,
+#group2 .list-group-item {
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+} */
+
+.wrap-project h2 {
+  color: var(--danger);
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.table td,
+.table th,
+.table td div {
+  text-align: center;
+}
+
+.table {
+  display: block;
+}
+
+/* Animation */
+@keyframes Fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Screen */
+
+@media (min-width: 1200px) {
+  nav {
+    max-width: 1140px;
+  }
+
+  .lable-file {
+    left: 29%;
+    top: 40%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.99px) {
+  nav {
+    max-width: 960px;
+  }
+
+  .lable-file {
+    left: 23%;
+    top: 31%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.99px) {
+  nav {
+    max-width: 720px;
+  }
+
+  .lable-file {
+    left: 23%;
+    top: 31%;
+  }
+}
+
+@media (max-width: 767px) {
+  nav {
+    max-width: 540px;
+  }
+
+  .table tr td:last-child,
+  .table tr th:last-child {
+    display: none;
+  }
+
+  .lable-file {
+    left: 34%;
+    top: 47%;
+  }
+}
+
+.draggable.dragging {
+  opacity: 0.5;
+}
+
+.container-drag {
+  min-height: 30px;
+}
+
+.list-group-item {
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.remove.show {
+  display: flex;
+  height: 100%;
+  width: 50px;
+  position: absolute;
+  top: 0;
+  right: -1px;
+  transform: translateX(100%);
+  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+/* .remove::after {
+  content: "Xoa";
+  display: block;
+  height: 100%;
+  width: 50px;
+} */
+
+.list-group-item:hover .remove.show {
+  transform: translateX(0%);
+  cursor: pointer;
+  background-color: var(--danger) !important;
+}
+
+.list-group-item:hover .remove.show:hover {
+  background-color: #9e062c !important;
+}
+
+p{
+  margin: 0 !important;
+}
