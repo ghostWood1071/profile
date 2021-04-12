@@ -5,6 +5,6 @@
   +css: /stylesheets/file.css
   +js: javascripts/file.js
   +images: images/imgae.jpg
---folder bussiness dùng để chứa các middleware xử lý
+--folder controller dùng để chứa các middleware xử lý
 --folder data dùng để chứa các file data.json
 --folder routes chứa các router
