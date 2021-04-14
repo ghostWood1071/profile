@@ -164,6 +164,7 @@ nav.sticky {
   justify-content: space-between;
   align-items: center;
   margin: 10px 0;
+  color: var(--danger);
 }
 
 .wrap-chosen h5 {
@@ -218,8 +219,7 @@ nav.sticky {
 }
 
 .fa-arrows,
-.fa-trash,
-.fa-plus {
+.fa-trash{
   position: absolute;
   width: 34px;
   display: flex !important;
@@ -227,34 +227,26 @@ nav.sticky {
   transition: 0.4s;
   color: var(--danger);
   cursor: pointer;
-}
-
-.fa-arrows {
   height: 100%;
-  left: -34px;
   align-items: center;
   justify-content: center;
 }
 
+.fa-arrows {
+  left: -34px;
+  
+}
+
 .fa-trash {
-  height: 50%;
   right: -34px;
-  bottom: 0;
-  align-items: flex-end;
-  justify-content: center;
 }
 
 .fa-plus {
-  height: 50%;
-  top: 0;
-  align-items: flex-start;
-  justify-content: center;
-  right: -34px;
+  opacity: 0;
 }
 
 .hover:hover .fa-arrows,
-.hover:hover .fa-trash,
-.hover:hover .fa-plus {
+.hover:hover .fa-trash {
   opacity: 1;
 }
 
