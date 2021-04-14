@@ -5,7 +5,6 @@ navItem.forEach(function(element, index){
     element.classList.remove('active');
     navLink[index].addEventListener('click', function(){
         removeAllClassActive();
-
         element.classList.add('active');
     })
 })
@@ -14,70 +13,46 @@ navItem[0].classList.add('active');
 
 window.addEventListener('scroll', function(){
     var nav = document.getElementsByTagName('nav')[0];
-    nav.classList.toggle('sticky', window.scrollY > 0);
+    var y = scrollY;
+    if(y > 0 ){
+        nav.classList.add('sticky')
+    }
 })
 
 // Edit content
-var edit = Array.from(document.getElementsByClassName('edit'));
-var save = Array.from(document.getElementsByClassName('save'));
 
-edit.forEach(function(element, index){
-    element.addEventListener('click', function(){
-        var item = Array.from(document.querySelectorAll('#group' + (index + 1) + ' .list-group-item'));
-        var itemTable = Array.from(document.querySelectorAll('#table' + (index + 1) + ' tr td div'));
-        var remove = document.querySelectorAll('#group' + (index + 1) + ' .remove');
-        $(remove).attr('contentEditable', 'false');
-        $(remove).addClass('show');
-        $('.remove.show').html('Del');
-        item.forEach((el, ind) => {
-            el.setAttribute('contentEditable', 'true');
-            $(remove[ind]).click(function (e) { 
-                e.preventDefault();
-                $(el).remove();
-            });    
-            $(item[ind]).click(function() {
-                CKEDITOR.disableAutoInline = true;
-                var instance = CKEDITOR.inline(item[ind], {
-                    startupFocus: true
-                });
-                el.addEventListener('click', function(){
-                //el.setAttribute('draggable', 'false'); 
-                    // el.setAttribute('contentEditable', 'true');
-                    // for(var i = 0; i < item.length; i++)
-                    //     if(i !== ind)
-                    //         item[i].classList.remove('cke_focus');
 
-                })
+var item = Array.from(document.querySelectorAll('.list-group-item'));
+$('.fa-trash').click(function(){
+    $(this).siblings().remove();
+});
 
-            })
-            // el.addEventListener('click', function(){
-            //     //el.setAttribute('draggable', 'false'); 
-            //     for(var i = 0; i < item.length; i++)
-            //     if(i !== ind)
-            //         item[i].setAttribute('contentEditable', 'false');
-            // })
-        })
-        itemTable.forEach((el, ind) => {
-            el.setAttribute('contentEditable', 'true');
-            // el.addEventListener('click', function(){
-            //     //el.setAttribute('draggable', 'false'); 
-            //     for(var i = 0; i < itemTable.length; i++)
-            //     if(i !== ind)
-            //         itemTable[i].setAttribute('contentEditable', 'false');
-            // })
-        })
-        save[index].classList.add('show');
-        element.style.display = 'none';
-        save[index].addEventListener('click', function(){
-            $('#group' + (index + 1) + ' .list-group-item').attr('contentEditable', 'false');
-            $('#table' + (index + 1) + ' tr td div').attr('contentEditable', 'false');
-            $('#group' + (index + 1) + ' .remove').removeClass('show');
-            element.style.display = 'inline-block';
-            save[index].classList.remove('show');
-        })
-        
+
+item.forEach((el, ind) => {
+    el.setAttribute('contentEditable', 'true');
+    var ck = CKEDITOR.inline(item[ind], {
+        allowedContent: true
     })
 })
+
+$('.fa-plus').click(function(){
+    var text = $(this).parent().html();
+    $(this).parent().after(
+        `<div class="hover address">
+            ${text}
+        </div>`);
+    var item = Array.from(document.querySelectorAll('.list-group-item'));
+    item.forEach((el, ind) => {
+        el.setAttribute('contentEditable', 'true');
+        var ck = CKEDITOR.inline(item[ind], {
+            allowedContent: true
+        })
+    })
+    $('.fa-trash').click(function(){
+        $(this).siblings().remove();
+    });
+})
+
 
 // Scroll active menu
 const sections = document.querySelectorAll('section');
@@ -152,18 +127,25 @@ addClassActive = function(current){
 
 
 
-$('#group4, #group3').sortable({
+$('.list-group').sortable({
     animation: 150,
-    group: 'list'
+    handle: '.fa-arrows'
+});
+
+
+
+/* Set Image */
+const img = document.querySelector('#avatar');
+const btnFile = document.querySelector('#file');
+
+btnFile.addEventListener('change', function() {
+    const file = this.files[0];
+    if(file){
+        const reader = new FileReader();
+        reader.onload = function(){
+            const result = reader.result;
+            img.setAttribute('src', result);
+        }
+        reader.readAsDataURL(file);
+    }
 })
-
-$('#table5 tr').sortable({
-    multiDrag: true,
-    selectedClass: 'selected',
-    group: 'list'
-})
-
-function getData(){
-    
-}
-
