@@ -28,5 +28,4 @@ module.exports.validate = function(req,res,next) {
     }
     else
         res.send("fail");
-    res.send("ok");
 }
