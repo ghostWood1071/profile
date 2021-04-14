@@ -1,5 +1,9 @@
 [
     {
+      "login": {
+        "account": "quyetthang",
+        "pass": "12345"
+      },
       "avatar": "/images/avatar.jpg",
       "about": {
         "name": "Huỳnh Quyết Thắng",

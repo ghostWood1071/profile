@@ -1,4 +1,3 @@
-const { json } = require('express');
 var fs = require('fs');
 
 function getDatadir(){
@@ -20,7 +19,7 @@ module.exports.readData  =  function (req, res, next){
 module.exports.writeData =  function(req, res, next){
     var obj = res.locals.jsonObj;
     var data = JSON.stringify(obj);
-    fs.writeFile('', data, function(err){
+    fs.writeFile(getDatadir(), data, function(err){
         if(err)
             res.send('error when write file');
         else
@@ -30,8 +29,9 @@ module.exports.writeData =  function(req, res, next){
 
 module.exports.getUserInfo = function (req, res, next) {
     var data = JSON.parse(res.locals.stringData);
-    var user = data[0];
-    res.render('index', {
+    var uid = res.locals.uid;
+    var user = data[uid];
+    res.render('template1', {
         avatar: user.avatar,
         about: user.about,
         research_interst: user.research_interests,
