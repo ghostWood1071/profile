@@ -56,7 +56,6 @@ nav.sticky {
 }
 
 .wrap-about {
-  padding: 20px 9px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -64,6 +63,7 @@ nav.sticky {
 .avatar {
   max-height: 300px;
   position: relative;
+  padding: 0 !important;
 }
 .avatar img {
   width: 100%;
@@ -161,7 +161,6 @@ nav.sticky {
 
 .wrap-chosen {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 10px 0;
   color: var(--danger);
@@ -218,10 +217,10 @@ nav.sticky {
   position: relative;
 }
 
-.fa-arrows,
-.fa-trash{
+.fa-custom-trash,
+.fa-arrows{
   position: absolute;
-  width: 34px;
+  width: 40px;
   display: flex !important;
   opacity: 0;
   transition: 0.4s;
@@ -233,21 +232,59 @@ nav.sticky {
 }
 
 .fa-arrows {
-  left: -34px;
+  left: -40px;
   
 }
 
-.fa-trash {
-  right: -34px;
-}
-
-.fa-plus {
+.pub-chosen-right{
+  position: absolute;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  right: -40px;
+  color: var(--danger);
+  width: 40px;
   opacity: 0;
 }
 
+.pub-chosen-right .fa-trash,
+.pub-chosen-right .pdf{
+  width: 100%;
+  text-align: center;
+  height: 50%;
+  cursor: pointer;
+  margin: 0;
+}
+
+.pub-chosen-right .pdf:hover{
+  text-decoration: underline;
+}
+
+input[name*="pdf"]{
+  display: none;
+}
+
+.fa-custom-trash {
+  right: -40px;
+}
+
+.fa-plus {
+  cursor: pointer;
+  opacity: 0;
+  padding: 0 10px;
+  margin: 0 10px;
+}
+
 .hover:hover .fa-arrows,
-.hover:hover .fa-trash {
+.hover:hover .fa-trash,
+.hover:hover .pub-chosen-right {
   opacity: 1;
+}
+
+.fa-arrows:hover,
+.pdf:hover,
+.fa-trash:hover{
+  opacity: 0.8 !important;
 }
 
 .fa-envelope,

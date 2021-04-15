@@ -1,9 +1,9 @@
 var navItem = Array.from(document.querySelectorAll('.nav-item'));
-var navLink = Array.from(document.querySelectorAll('.nav-link'));
+var navLinks = Array.from(document.querySelectorAll('.nav-link'));
 
 navItem.forEach(function(element, index){
     element.classList.remove('active');
-    navLink[index].addEventListener('click', function(){
+    navLinks[index].addEventListener('click', function(){
         removeAllClassActive();
         element.classList.add('active');
     })
@@ -19,6 +19,28 @@ window.addEventListener('scroll', function(){
     }
 })
 
+window.addEventListener("scroll", () => {
+    let current = sections[0].getAttribute('id');
+  
+    sections.forEach((section, index) => {
+      const sectionTop = section.offsetTop;
+      
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    $('.nav-link').each(function(element){
+        var text = $(this).attr('href');
+        if(!current) $('[data-page="about"]').addClass('active')
+        if(`#${current}` == text){
+            $(this).parent().addClass('active');
+        }
+        else
+            $(this).parent().removeClass('active');
+    })
+  });
+
 // Edit content
 var templates = [];
 document.querySelectorAll('.list-group:not(#group1, .education) .hover:first-child').forEach(el => {
@@ -26,9 +48,13 @@ document.querySelectorAll('.list-group:not(#group1, .education) .hover:first-chi
 })
 
 var item = Array.from(document.querySelectorAll('.list-group-item'));
-$('.fa-trash').click(function(){
-    $(this).siblings().remove();
+$('.fa-custom-trash').click(function(){
+    $(this).parent().remove();
 });
+$('.pub-chosen-right .fa-trash').click(function(){
+    $(this).parent().parent().remove();
+})
+
 item.forEach((el, ind) => {
     el.setAttribute('contentEditable', 'true');
     var ck = CKEDITOR.inline(item[ind], {
@@ -45,19 +71,19 @@ $('.wrap-chosen').hover(function () {
 );
 
 $('.fa-plus').click(function(){
-    $(this).parent().siblings('#group2').append(
+    $(this).parent().siblings('#group2').prepend(
         `<div class="hover">
             <i class="fa fa-arrows" aria-hidden="true"></i>
-            <i class="fa fa-trash" aria-hidden="true"></i>
+            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
             <div class="list-group-item">
             <span>EMPTY</span>
             </div>
         </div>`
     );
-    $(this).parent().siblings('#group3').append(
-        `<div class="hover">
+    $(this).parent().siblings('#group3').prepend(
+        `<div class="hover mb-4">
             <i class="fa fa-arrows" aria-hidden="true"></i>
-            <i class="fa fa-trash" aria-hidden="true"></i>
+            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
             <div class="hover d-flex justify-content-between">
             <div class="list-group-item academic col-9">
                 <h4><a class="text-primary" href="#">VARNA TECHNICAL UNIVERSITY</a>, BULGARIA</h4>
@@ -72,15 +98,24 @@ $('.fa-plus').click(function(){
             </div>
         </div>`
     );
-    $(this).parent().siblings(`#group3, #group4, #group5, #group6,
-    #group7, #group8, #group9, #group10, #group11, #group12, #group13, #group14`).append(
+    $(this).parent().siblings('#group6').prepend(
         `<div class="hover">
             <i class="fa fa-arrows" aria-hidden="true"></i>
-            <i class="fa fa-trash" aria-hidden="true"></i>
+            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
+            <div class="list-group-item">
+            <a class="text-primary" href="#"><i> Proposed Topics for Undergraduate (2018-2019)</i></a>
+            </div>
+        </div>`
+    );
+
+    //#group4, #group5,#group7, #group8, #group9, #group10, #group11, #group12, #group13, #group14
+    $(this).parent().siblings(`.list-group[name="same-text"]`).prepend(
+        `<div class="hover">
+            <i class="fa fa-arrows" aria-hidden="true"></i>
+            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
             <div class="list-group-item text-secondary">Empty</div>
         </div>`
     );
-    $('.toast').toast('show');
     var item = Array.from(document.querySelectorAll('.list-group-item'));
     item.forEach((el, ind) => {
         el.setAttribute('contentEditable', 'true');
@@ -88,27 +123,29 @@ $('.fa-plus').click(function(){
             allowedContent: true
         })
     })
-    $('.fa-trash').click(function(){
-        $(this).siblings().remove();
+    $('.fa-custom-trash').click(function(){
+        $(this).parent().remove();
     });
 })
 
 
 // Scroll active menu
-const sections = document.querySelectorAll('section');
+const sections = document.querySelectorAll('.title');
 
-onscroll = function(){
-    var scrollPosition = document.documentElement.scrollTop;
+// onscroll = function(){
+//     var scrollPosition = document.documentElement.scrollTop;
 
-    sections.forEach(section => {
-        if(scrollPosition >= section.offsetTop - section.offsetHeight*0.25 &&
-            scrollPosition < section.offsetTop + section.offsetHeight - section.offsetHeight*0.25){
-            var currentId = section.attributes.id.value;
-            removeAllClassActive();
-            addClassActive(currentId);
-        }
-    })
-}
+//     sections.forEach(section => {
+//         if(scrollPosition >= section.offsetTop - section.offsetHeight*0.25 &&
+//             scrollPosition < section.offsetTop + section.offsetHeight - section.offsetHeight*0.25){
+//             var currentId = section.attributes.id.value;
+//             removeAllClassActive();
+//             addClassActive(currentId);
+//         }
+//     })
+// }
+
+
 
 removeAllClassActive = function(){
     document.querySelectorAll('.navbar-nav .nav-item').forEach(el => {
