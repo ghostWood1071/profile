@@ -11,6 +11,10 @@ router.post("/login",
         userController.validate,
         userController.saveLoginCookie
 );
+
+router.get('/signup', function (req, res, next) {
+        res.render('signup');     
+});
 router.get('/', userController.auth, userController.readData, userController.getUserInfo);
 
 
