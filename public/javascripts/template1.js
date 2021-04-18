@@ -1,336 +1,228 @@
-const navLinks = Array.from(document.querySelectorAll('.nav-link'));
-const sections = document.querySelectorAll('section');
+var navItem = Array.from(document.querySelectorAll('.nav-item'));
+var navLinks = Array.from(document.querySelectorAll('.nav-link'));
 
-const nav = document.querySelector('.nav');
-const btnHamburger = document.querySelector('.hamburger');
-const options = document.querySelector('.options')
-//Options
-$('.circle').click(() => {
-  if(options.classList.contains('active')){
-    options.classList.remove('active');
-  }
-  else {
-    options.classList.add('active');
-  }  
+navItem.forEach(function(element, index){
+    element.classList.remove('active');
+    navLinks[index].addEventListener('click', function(){
+        removeAllClassActive();
+        element.classList.add('active');
+    })
 })
 
-//Colors
-const colors = document.querySelectorAll('.color');
+navItem[0].classList.add('active');
 
-
-//Title
-document.title = $('.name').text();
-
-//Hamburger
-btnHamburger.addEventListener('click', () => {
-  if(nav.classList.contains('open')){
-    nav.classList.remove('open');
-    document.querySelector('.wrapper').classList.remove('toggle');
-  }
-  else {
-    nav.classList.add('open');
-    document.querySelector('.wrapper').classList.add('toggle');
-  }    
+window.addEventListener('scroll', function(){
+    var nav = document.getElementsByTagName('nav')[0];
+    var y = scrollY;
+    if(y > 0 ){
+        nav.classList.add('sticky')
+    }
 })
 
-// Scroll navbar
 window.addEventListener("scroll", () => {
-  let current = sections[0].getAttribute('id');
-
-  sections.forEach((section, index) => {
-    const sectionTop = section.offsetTop;
-    
-    if (pageYOffset >= sectionTop) {
-      current = section.getAttribute("id");
-    }
-  });
-
-  navLinks.forEach((link) => {
-    if (link.classList.contains(current)) {
-      link.classList.add("current-page");
-    } else {
-      link.classList.remove("current-page");
-    }
-  });
-});
-
-//Set img
-function readURL(input, e) {
-  const imgView = document.querySelector(e);
-  if(input.files && input.files[0]) { //input.files: Trả về FileList bao gồm các thông tin của file
-      var reader = new FileReader(); //Đọc các thông tin của file
-
-      reader.onload = function(e) {
-          imgView.setAttribute('src', e.target.result); 
+    let current = sections[0].getAttribute('id');
+  
+    sections.forEach((section, index) => {
+      const sectionTop = section.offsetTop;
+      
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute("id");
       }
-      reader.readAsDataURL(input.files[0]); //fileReader.result sẽ là 1 URL
-  }
+    });
+
+    $('.nav-link').each(function(element){
+        var text = $(this).attr('href');
+        if(!current) $('[data-page="about"]').addClass('active')
+        if(`#${current}` == text){
+            $(this).parent().addClass('active');
+        }
+        else
+            $(this).parent().removeClass('active');
+    })
+  });
+
+// Edit content
+var templates = [];
+document.querySelectorAll('.list-group:not(#group1, .education) .hover:first-child').forEach(el => {
+    templates.push(el.innerHTML);
+})
+
+var item = Array.from(document.querySelectorAll('.list-group-item'));
+$('.fa-custom-trash').click(function(){
+    $(this).parent().remove();
+});
+$('.pub-chosen-right .fa-trash').click(function(){
+    $(this).parent().parent().remove();
+})
+
+item.forEach((el, ind) => {
+    el.setAttribute('contentEditable', 'true');
+    var ck = CKEDITOR.inline(item[ind], {
+        allowedContent: true
+    })
+})
+
+$('.wrap-chosen').hover(function () {
+        $(this).find('.fa-plus').css('opacity', '1');
+    }, function () {
+        // out
+        $(this).find('.fa-plus').css('opacity', '0');
+    }
+);
+
+$('.fa-plus').click(function(){
+    $(this).parent().siblings('#group2').prepend(
+        `<div class="hover">
+            <i class="fa fa-arrows" aria-hidden="true"></i>
+            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
+            <div class="list-group-item">
+            <span>EMPTY</span>
+            </div>
+        </div>`
+    );
+    $(this).parent().siblings('#group3').prepend(
+        `<div class="hover mb-4">
+            <i class="fa fa-arrows" aria-hidden="true"></i>
+            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
+            <div class="hover d-flex justify-content-between">
+            <div class="list-group-item academic col-9">
+                <h4><a class="text-primary" href="#">VARNA TECHNICAL UNIVERSITY</a>, BULGARIA</h4>
+                <div class="mb-3">PHD DEGREE IN INFORMATION AND COMPUTER SCIENCES</div>
+                <span class="text-secondary">PhD thesis: Architectural model of a class numerical computing machine and its application on generating smooth curves and surface</span>
+            </div>
+            <div class="academic col-3">
+                <div class="list-group-item time">
+                3/1991 - 12/1995
+                </div>
+            </div>
+            </div>
+        </div>`
+    );
+    $(this).parent().siblings('#group6').prepend(
+        `<div class="hover">
+            <i class="fa fa-arrows" aria-hidden="true"></i>
+            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
+            <div class="list-group-item">
+            <a class="text-primary" href="#"><i> Proposed Topics for Undergraduate (2018-2019)</i></a>
+            </div>
+        </div>`
+    );
+
+    //#group4, #group5,#group7, #group8, #group9, #group10, #group11, #group12, #group13, #group14
+    $(this).parent().siblings(`.list-group[name="same-text"]`).prepend(
+        `<div class="hover">
+            <i class="fa fa-arrows" aria-hidden="true"></i>
+            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
+            <div class="list-group-item text-secondary">Empty</div>
+        </div>`
+    );
+    var item = Array.from(document.querySelectorAll('.list-group-item'));
+    item.forEach((el, ind) => {
+        el.setAttribute('contentEditable', 'true');
+        var ck = CKEDITOR.inline(item[ind], {
+            allowedContent: true
+        })
+    })
+    $('.fa-custom-trash').click(function(){
+        $(this).parent().remove();
+    });
+})
+
+
+// Scroll active menu
+const sections = document.querySelectorAll('.title');
+
+// onscroll = function(){
+//     var scrollPosition = document.documentElement.scrollTop;
+
+//     sections.forEach(section => {
+//         if(scrollPosition >= section.offsetTop - section.offsetHeight*0.25 &&
+//             scrollPosition < section.offsetTop + section.offsetHeight - section.offsetHeight*0.25){
+//             var currentId = section.attributes.id.value;
+//             removeAllClassActive();
+//             addClassActive(currentId);
+//         }
+//     })
+// }
+
+
+
+removeAllClassActive = function(){
+    document.querySelectorAll('.navbar-nav .nav-item').forEach(el => {
+        el.classList.remove('active');
+    })
 }
 
-// Click
-const focusCkeditor = document.querySelectorAll('.focus');
+addClassActive = function(current){
+    var id = `[data-page='${current}']`;
+    document.querySelector(id).classList.add('active');
+}
 
-const items = document.querySelectorAll('.list-group-item');
-items.forEach((element, index) => {
-      element.setAttribute('contentEditable', 'true');
-      CKEDITOR.inline(element, {
-        allowedContent: true
-      })
-})
+// Drag and Drop Items
+// const container_drags = document.querySelectorAll('.container-drag');
+// const draggables = document.querySelectorAll('.draggable');
 
-//Remove
-const trashBtn = document.querySelectorAll('.btn-trash');
-trashBtn.forEach((element) => {
-  element.addEventListener('click', function() {
-    if(element.parentElement.classList.contains('item-list')) {
-      element.parentNode.parentNode.remove();
-    } else {
-      element.parentNode.remove();
+// draggables.forEach((element) => {
+//     element.addEventListener('dragstart', () => {
+//         element.classList.add('dragging');
+//     })
+
+//     element.addEventListener('dragend', () => {
+//         element.classList.remove('dragging');
+//     })
+// })
+
+// container_drags.forEach(container_drag => {
+//     container_drag.addEventListener('dragover', e => {
+//         e.preventDefault();
+//         const dragAfter = getDragAfterElement(container_drag, e.clientY);
+//         console.log(dragAfter)
+//         const draggable = document.querySelector('.dragging');
+    
+//         if(dragAfter == null){
+//             container_drag.appendChild(draggable);
+//         }
+//         else{
+//             container_drag.insertBefore(draggable, dragAfter);
+//         }
+//     })
+
+// })
+
+// function getDragAfterElement(container, y){
+//     const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+//     return draggableElements.reduce((closest, child) => {
+//         const box = child.getBoundingClientRect();
+//         const offset = y - box.top - box.height / 2;
+
+//         if(offset < 0 && offset > closest.offset)
+//             return {offset: offset, element: child }
+//         else
+//             return closest
+//     }, {offset: Number.NEGATIVE_INFINITY}).element
+// }
+
+
+
+$('.list-group').sortable({
+    animation: 150,
+    handle: '.fa-arrows'
+});
+
+
+
+/* Set Image */
+const img = document.querySelector('#avatar');
+const btnFile = document.querySelector('#file');
+
+btnFile.addEventListener('change', function() {
+    const file = this.files[0];
+    if(file){
+        const reader = new FileReader();
+        reader.onload = function(){
+            const result = reader.result;
+            img.setAttribute('src', result);
+        }
+        reader.readAsDataURL(file);
     }
-  })
-})
-
-//add
-$('.btn-plus').click(function(element) {
-  $(this).siblings('#group1').prepend(`<div class="hover">
-    <i class="fas fa-trash-alt btn-trash"></i>
-    <i class="fas fa-arrows-alt btn-arrow"></i>
-    <div class="list-group-item">
-        <a href="#">NEW ITEM</a>
-    </div>
-  </div>`);
-
-  $(this).parent().siblings('#group2').prepend(`<div class="hover research-item">
-    <i class="fas fa-trash-alt btn-trash"></i>
-    <i class="fas fa-arrows-alt btn-arrow"></i>
-    <div class="list-group-item">NEW ITEM</div>
-  </div>`);
-
-  $(this).parent().siblings('#group3').prepend(`<div class="academic-item hover">
-    <i class="fas fa-trash-alt btn-trash top-0"></i>
-    <i class="fas fa-arrows-alt btn-arrow"></i>
-    <i class="fas fa-graduation-cap ic-academic"></i>
-    <div class="list-group-item academic-item-time text-primary">3/1991 - 12/1995</div>
-    <div class="list-group-item academic-item-name text-primary">
-        <a href="#">VARNA TECHNICAL UNIVERSITY</a>
-    </div>
-    <div class="list-group-item academic-item-location">BULGARIA</div>
-    <div class="list-group-item academic-level">PHD DEGREE IN INFORMATION AND COMPUTER SCIENCES</div>
-    <div class="list-group-item academic-description">PhD thesis: Architectural model of a class numerical computing machine and its application on generating smooth curves and surface</div>
-  </div>`);
-
-  $(this).parent().siblings('#group4').prepend(`<div class="hover thesis-link">
-  <i class="fas fa-trash-alt btn-trash"></i>
-  <i class="fas fa-arrows-alt btn-arrow"></i>
-  <div class="list-group-item">
-      <a href="#">NEW ITEM</a>
-  </div>
-  </div>`)
-
-  $(this).parent().siblings('#group5').prepend(`<div class="hover grant-item">
-  <i class="fas fa-trash-alt btn-trash"></i>
-  <i class="fas fa-arrows-alt btn-arrow"></i>
-  <div class="list-group-item">NEW ITEM</div>
-  </div>`)
-
-  $(this).parent().siblings('#group6').prepend(`<div class="hover">
-  <i class="fas fa-trash-alt btn-trash"></i>
-  <i class="fas fa-arrows-alt btn-arrow"></i>
-  <div class="list-group-item book-content">NEW ITEM</div>
-  </div>`)
-
-  const items = document.querySelectorAll('.list-group-item');
-  const trashBtn = document.querySelectorAll('.btn-trash');
-  items.forEach((element, index) => {
-    element.setAttribute('contentEditable', 'true');
-    CKEDITOR.inline(element, {
-      allowedContent: true
-    })
-  })
-
-  trashBtn.forEach((element) => {
-    element.addEventListener('click', function() {
-      if(element.parentElement.classList.contains('item-list')) {
-        element.parentNode.parentNode.remove();
-      } else {
-        element.parentNode.remove();
-      }
-    })
-  })
-})
-
-//Xử lý group list
-
-const btnPlus = document.querySelectorAll('.btn-plus');
-
-btnPlus.forEach((element) => {
-  element.addEventListener('click', function() {
-    if (element.parentNode.classList.contains('publication-details-title')) {
-      var node = document.createElement('div');
-      
-      node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="subtitle hover publication-title"><div class="list-group-item">A) International Journals</div><i class="fas fa-plus-circle btn-plus"></i></div><div class="publication-content"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">Van-Quyet Nguyen, Huu-Duy Nguyen, Quyet-Thang Huynh, Nalini Venkatasubramanian, Kyungbaek Kim, "A Scalable Approach for Dynamic Evacuation Routing in Large Smart Buildings", In Proceedings of the Fifth International Conference on Smart Computing (SMARTCOMP 2019), June 12-14, 2019, Washington D.C., US. (to be appeared)</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">Van-Quyet Nguyen, Huu-Duy Nguyen, Quyet-Thang Huynh, Nalini Venkatasubramanian, Kyungbaek Kim, "A Scalable Approach for Dynamic Evacuation Routing in Large Smart Buildings", In Proceedings of the Fifth International Conference on Smart Computing (SMARTCOMP 2019), June 12-14, 2019, Washington D.C., US. (to be appeared)</div></div></div>`;
-
-      node.childNodes[1].childNodes[0].addEventListener('click', () => {
-        node.childNodes[1].childNodes[0].setAttribute('contentEditable', 'true');
-        CKEDITOR.inline(node.childNodes[1].childNodes[0],{
-          allowedContent: true,
-          startupFocus: true
-        });
-      })
-
-      node.childNodes[0].addEventListener('click', function() {
-        node.childNodes[0].parentNode.remove();
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[0].addEventListener('click', function() {
-          element.childNodes[0].parentNode.remove();
-        })
-      })
-
-      node.childNodes[1].childNodes[1].addEventListener('click', (element) => {
-        var nodeChild = document.createElement('div');
-        nodeChild.setAttribute('class', 'hover');
-        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">NEW ITEM</div>`;
-
-        console.log(node.childNodes[2]);
-        // node.childNodes[2].appendChild(nodeChild);
-        node.childNodes[2].insertBefore(nodeChild, node.childNodes[2].childNodes[0]) 
-
-        node.childNodes[2].childNodes.forEach((element) => {
-            element.childNodes[0].addEventListener('click', () => {
-              element.childNodes[0].parentNode.remove();
-            })
-        })
-
-        nodeChild.childNodes[1].addEventListener('click', () => {
-          nodeChild.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(nodeChild.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
-        })
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[1].addEventListener('click', () => {
-          element.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(element.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
-        })
-      })
-      document.querySelector('.publication-list-content').insertBefore(node, document.querySelector('.publication-list-content').childNodes[0]);
-    } else if (element.parentNode.classList.contains('add')) {
-      var node = document.createElement('div');
-      
-      node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="subtitle hover th-title"><div class="list-group-item">Phd Thesis Supervised</div><i class="fas fa-plus-circle btn-plus"></i></div><div class="thesis-content"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div></div></div>`;
-
-      node.childNodes[1].childNodes[0].addEventListener('click', () => {
-        node.childNodes[1].childNodes[0].setAttribute('contentEditable', 'true');
-        CKEDITOR.inline(node.childNodes[1].childNodes[0],{
-          allowedContent: true,
-          startupFocus: true
-        });
-      })
-
-      node.childNodes[0].addEventListener('click', function() {
-        node.childNodes[0].parentNode.remove();
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[0].addEventListener('click', function() {
-          element.childNodes[0].parentNode.remove();
-        })
-      })
-
-      node.childNodes[1].childNodes[1].addEventListener('click', (element) => {
-        var nodeChild = document.createElement('div');
-        nodeChild.setAttribute('class', 'hover');
-        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">NEW ITEM</div>`;
-        // node.childNodes[2].appendChild(nodeChild);
-        node.childNodes[2].insertBefore(nodeChild, node.childNodes[2].childNodes[0]) 
-
-        node.childNodes[2].childNodes.forEach((element) => {
-            element.childNodes[0].addEventListener('click', () => {
-              element.childNodes[0].parentNode.remove();
-            })
-        })
-
-        nodeChild.childNodes[1].addEventListener('click', () => {
-          nodeChild.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(nodeChild.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
-        })
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[1].addEventListener('click', () => {
-          element.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(element.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
-        })
-      })
-      document.querySelector('.thesis-content').insertBefore(node, document.querySelector('.thesis-content').childNodes[0]);
-    } else if (element.parentNode.classList.contains('teaching-title')) {
-      var node = document.createElement('div');
-      
-      node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="teaching-year"><div class="list-group-item">2018 - 2019</div><i class="fas fa-plus-circle btn-plus"></i></div><div class="teaching-content"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item">IT5630 - Advanced Project Management</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item">IT5630 - Advanced Project Management</div> </div></div>`;
-
-      node.childNodes[1].childNodes[0].addEventListener('click', () => {
-        node.childNodes[1].childNodes[0].setAttribute('contentEditable', 'true');
-        CKEDITOR.inline(node.childNodes[1].childNodes[0],{
-          allowedContent: true,
-          startupFocus: true
-        });
-      })
-
-      node.childNodes[0].addEventListener('click', function() {
-        node.childNodes[0].parentNode.remove();
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[0].addEventListener('click', function() {
-          element.childNodes[0].parentNode.remove();
-        })
-      })
-
-      node.childNodes[1].childNodes[1].addEventListener('click', (element) => {
-        var nodeChild = document.createElement('div');
-        nodeChild.setAttribute('class', 'hover');
-        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item">IT5630 - Advanced Project Management</div>`;
-        node.childNodes[2].insertBefore(nodeChild, node.childNodes[2].childNodes[0]) 
-
-        node.childNodes[2].childNodes.forEach((element) => {
-            element.childNodes[0].addEventListener('click', () => {
-              element.childNodes[0].parentNode.remove();
-            })
-        })
-
-        nodeChild.childNodes[1].addEventListener('click', () => {
-          nodeChild.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(nodeChild.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
-        })
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[1].addEventListener('click', () => {
-          element.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(element.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
-        })
-      })
-      document.querySelector('.teaching-list').insertBefore(node, document.querySelector('.teaching-list').childNodes[0]);
-    }
-  })
 })
