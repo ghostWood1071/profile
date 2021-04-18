@@ -87,9 +87,36 @@ function getDataByClassID(classID) {
     //var contact = getChildsDataByID('contact',0,1,0,2)
 //Save
 function Save(){
+    // var name = getDataByID('name');
+    // var position = getDataByID('position')
+    // var work = getDataByID('work')
     var name = getDataByID('name');
+
     var position = getDataByID('position')
-    var work = getDataByID('work')
+
+    var work = getChildsDataAndLinkByID('work',1,1)
+
+    var contact = getChildsDataByID('contact',1,0);
+    contact[3]=contact[3].split('\n')
+
+    var research =getChildsDataByID('sortlist1',1,0)
+
+    var academicItemName = getDataByClassID('academic-item-name');
+    var academicItemLocation = getDataByClassID('academic-item-location');
+    var academicLevel = getDataByClassID('academic-level');
+    var academicDescription= getDataByClassID('academic-description');
+    var academicItemTime= getDataByClassID('academic-item-time');
+    var academic =[]
+    for(var i = 0 ; i < document.getElementsByClassName("academic-item").length;i++){
+        academic.push([academicItemName[i],academicItemLocation[i],academicLevel[i],academicDescription[i],academicItemTime[i]])
+    }
+    
+    console.log(name);
+    console.log(position);
+    console.log(work);
+    console.log(contact);   
+    console.log(research);
+    console.log(academic);
 }
 /*
 var value =desc.trim()
