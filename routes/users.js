@@ -1,17 +1,21 @@
 var express = require('express');
 var router = express.Router();
-var loginController = require('../Controller/login.controller');
+
 var userController = require('../Controller/user.controller');
 
-router.get("/login", loginController.getLoginPage);
+router.get("/login", userController.getLoginPage);
 
-router.post("/", 
-        loginController.getLoginInfo, 
+router.post("/login", 
+        userController.getLoginInfo, 
         userController.readData, 
-        loginController.validate,
-        userController.getUserInfo
+        userController.validate,
+        userController.saveLoginCookie
 );
-router.get('/', userController.readData, userController.getUserInfo);
+
+router.get('/signup', function (req, res, next) {
+        res.render('signup');     
+});
+router.get('/', userController.auth, userController.readData, userController.getUserInfo);
 
 
 module.exports = router;
