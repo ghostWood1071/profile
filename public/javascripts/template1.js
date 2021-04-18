@@ -1,6 +1,8 @@
 var navItem = Array.from(document.querySelectorAll('.nav-item'));
 var navLinks = Array.from(document.querySelectorAll('.nav-link'));
+const sections = document.querySelectorAll('.content');
 
+// Active navbar when click
 navItem.forEach(function(element, index){
     element.classList.remove('active');
     navLinks[index].addEventListener('click', function(){
@@ -11,6 +13,7 @@ navItem.forEach(function(element, index){
 
 navItem[0].classList.add('active');
 
+// Active sticky when scroll
 window.addEventListener('scroll', function(){
     var nav = document.getElementsByTagName('nav')[0];
     var y = scrollY;
@@ -19,6 +22,7 @@ window.addEventListener('scroll', function(){
     }
 })
 
+// Active navbar when scroll
 window.addEventListener("scroll", () => {
     let current = sections[0].getAttribute('id');
   
@@ -42,19 +46,18 @@ window.addEventListener("scroll", () => {
   });
 
 // Edit content
-var templates = [];
-document.querySelectorAll('.list-group:not(#group1, .education) .hover:first-child').forEach(el => {
-    templates.push(el.innerHTML);
-})
-
 var item = Array.from(document.querySelectorAll('.list-group-item'));
-$('.fa-custom-trash').click(function(){
+
+// Remove element
+$('.btn-trash').click(function(){
     $(this).parent().remove();
 });
-$('.pub-chosen-right .fa-trash').click(function(){
+//Remove element has pdf
+$('.pub-chosen-right .fa-trash-alt').click(function(){
     $(this).parent().parent().remove();
 })
 
+// Add ckEditable
 item.forEach((el, ind) => {
     el.setAttribute('contentEditable', 'true');
     var ck = CKEDITOR.inline(item[ind], {
@@ -62,7 +65,8 @@ item.forEach((el, ind) => {
     })
 })
 
-$('.wrap-chosen').hover(function () {
+// Show button plus
+$('.title').hover(function () {
         $(this).find('.fa-plus').css('opacity', '1');
     }, function () {
         // out
@@ -70,11 +74,22 @@ $('.wrap-chosen').hover(function () {
     }
 );
 
+// Add content when click button plus
 $('.fa-plus').click(function(){
+    $(this).parent().siblings('#group1').prepend(
+        `<div class="hover">
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
+            <div class="list-group-item">
+            Department of Software Engineering
+            </div>
+        </div>`
+    );
+
     $(this).parent().siblings('#group2').prepend(
         `<div class="hover">
-            <i class="fa fa-arrows" aria-hidden="true"></i>
-            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
             <div class="list-group-item">
             <span>EMPTY</span>
             </div>
@@ -82,26 +97,33 @@ $('.fa-plus').click(function(){
     );
     $(this).parent().siblings('#group3').prepend(
         `<div class="hover mb-4">
-            <i class="fa fa-arrows" aria-hidden="true"></i>
-            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
-            <div class="hover d-flex justify-content-between">
-            <div class="list-group-item academic col-9">
-                <h4><a class="text-primary" href="#">VARNA TECHNICAL UNIVERSITY</a>, BULGARIA</h4>
-                <div class="mb-3">PHD DEGREE IN INFORMATION AND COMPUTER SCIENCES</div>
-                <span class="text-secondary">PhD thesis: Architectural model of a class numerical computing machine and its application on generating smooth curves and surface</span>
-            </div>
-            <div class="academic col-3">
-                <div class="list-group-item time">
-                3/1991 - 12/1995
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
+            <div class="d-flex justify-content-between">
+            <div class="academic-item col-9">
+                <h4 class="list-group-item academic-item-name">
+                <a class="text-primary" href="#">VARNA TECHNICAL UNIVERSITY</a
+                >, BULGARIA
+                </h4>
+                <div class="list-group-item academic-level">
+                PHD DEGREE IN INFORMATION AND COMPUTER SCIENCES
                 </div>
+                <div class="text-secondary list-group-item academic-description"
+                >PhD thesis: Architectural model of a class numerical
+                computing machine and its application on generating smooth
+                curves and surface</div
+                >
+            </div>
+            <div class="academic-item col-3">
+                <div class="list-group-item academic-item-time">3/1991 - 12/1995</div>
             </div>
             </div>
         </div>`
     );
     $(this).parent().siblings('#group6').prepend(
         `<div class="hover">
-            <i class="fa fa-arrows" aria-hidden="true"></i>
-            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
             <div class="list-group-item">
             <a class="text-primary" href="#"><i> Proposed Topics for Undergraduate (2018-2019)</i></a>
             </div>
@@ -111,11 +133,12 @@ $('.fa-plus').click(function(){
     //#group4, #group5,#group7, #group8, #group9, #group10, #group11, #group12, #group13, #group14
     $(this).parent().siblings(`.list-group[name="same-text"]`).prepend(
         `<div class="hover">
-            <i class="fa fa-arrows" aria-hidden="true"></i>
-            <i class="fa fa-trash fa-custom-trash" aria-hidden="true"></i>
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
             <div class="list-group-item text-secondary">Empty</div>
         </div>`
     );
+    // Add ckEditable again
     var item = Array.from(document.querySelectorAll('.list-group-item'));
     item.forEach((el, ind) => {
         el.setAttribute('contentEditable', 'true');
@@ -123,95 +146,19 @@ $('.fa-plus').click(function(){
             allowedContent: true
         })
     })
-    $('.fa-custom-trash').click(function(){
+    // Remove again
+    $('.btn-trash').click(function(){
         $(this).parent().remove();
     });
 })
 
-
-// Scroll active menu
-const sections = document.querySelectorAll('.title');
-
-// onscroll = function(){
-//     var scrollPosition = document.documentElement.scrollTop;
-
-//     sections.forEach(section => {
-//         if(scrollPosition >= section.offsetTop - section.offsetHeight*0.25 &&
-//             scrollPosition < section.offsetTop + section.offsetHeight - section.offsetHeight*0.25){
-//             var currentId = section.attributes.id.value;
-//             removeAllClassActive();
-//             addClassActive(currentId);
-//         }
-//     })
-// }
-
-
-
-removeAllClassActive = function(){
-    document.querySelectorAll('.navbar-nav .nav-item').forEach(el => {
-        el.classList.remove('active');
-    })
-}
-
-addClassActive = function(current){
-    var id = `[data-page='${current}']`;
-    document.querySelector(id).classList.add('active');
-}
-
-// Drag and Drop Items
-// const container_drags = document.querySelectorAll('.container-drag');
-// const draggables = document.querySelectorAll('.draggable');
-
-// draggables.forEach((element) => {
-//     element.addEventListener('dragstart', () => {
-//         element.classList.add('dragging');
-//     })
-
-//     element.addEventListener('dragend', () => {
-//         element.classList.remove('dragging');
-//     })
-// })
-
-// container_drags.forEach(container_drag => {
-//     container_drag.addEventListener('dragover', e => {
-//         e.preventDefault();
-//         const dragAfter = getDragAfterElement(container_drag, e.clientY);
-//         console.log(dragAfter)
-//         const draggable = document.querySelector('.dragging');
-    
-//         if(dragAfter == null){
-//             container_drag.appendChild(draggable);
-//         }
-//         else{
-//             container_drag.insertBefore(draggable, dragAfter);
-//         }
-//     })
-
-// })
-
-// function getDragAfterElement(container, y){
-//     const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
-//     return draggableElements.reduce((closest, child) => {
-//         const box = child.getBoundingClientRect();
-//         const offset = y - box.top - box.height / 2;
-
-//         if(offset < 0 && offset > closest.offset)
-//             return {offset: offset, element: child }
-//         else
-//             return closest
-//     }, {offset: Number.NEGATIVE_INFINITY}).element
-// }
-
-
-
+// Add sortable for elements
 $('.list-group').sortable({
     animation: 150,
-    handle: '.fa-arrows'
+    handle: '.btn-arrow'
 });
 
-
-
-/* Set Image */
+/* Change Image */
 const img = document.querySelector('#avatar');
 const btnFile = document.querySelector('#file');
 
