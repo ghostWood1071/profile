@@ -34,7 +34,7 @@ module.exports.getUserInfo = function (req, res, next) {
     res.render('template1', {
         avatar: user.avatar,
         about: user.about,
-        research_interst: user.research_interests,
+        research_interest: user.research_interests,
         academic: user.academic,
         teaching: user.teaching,
         thesis: user.thesis,
