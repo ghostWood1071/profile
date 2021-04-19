@@ -12,12 +12,20 @@ $('.card-body form').on('submit',function(){
 
     return check;
 });
-
+$('.input--style-5').each(function(){
+    $(this).focus(function(){
+        hideValidate(this);
+    });
+})
 function validate(input){
     if ($(input).val().trim()=='')
         return false;
 }
-
+function hideValidate(input){
+    var thisAlert = $(input).parent();
+    
+    $(thisAlert).removeClass('alert-validate')
+}
 function showValidate(input){
     var thisAlert = $(input).parent();
     
