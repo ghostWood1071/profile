@@ -17,6 +17,5 @@ router.get('/signup', function (req, res, next) {
 });
 router.get('/', userController.auth, userController.readData, userController.getUserInfo);
 
-
 module.exports = router;
 

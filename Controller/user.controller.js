@@ -59,7 +59,6 @@ module.exports.validate = function(req,res,next) {
     var loginInfo = res.locals.login;
     var data =  JSON.parse(res.locals.stringData);
     var uid = data.findIndex(x=>x.login.account === loginInfo.account);
-
     if(uid>=0){
         var user = data[uid];
         if(user.login.pass === loginInfo.pass){
@@ -67,8 +66,17 @@ module.exports.validate = function(req,res,next) {
            next();
            return;
         }
+        res.send({
+            head: "login fail",
+            err: "bad password"
+        });
+        return;
     }
-    res.send("fail");
+    
+    res.send({
+        head: "login fail",
+        err: "account not found"
+    });
 }
 
 module.exports.saveLoginCookie = function(req, res, next){
