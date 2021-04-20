@@ -1,4 +1,3 @@
-
 (function ($) {
     "use strict";
 
@@ -6,19 +5,6 @@
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
-
-    $('.validate-form').on('submit',function(){
-        var check = true;
-
-        for(var i=0; i<input.length; i++) {
-            if(validate(input[i]) == false){
-                showValidate(input[i]);
-                check=false;
-            }
-        }
-
-        return check;
-    });
 
 
     $('.validate-form .input100').each(function(){
@@ -52,6 +38,37 @@
         $(thisAlert).removeClass('alert-validate');
     }
     
-    
+
+    document.getElementsByClassName("login100-form-btn")[0].onclick = function() {
+        var check = true;
+        for(var i=0; i<input.length; i++) {
+            if(validate(input[i]) == false){
+                showValidate(input[i]);
+                check=false;
+            }
+        }
+
+        if(!check)
+            return;
+
+        var account = $("#acc").val();
+        var password = $("#pass").val();
+        $.post("login", 
+            {
+                account: account,
+                password: password
+            },
+            function (data, textStatus, jqXHR) {
+                if(data.head){
+                    alert(data.err);
+                    return;
+                }
+                window.location.replace("/users");
+            }
+        );
+    }
+   
 
 })(jQuery);
+
+

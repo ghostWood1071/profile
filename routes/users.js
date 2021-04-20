@@ -1,18 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var loginController = require('../Controller/login.controller');
 var userController = require('../Controller/user.controller');
+var dataHelper = require('../middleware/data.midleware');
+var loginController = require('../Controller/login.controller');
 
-router.get("/login", loginController.getLoginPage);
 
-router.post("/", 
-        loginController.getLoginInfo, 
-        userController.readData, 
-        loginController.validate,
-        userController.getUserInfo
-);
-router.get('/', userController.readData, userController.getUserInfo);
-
+router.get('/', loginController.auth, dataHelper.readData, userController.getUserInfo);
 
 module.exports = router;
 

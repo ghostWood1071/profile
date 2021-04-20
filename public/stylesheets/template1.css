@@ -56,7 +56,6 @@ nav.sticky {
 }
 
 .wrap-about {
-  padding: 20px 9px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -64,6 +63,7 @@ nav.sticky {
 .avatar {
   max-height: 300px;
   position: relative;
+  padding: 0 !important;
 }
 .avatar img {
   width: 100%;
@@ -136,7 +136,7 @@ nav.sticky {
   display: block;
 }
 
-.title {
+.content {
   padding: 8px 24px;
 }
 
@@ -145,7 +145,7 @@ nav.sticky {
   margin-right: 8px;
 }
 
-.title h2 {
+.content h2 {
   text-transform: uppercase;
   color: var(--danger);
   cursor: default;
@@ -153,21 +153,20 @@ nav.sticky {
   margin: 0;
 }
 
-.title h5 {
+.content h5 {
   cursor: default;
   color: var(--gray);
   margin: 0;
 }
 
-.wrap-chosen {
+.title {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 10px 0;
   color: var(--danger);
 }
 
-.wrap-chosen h5 {
+.title h5 {
   color: #222;
   font-size: 20px;
 }
@@ -184,15 +183,6 @@ nav.sticky {
   display: inline-block !important;
 }
 
-.content:hover .edit {
-  opacity: 1;
-  animation: Fade 0.6s ease;
-}
-
-.content {
-  margin-bottom: 20px;
-}
-
 .list-group {
   font-size: 17px;
 }
@@ -201,15 +191,11 @@ nav.sticky {
   height: 0;
 }
 
-.content:hover .h0 {
-  height: 38px;
-}
-
 .list-group-item {
   background-color: transparent !important;
 }
 
-.address {
+.contact-group {
   border: none !important;
   display: flex;
 }
@@ -218,10 +204,10 @@ nav.sticky {
   position: relative;
 }
 
-.fa-arrows,
-.fa-trash{
+.btn-trash,
+.btn-arrow{
   position: absolute;
-  width: 34px;
+  width: 40px;
   display: flex !important;
   opacity: 0;
   transition: 0.4s;
@@ -232,22 +218,60 @@ nav.sticky {
   justify-content: center;
 }
 
-.fa-arrows {
-  left: -34px;
+.btn-arrow {
+  left: -40px;
   
 }
 
-.fa-trash {
-  right: -34px;
-}
-
-.fa-plus {
+.pub-chosen-right{
+  position: absolute;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  right: -40px;
+  color: var(--danger);
+  width: 40px;
   opacity: 0;
 }
 
-.hover:hover .fa-arrows,
-.hover:hover .fa-trash {
+.pub-chosen-right .fa-trash-alt,
+.pub-chosen-right .pdf{
+  width: 100%;
+  text-align: center;
+  height: 50%;
+  cursor: pointer;
+  margin: 0;
+}
+
+.pub-chosen-right .pdf:hover{
+  text-decoration: underline;
+}
+
+input[name*="pdf"]{
+  display: none;
+}
+
+.btn-trash {
+  right: -40px;
+}
+
+.fa-plus {
+  cursor: pointer;
+  opacity: 0;
+  padding: 0 10px;
+  margin: 0 10px;
+}
+
+.hover:hover .btn-arrow,
+.hover:hover .btn-trash,
+.hover:hover .pub-chosen-right {
   opacity: 1;
+}
+
+.btn-arrow:hover,
+.pdf:hover,
+.fa-trash-alt:hover{
+  opacity: 0.8 !important;
 }
 
 .fa-envelope,
@@ -262,31 +286,35 @@ nav.sticky {
   margin-right: 10px;
 }
 
-.address .list-group-item {
+.contact-group .list-group-item {
   width: 100%;
 }
 
-.address a {
+.contact-group a {
   color: #222;
 }
 
-.address a:hover {
+.contact-group a:hover {
   color: var(--danger);
 }
 
-.academic {
+.academic-item {
   border: none !important;
   padding: 0 !important;
 }
-.academic:nth-child(1) {
+.academic-item:nth-child(1) {
   border-right: 0;
 }
-.academic:nth-child(2) {
+.academic-item:nth-child(2) {
   text-align: end;
   color: var(--danger);
   border-top-width: 1px !important;
   border-top: 1px solid rgba(0, 0, 0, 0.125);
   border-left: 0;
+}
+
+.academic-item .list-group-item{
+  padding: 0.25rem 1.25rem;
 }
 
 .list-group-item {
@@ -295,18 +323,12 @@ nav.sticky {
   padding-right: 0 !important;
 }
 
-.academic h4,
-.academic-year h4,
-.title h4 {
+.academic-item h4,
+.content h4 {
   font-size: 1.25rem;
 }
 
-.academic-year h5,
-.title h5 {
-  font-size: 1.1rem;
-}
-
-.academic .time {
+.academic-item .time {
   padding-right: 5px;
 }
 
