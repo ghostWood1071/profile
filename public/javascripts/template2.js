@@ -16,7 +16,17 @@ $('.circle').click(() => {
 
 //Colors
 const colors = document.querySelectorAll('.color');
-
+colors.forEach((element) => {
+  element.addEventListener("click", () => {
+    if(element.classList.contains('green')) {
+      document.documentElement.style.setProperty('--primaryColor', '#458966');
+    } else if(element.classList.contains('brown')) {
+      document.documentElement.style.setProperty('--primaryColor', '#493d34');
+    } else if(element.classList.contains('default')) {
+      document.documentElement.style.setProperty('--primaryColor', '#bd5d38');
+    }
+  })
+})
 
 //Title
 document.title = $('.name').text();
@@ -69,13 +79,18 @@ function readURL(input, e) {
 
 // Click
 const focusCkeditor = document.querySelectorAll('.focus');
+var status;
 
 const items = document.querySelectorAll('.list-group-item');
 items.forEach((element, index) => {
+
+  element.addEventListener("click", () => {
       element.setAttribute('contentEditable', 'true');
       CKEDITOR.inline(element, {
-        allowedContent: true
+        allowedContent: true,
+        startupFocus: true
       })
+  })
 })
 
 //Remove
@@ -160,177 +175,264 @@ $('.btn-plus').click(function(element) {
 })
 
 //Xử lý group list
-
 const btnPlus = document.querySelectorAll('.btn-plus');
 
 btnPlus.forEach((element) => {
   element.addEventListener('click', function() {
     if (element.parentNode.classList.contains('publication-details-title')) {
-      var node = document.createElement('div');
+      let node = document.createElement('div');
+      node.setAttribute('class', 'publication-item');
+
+      node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="publication-name"><div class="list-group-item">A) International Journals</div><i class="fas fa-plus-circle btn-plus"></i></div><div class="list-group publication-content"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">Van-Quyet Nguyen, Quyet-Thang Huynh, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">Nguyen Hung-Cuong, Huynh Quyet-Thang and Le Hai-Trieu. Different Ranking of NHPP Software Reliability Growth Models with Generalized Measure and Predictability. International Journal of Applied Information Systems, Series Volume 7, Number 11, November 2014. ISSN 2249: 0868. pp. 1-6. DOI: 10.5120/ijais14-451257.</div></div></div>`;
+      document.querySelector('.publication-list').insertBefore(node, document.querySelector('.publication-list').childNodes[0]);
+      var content = document.querySelector('.publication-content');
+
+      const items = document.querySelectorAll('.list-group-item');
+      const trashBtn = document.querySelectorAll('.btn-trash');
+      items.forEach((element, index) => {
+        element.setAttribute('contentEditable', 'true');
+        CKEDITOR.inline(element, {
+          allowedContent: true
+        })
+      })
       
-      node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="subtitle hover publication-title"><div class="list-group-item">A) International Journals</div><i class="fas fa-plus-circle btn-plus"></i></div><div class="publication-content"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">Van-Quyet Nguyen, Huu-Duy Nguyen, Quyet-Thang Huynh, Nalini Venkatasubramanian, Kyungbaek Kim, "A Scalable Approach for Dynamic Evacuation Routing in Large Smart Buildings", In Proceedings of the Fifth International Conference on Smart Computing (SMARTCOMP 2019), June 12-14, 2019, Washington D.C., US. (to be appeared)</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">Van-Quyet Nguyen, Huu-Duy Nguyen, Quyet-Thang Huynh, Nalini Venkatasubramanian, Kyungbaek Kim, "A Scalable Approach for Dynamic Evacuation Routing in Large Smart Buildings", In Proceedings of the Fifth International Conference on Smart Computing (SMARTCOMP 2019), June 12-14, 2019, Washington D.C., US. (to be appeared)</div></div></div>`;
-
-      node.childNodes[1].childNodes[0].addEventListener('click', () => {
-        node.childNodes[1].childNodes[0].setAttribute('contentEditable', 'true');
-        CKEDITOR.inline(node.childNodes[1].childNodes[0],{
-          allowedContent: true,
-          startupFocus: true
-        });
-      })
-
-      node.childNodes[0].addEventListener('click', function() {
-        node.childNodes[0].parentNode.remove();
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[0].addEventListener('click', function() {
-          element.childNodes[0].parentNode.remove();
+      trashBtn.forEach((element) => {
+        element.addEventListener('click', function() {
+          if(element.parentElement.classList.contains('item-list')) {
+            element.parentNode.parentNode.remove();
+          } else {
+            element.parentNode.remove();
+          }
         })
       })
+      
+      $(".list-group").sortable({
+        handle: '.btn-arrow'
+      });
 
-      node.childNodes[1].childNodes[1].addEventListener('click', (element) => {
-        var nodeChild = document.createElement('div');
+      const name = document.querySelector('.publication-name > .btn-plus');
+      name.addEventListener('click', (element) => {
+        let nodeChild = document.createElement('div');
         nodeChild.setAttribute('class', 'hover');
-        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">NEW ITEM</div>`;
+        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">NEW ITEM</div>`;
+        content.insertBefore(nodeChild, content.childNodes[0]) 
 
-        console.log(node.childNodes[2]);
-        // node.childNodes[2].appendChild(nodeChild);
-        node.childNodes[2].insertBefore(nodeChild, node.childNodes[2].childNodes[0]) 
-
-        node.childNodes[2].childNodes.forEach((element) => {
-            element.childNodes[0].addEventListener('click', () => {
-              element.childNodes[0].parentNode.remove();
-            })
+        const items = document.querySelectorAll('.list-group-item');
+        const trashBtn = document.querySelectorAll('.btn-trash');
+        items.forEach((element, index) => {
+          element.setAttribute('contentEditable', 'true');
+          CKEDITOR.inline(element, {
+            allowedContent: true
+          })
         })
-
-        nodeChild.childNodes[1].addEventListener('click', () => {
-          nodeChild.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(nodeChild.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
-        })
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[1].addEventListener('click', () => {
-          element.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(element.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
+        
+        trashBtn.forEach((element) => {
+          element.addEventListener('click', function() {
+            if(element.parentElement.classList.contains('item-list')) {
+              element.parentNode.parentNode.remove();
+            } else {
+              element.parentNode.remove();
+            }
+          })
         })
       })
-      document.querySelector('.publication-list-content').insertBefore(node, document.querySelector('.publication-list-content').childNodes[0]);
+    } else if(element.parentNode.classList.contains('publication-name')) {
+      var content = document.querySelector('.publication-example');
+      let nodeChild = document.createElement('div');
+      nodeChild.setAttribute('class', 'hover');
+      nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">NEW ITEM</div> `;
+      content.insertBefore(nodeChild, content.childNodes[0]) 
+
+      const items = document.querySelectorAll('.list-group-item');
+      const trashBtn = document.querySelectorAll('.btn-trash');
+      items.forEach((element, index) => {
+        element.setAttribute('contentEditable', 'true');
+        CKEDITOR.inline(element, {
+          allowedContent: true
+        })
+      })
+      
+      trashBtn.forEach((element) => {
+        element.addEventListener('click', function() {
+          if(element.parentElement.classList.contains('item-list')) {
+            element.parentNode.parentNode.remove();
+          } else {
+            element.parentNode.remove();
+          }
+        })
+      })
     } else if (element.parentNode.classList.contains('add')) {
-      var node = document.createElement('div');
+      let node = document.createElement('div');
+      node.setAttribute('class', 'thesis-item');
+
+      node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="thesis-name"><div class="list-group-item">Phd Thesis Supervised</div><i class="fas fa-plus-circle btn-plus"></i></div><div class="list-group thesis-content"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div></div></div>`;
+      document.querySelector('.thesis-list').insertBefore(node, document.querySelector('.thesis-list').childNodes[0]);
+      var content = document.querySelector('.thesis-content');
+
+      const items = document.querySelectorAll('.list-group-item');
+      const trashBtn = document.querySelectorAll('.btn-trash');
+      items.forEach((element, index) => {
+        element.setAttribute('contentEditable', 'true');
+        CKEDITOR.inline(element, {
+          allowedContent: true
+        })
+      })
       
-      node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="subtitle hover th-title"><div class="list-group-item">Phd Thesis Supervised</div><i class="fas fa-plus-circle btn-plus"></i></div><div class="thesis-content"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div></div></div>`;
-
-      node.childNodes[1].childNodes[0].addEventListener('click', () => {
-        node.childNodes[1].childNodes[0].setAttribute('contentEditable', 'true');
-        CKEDITOR.inline(node.childNodes[1].childNodes[0],{
-          allowedContent: true,
-          startupFocus: true
-        });
-      })
-
-      node.childNodes[0].addEventListener('click', function() {
-        node.childNodes[0].parentNode.remove();
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[0].addEventListener('click', function() {
-          element.childNodes[0].parentNode.remove();
+      trashBtn.forEach((element) => {
+        element.addEventListener('click', function() {
+          if(element.parentElement.classList.contains('item-list')) {
+            element.parentNode.parentNode.remove();
+          } else {
+            element.parentNode.remove();
+          }
         })
       })
+      
+      $(".list-group").sortable({
+        handle: '.btn-arrow'
+      });
 
-      node.childNodes[1].childNodes[1].addEventListener('click', (element) => {
-        var nodeChild = document.createElement('div');
+      const name = document.querySelector('.thesis-name > .btn-plus');
+      name.addEventListener('click', (element) => {
+        let nodeChild = document.createElement('div');
         nodeChild.setAttribute('class', 'hover');
-        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item text-content">NEW ITEM</div>`;
-        // node.childNodes[2].appendChild(nodeChild);
-        node.childNodes[2].insertBefore(nodeChild, node.childNodes[2].childNodes[0]) 
+        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">NEW ITEM</div>`;
+        content.insertBefore(nodeChild, content.childNodes[0]) 
 
-        node.childNodes[2].childNodes.forEach((element) => {
-            element.childNodes[0].addEventListener('click', () => {
-              element.childNodes[0].parentNode.remove();
-            })
+        const items = document.querySelectorAll('.list-group-item');
+        const trashBtn = document.querySelectorAll('.btn-trash');
+        items.forEach((element, index) => {
+          element.setAttribute('contentEditable', 'true');
+          CKEDITOR.inline(element, {
+            allowedContent: true
+          })
         })
-
-        nodeChild.childNodes[1].addEventListener('click', () => {
-          nodeChild.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(nodeChild.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
-        })
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[1].addEventListener('click', () => {
-          element.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(element.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
+        
+        trashBtn.forEach((element) => {
+          element.addEventListener('click', function() {
+            if(element.parentElement.classList.contains('item-list')) {
+              element.parentNode.parentNode.remove();
+            } else {
+              element.parentNode.remove();
+            }
+          })
         })
       })
-      document.querySelector('.thesis-content').insertBefore(node, document.querySelector('.thesis-content').childNodes[0]);
+    } else if (element.parentNode.classList.contains('thesis-name')) {
+        var content = document.querySelector('.thesis-example');
+        let nodeChild = document.createElement('div');
+        nodeChild.setAttribute('class', 'hover');
+        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">NEW ITEM</div>`;
+        content.insertBefore(nodeChild, content.childNodes[0]) 
+
+        const items = document.querySelectorAll('.list-group-item');
+        const trashBtn = document.querySelectorAll('.btn-trash');
+        items.forEach((element, index) => {
+          element.setAttribute('contentEditable', 'true');
+          CKEDITOR.inline(element, {
+            allowedContent: true
+          })
+        })
+        
+        trashBtn.forEach((element) => {
+          element.addEventListener('click', function() {
+            if(element.parentElement.classList.contains('item-list')) {
+              element.parentNode.parentNode.remove();
+            } else {
+              element.parentNode.remove();
+            }
+          })
+        })
     } else if (element.parentNode.classList.contains('teaching-title')) {
-      var node = document.createElement('div');
-      
-      node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="teaching-year"><div class="list-group-item">2018 - 2019</div><i class="fas fa-plus-circle btn-plus"></i></div><div class="teaching-content"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item">IT5630 - Advanced Project Management</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item">IT5630 - Advanced Project Management</div> </div></div>`;
+      let node = document.createElement('div');
+      node.setAttribute('class', 'teaching-item');
 
-      node.childNodes[1].childNodes[0].addEventListener('click', () => {
-        node.childNodes[1].childNodes[0].setAttribute('contentEditable', 'true');
-        CKEDITOR.inline(node.childNodes[1].childNodes[0],{
-          allowedContent: true,
-          startupFocus: true
-        });
-      })
-
-      node.childNodes[0].addEventListener('click', function() {
-        node.childNodes[0].parentNode.remove();
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[0].addEventListener('click', function() {
-          element.childNodes[0].parentNode.remove();
-        })
-      })
-
-      node.childNodes[1].childNodes[1].addEventListener('click', (element) => {
-        var nodeChild = document.createElement('div');
-        nodeChild.setAttribute('class', 'hover');
-        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><div class="list-group-item">IT5630 - Advanced Project Management</div>`;
-        node.childNodes[2].insertBefore(nodeChild, node.childNodes[2].childNodes[0]) 
-
-        node.childNodes[2].childNodes.forEach((element) => {
-            element.childNodes[0].addEventListener('click', () => {
-              element.childNodes[0].parentNode.remove();
-            })
-        })
-
-        nodeChild.childNodes[1].addEventListener('click', () => {
-          nodeChild.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(nodeChild.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
-        })
-      })
-
-      node.childNodes[2].childNodes.forEach((element) => {
-        element.childNodes[1].addEventListener('click', () => {
-          element.childNodes[1].setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(element.childNodes[1],{
-            allowedContent: true,
-            startupFocus: true
-          });
-        })
-      })
+      node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="teaching-year"><div class="list-group-item">2018 - 2019</div><i class="fas fa-plus-circle btn-plus"></i></div><div class="list-group teaching-content"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow white-color "></i><div class="list-group-item">IT5630 - Advanced Project Management</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow white-color "></i><div class="list-group-item">IT5630 - Advanced Project Management</div></div></div>`;
       document.querySelector('.teaching-list').insertBefore(node, document.querySelector('.teaching-list').childNodes[0]);
+      console.log(node);
+      var content = document.querySelector('.teaching-content');
+
+      const items = document.querySelectorAll('.list-group-item');
+      const trashBtn = document.querySelectorAll('.btn-trash');
+      items.forEach((element, index) => {
+        element.setAttribute('contentEditable', 'true');
+        CKEDITOR.inline(element, {
+          allowedContent: true
+        })
+      })
+      
+      trashBtn.forEach((element) => {
+        element.addEventListener('click', function() {
+          if(element.parentElement.classList.contains('item-list')) {
+            element.parentNode.parentNode.remove();
+          } else {
+            element.parentNode.remove();
+          }
+        })
+      })
+      
+      $(".list-group").sortable({
+        handle: '.btn-arrow'
+      });
+
+      const year = document.querySelector('.teaching-year > .btn-plus');
+      year.addEventListener('click', (element) => {
+        let nodeChild = document.createElement('div');
+        nodeChild.setAttribute('class', 'hover');
+        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow white-color "></i><div class="list-group-item">NEW ITEM</div>`;
+        content.insertBefore(nodeChild, content.childNodes[0]) 
+
+        const items = document.querySelectorAll('.list-group-item');
+        const trashBtn = document.querySelectorAll('.btn-trash');
+        items.forEach((element, index) => {
+          element.setAttribute('contentEditable', 'true');
+          CKEDITOR.inline(element, {
+            allowedContent: true
+          })
+        })
+        
+        trashBtn.forEach((element) => {
+          element.addEventListener('click', function() {
+            if(element.parentElement.classList.contains('item-list')) {
+              element.parentNode.parentNode.remove();
+            } else {
+              element.parentNode.remove();
+            }
+          })
+        })
+      })
+      
+    } else if (element.parentNode.classList.contains('teaching-year')) {
+      var content = document.querySelector('.teaching-example');
+      let nodeChild = document.createElement('div');
+        nodeChild.setAttribute('class', 'hover');
+        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow white-color "></i><div class="list-group-item">NEW ITEM</div>`;
+        content.insertBefore(nodeChild, content.childNodes[0]);
+
+        const items = document.querySelectorAll('.list-group-item');
+        const trashBtn = document.querySelectorAll('.btn-trash');
+        items.forEach((element, index) => {
+          element.setAttribute('contentEditable', 'true');
+          CKEDITOR.inline(element, {
+            allowedContent: true
+          })
+        })
+        
+        trashBtn.forEach((element) => {
+          element.addEventListener('click', function() {
+            if(element.parentElement.classList.contains('item-list')) {
+              element.parentNode.parentNode.remove();
+            } else {
+              element.parentNode.remove();
+            }
+          })
+        })
     }
   })
 })
+
+//Move
+$(".list-group").sortable({
+  handle: '.btn-arrow'
+});
+
