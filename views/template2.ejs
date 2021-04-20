@@ -13,13 +13,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"/>
+    <!-- Jquery UI -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Custom stylesheet -->
-    <link rel="stylesheet" href="./assets/css/template2.css">
+    <link rel="stylesheet" href="/stylesheets/template2.css">
     
 </head>
 <body>
-    
     <div class="wrapper">
         <div class="hamburger">
             <span></span>
@@ -31,7 +31,7 @@
             <div class="nav-img">
                 <div class="nav-img-overlay"></div>
                 <i class="fas fa-upload"></i>
-                <img id="avatar-img" src="./assets/img/avatar.jpg" alt="Avatar"/>
+                <img id="avatar-img" src="/images/avatar.jpg" alt="Avatar"/>
                 <input type="file" class="nav-img-upload" onchange="readURL(this, '#avatar-img');">
             </div>
 
@@ -57,42 +57,42 @@
                     <div class="list-group" id="group1">
                         <div class="hover">
                             <i class="fas fa-trash-alt btn-trash"></i>
-                            <i class="fas fa-arrows-alt btn-arrow"></i>
                             <div class="list-group-item">
                                 <a href="#">Department of Software Engineering</a>
                             </div>
+                            <i class="fas fa-arrows-alt btn-arrow"></i>
                         </div>
                         <div class="hover">
                             <i class="fas fa-trash-alt btn-trash"></i>
-                            <i class="fas fa-arrows-alt btn-arrow"></i>
                             <div class="list-group-item">
                                 <a href="#">School of Information and Communication Technology</a>
                             </div>
+                            <i class="fas fa-arrows-alt btn-arrow"></i>
                         </div>
                         <div class="hover">
                             <i class="fas fa-trash-alt btn-trash"></i>
-                            <i class="fas fa-arrows-alt btn-arrow"></i>
                             <div class="list-group-item">
                                 <a href="#">Hanoi University of Science and Technology</a>
                             </div>
+                            <i class="fas fa-arrows-alt btn-arrow"></i>
                         </div>
                     </div>
                 </div>
 
                 <div class="list-group contact">
-                    <div class="contact-group">
+                    <div>
                         <i class="fa fa-address-card"></i>
                         <div class="list-group-item">Room 210, Building C1, No. 1 Dai Co Viet, Hai Ba Trung, Hanoi, Vietnam</div>
                     </div>
-                    <div class="contact-group">
+                    <div>
                         <i class="fa fa-phone-square"></i>
                         <div class="list-group-item">+84 (024) 3868 1912</div>
                     </div>
-                    <div class="contact-group">
+                    <div>
                         <i class="fa fa-fax"></i>
-                        <div class="list-group-item"> +84 (024) 3869 2006</div>
+                        <div class="list-group-item">+84 (024) 3869 2006</div>
                     </div>
-                    <div class="contact-group">
+                    <div>
                         <i class="fa fa-envelope"></i>
                         <div class="list-group-item">
                             <a href="#">thanghq@soict.hust.edu.vn</a>;
@@ -155,83 +155,29 @@
 
                 <div class="list-group teaching-list">
 
-                    <!-- <div>
+                    <div class="teaching-item">
                         <i class="fas fa-trash-alt btn-trash"></i>
+                        <i class="fas fa-arrows-alt btn-arrow"></i>
+
                         <div class="teaching-year">
                             <div class="list-group-item">2018 - 2019</div>
                             <i class="fas fa-plus-circle btn-plus"></i>
                         </div>
-                        <div class="teaching-content">
+                        <div class="list-group teaching-content teaching-example">
                             <div class="hover">
                                 <i class="fas fa-trash-alt btn-trash"></i>
+                                <i class="fas fa-arrows-alt btn-arrow white-color "></i>
                                 <div class="list-group-item">IT5630 - Advanced Project Management</div> 
                             </div>
 
                             <div class="hover">
                                 <i class="fas fa-trash-alt btn-trash"></i>
+                                <i class="fas fa-arrows-alt btn-arrow white-color "></i>
                                 <div class="list-group-item">IT5630 - Advanced Project Management</div> 
                             </div>
                         </div>
-                    </div> -->
+                    </div>
 
-                    <!-- <div class="teaching-item">
-                        <div class="hover teaching-item-title item-list">
-                            <i class="fas fa-trash-alt btn-trash"></i>
-                            <div>ACADEMIC YEAR</div>
-                            <div class="list-group-item teaching-year">2018-2019</div>
-                        </div>
-                        <div class="graduate">
-                            <div class="title graduate-title">
-                                Graduate Course
-                                <i class="fas fa-plus-circle btn-plus graduate-btn"></i>
-                            </div>
-                            <div class="list-group group5">
-                                <div class="hover group-item">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <i class="fas fa-check mg-left-right"></i>
-                                    <div class="list-group-item">
-                                        School of Information and Communication Technology
-                                    </div>
-                                </div>
-    
-                                <div class="hover group-item">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <i class="fas fa-check mg-left-right"></i>
-                                    <div class="list-group-item">
-                                        School of Information and Communication Technology
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="undergraduate">
-                            <div class="title undergraduate-title">
-                                Undergraduate Courses
-                                <i class="fas fa-plus-circle btn-plus undergraduate-btn"></i>
-                            </div>
-                            <div class="list-group group6">
-                                <div class="hover group-item">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <i class="fas fa-check mg-left-right"></i>
-                                    <div class="list-group-item">
-                                        School of Information and Communication Technology
-                                    </div>
-                                </div>
-    
-                                <div class="hover group-item">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <i class="fas fa-check mg-left-right"></i>
-                                    <div class="list-group-item">
-                                        School of Information and Communication Technology
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </section>
            
@@ -270,54 +216,31 @@
                         <i class="fas fa-plus-circle btn-plus mg-left-0"></i>
                     </div>
                     
-                    <div class="thesis-content">
-                        <!-- <div class="hover">
+                    <div class="list-group thesis-list">
+
+                        <div class="thesis-item">
                             <i class="fas fa-trash-alt btn-trash"></i>
                             <i class="fas fa-arrows-alt btn-arrow"></i>
-                            <div class="subtitle">
+    
+                            <div class="thesis-name">
                                 <div class="list-group-item">Phd Thesis Supervised</div>
                                 <i class="fas fa-plus-circle btn-plus"></i>
                             </div>
-                        </div>
-
-                        <div class="list-group">
-                            <div class="hover">
-                                <i class="fas fa-trash-alt btn-trash"></i>
-                                <i class="fas fa-arrows-alt btn-arrow"></i>
-                                <div class="list-group-item thesis-content">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div>
-                            </div>
-
-                            <div class="hover">
-                                <i class="fas fa-trash-alt btn-trash"></i>
-                                <i class="fas fa-arrows-alt btn-arrow"></i>
-                                <div class="list-group-item thesis-content">Nguyen Thi Thanh Tu (10/2009-10/2013): Design and construction industrial process controlling and monitoring system based OPCUA</div>
-                            </div>
-
-                            <div class="hover">
-                                <i class="fas fa-trash-alt btn-trash"></i>
-                                <i class="fas fa-arrows-alt btn-arrow"></i>
-                                <div class="list-group-item thesis-content">Nguyen Minh Quy (10/2010-10/2014): Performance Analysis of Parallel Computing Architectures</div>
-                            </div>
-                        </div> -->
-                        <div style="display: none;">
-                            <i class="fas fa-trash-alt btn-trash"></i>
-                            <div class="subtitle hover thesis-title">
-                                <div class="list-group-item">EXAMPLE</div>
-                                <i class="fas fa-plus-circle btn-plus"></i>
-                            </div>
-                            <div class="thesis-content">
+                            <div class="list-group thesis-content thesis-example">
                                 <div class="hover">
                                     <i class="fas fa-trash-alt btn-trash"></i>
-                                    <div class="list-group-item text-content">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div> 
+                                    <i class="fas fa-arrows-alt btn-arrow"></i>
+                                    <div class="list-group-item">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div> 
                                 </div>
     
                                 <div class="hover">
                                     <i class="fas fa-trash-alt btn-trash"></i>
-                                    <div class="list-group-item text-content">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div> 
+                                    <i class="fas fa-arrows-alt btn-arrow"></i>
+                                    <div class="list-group-item">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div> 
                                 </div>
                             </div>
                         </div>
-                        
+    
                     </div>
 
                 </div>
@@ -353,7 +276,7 @@
                     Publication
                 </div>
 
-                <div class="publication-list">
+                <div class="publication-container">
                     <div class="publication-book">
                         <div class="subtitle text-primary">
                             Book
@@ -387,56 +310,33 @@
                             <i class="fas fa-plus-circle btn-plus"></i>
                         </div>
 
-                        <!-- <div class="publication-item">
-                            <div class="hover">
+                        <div class="list-group publication-list">
+
+                            <div class="publication-item">
                                 <i class="fas fa-trash-alt btn-trash"></i>
                                 <i class="fas fa-arrows-alt btn-arrow"></i>
-                                <div class="subtitle">
+        
+                                <div class="publication-name">
                                     <div class="list-group-item">A) International Journals</div>
                                     <i class="fas fa-plus-circle btn-plus"></i>
                                 </div>
-                            </div>
-    
-                            <div class="list-group">
-                                <div class="hover">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <div class="list-group-item publication-content">Van-Quyet Nguyen, Quyet-Thang Huynh, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.</div>
-                                </div>
-    
-                                <div class="hover">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <div class="list-group-item publication-content">Nguyen Hung-Cuong, Huynh Quyet-Thang and Le Hai-Trieu. Different Ranking of NHPP Software Reliability Growth Models with Generalized Measure and Predictability. International Journal of Applied Information Systems, Series Volume 7, Number 11, November 2014. ISSN 2249: 0868. pp. 1-6. DOI: 10.5120/ijais14-451257.</div>
-                                </div>
-    
-                                <div class="hover">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <div class="list-group-item publication-content">hanh-Trung Pham, Xavier Defago, Quyet-Thang Huynh. Reliability prediction for component-based software systems: Dealing with concurrent and propagating errors. Journal of Science of Computer Programming, Volume 97, Part 4, 1 January 2015, ISSN 0167-6423, Pages 426-457. DOI: 10.1016/j.scico.2014.03.016 (ISI, Q2 Journal, IF=0.74)</div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class="list-group publication-list-content">
-                            <!-- <div>
-                                <i class="fas fa-trash-alt btn-trash"></i>
-                                <div class="subtitle hover publication-title">
-                                    <div class="list-group-item">A) International Journals</div>
-                                    <i class="fas fa-plus-circle btn-plus"></i>
-                                </div>
-                                <div class="publication-content">
+                                <div class="list-group publication-content publication-example">
                                     <div class="hover">
                                         <i class="fas fa-trash-alt btn-trash"></i>
-                                        <div class="list-group-item text-content">Van-Quyet Nguyen, Huu-Duy Nguyen, Quyet-Thang Huynh, Nalini Venkatasubramanian, Kyungbaek Kim, "A Scalable Approach for Dynamic Evacuation Routing in Large Smart Buildings", In Proceedings of the Fifth International Conference on Smart Computing (SMARTCOMP 2019), June 12-14, 2019, Washington D.C., US. (to be appeared)</div> 
+                                        <i class="fas fa-arrows-alt btn-arrow"></i>
+                                        <div class="list-group-item">Van-Quyet Nguyen, Quyet-Thang Huynh, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.</div> 
                                     </div>
         
                                     <div class="hover">
                                         <i class="fas fa-trash-alt btn-trash"></i>
-                                        <div class="list-group-item text-content">Van-Quyet Nguyen, Huu-Duy Nguyen, Quyet-Thang Huynh, Nalini Venkatasubramanian, Kyungbaek Kim, "A Scalable Approach for Dynamic Evacuation Routing in Large Smart Buildings", In Proceedings of the Fifth International Conference on Smart Computing (SMARTCOMP 2019), June 12-14, 2019, Washington D.C., US. (to be appeared)</div> 
+                                        <i class="fas fa-arrows-alt btn-arrow"></i>
+                                        <div class="list-group-item">Nguyen Hung-Cuong, Huynh Quyet-Thang and Le Hai-Trieu. Different Ranking of NHPP Software Reliability Growth Models with Generalized Measure and Predictability. International Journal of Applied Information Systems, Series Volume 7, Number 11, November 2014. ISSN 2249: 0868. pp. 1-6. DOI: 10.5120/ijais14-451257.</div> 
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
+        
                         </div>
+                        
                     </div>
                 </div>
             </section>
@@ -448,22 +348,30 @@
 
         <div class="options">
             <div class="color default"></div>
-            <div class="color red"></div>
-            <div class="color yellow"></div>
             <div class="color green"></div>
-            <div class="color blue"></div>
+            <div class="color brown"></div>
+
+            <div class="categories">
+                <input type="radio" name="research" class="btn-radio">
+                <label for="research">Research Interests</label>
+                <input type="radio" name="academic" class="btn-radio">
+                <label for="academic">Academic record</label>
+                <input type="radio" name="teaching" class="btn-radio">
+                <label for="research">Teaching</label>
+                <input type="radio" name="grant" class="btn-radio">
+                <label for="research">Research Grant</label>
+                <input type="radio" name="publication" class="btn-radio">
+                <label for="research">Publications</label>
+            </div>
         </div>
     </div>
     
 
-    <script src="./assets/js/jquery-3.6.0.min.js"></script>
-    <script src="./assets/ckeditor/ckeditor.js"></script>
-    <script src="./assets/ckeditor/config.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script> 
-    <script src="https://unpkg.com/sortablejs-make/Sortable.min.js"></script> 
+    <script src="/javascripts/jquery-3.6.0.min.js"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor/config.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script> 
-    <script src="./assets/js/template2.js"></script>
+    <script src="/javascripts/template2.js"></script>
 </body>
 </html>
