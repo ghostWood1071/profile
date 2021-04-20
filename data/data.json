@@ -1,150 +1,119 @@
-[
-    {
-      "template": "template1",
-      "login": {
-        "account": "quyetthang",
-        "pass": "12345"
-      },
-      "avatar": "/images/avatar.jpg",
-      "about": {
-        "name": "Huỳnh Quyết Thắng",
-        "level": "Ph.D",
-        "university": [
-          {
-            
-            "name": "Department of Software Engineering",
-            "link": "http://soict.hust.edu.vn/index.php/bo-mon-trung-tam/cong-nghe-phan-mem/gioi-thieu-chung"
-          },
-  
-          {
-            "name": "School of Information and Communication Technology",
-            "link": "http://soict.hust.edu.vn/index.php/bo-mon-trung-tam/cong-nghe-phan-mem/gioi-thieu-chung"
-          },
-  
-          {
-            "name": "Hanoi University of Science and Technology",
-            "link": "http://soict.hust.edu.vn/index.php/bo-mon-trung-tam/cong-nghe-phan-mem/gioi-thieu-chung"
-          }
-        ],
-        "address": "Room 210, Building C1, No. 1 Dai Co Viet, Hai Ba Trung, Hanoi, Vietnam",
-        "phone": "+84 (024) 3868 1812",
-        "fax": "+84 (024) 3869 2006",
-        "mail": [ "thanghq@soict.hust.edu.vn", "thang.huynhquyet@hust.edu.vn" ] 
-      },
-      "research_interests": [
-        {
-          "name": "SOFTWARE QUALITY",
+[{
+  "template": "template1",
+  "login": {
+      "account": "quyetthang",
+      "pass": "12345"
+  },
+  "avatar": "/images/avatar.jpg",
+  "about": {
+      "name": "Huỳnh Quyết Thắng",
+      "level": "Ph.D",
+      "university": [{
+          "name": "Department of Software Engineering",
           "link": "http://soict.hust.edu.vn/index.php/bo-mon-trung-tam/cong-nghe-phan-mem/gioi-thieu-chung"
-        },
-        {
-          "name": " SOFTWARE TESTING",
+      }, {
+          "name": "School of Information and Communication Technology",
           "link": "http://soict.hust.edu.vn/index.php/bo-mon-trung-tam/cong-nghe-phan-mem/gioi-thieu-chung"
-        },
-        {
-          "name": "METHODS IN SOFTWARE DEVELOPMENT",
+      }, {
+          "name": "Hanoi University of Science and Technology",
           "link": "http://soict.hust.edu.vn/index.php/bo-mon-trung-tam/cong-nghe-phan-mem/gioi-thieu-chung"
-        }
-      ],
-      "academic": [
-        {
-          "university": "Varna Technical University",
-          "location": "Bulgaria",
-          "level": "PhD degree in Information and Computer Sciences",
-          "time": "3/1991 - 12/1995",
-          "descript": "PhD thesis: Architectural model of a class numerical computing machine and its application on generating smooth curves and surface"
-        },
-  
-        {
-          "university": "Varna Technical University",
-          "location": "Bulgaria",
-          "level": "PhD degree in Information and Computer Sciences",
-          "time": "3/1991 - 12/1995",
-          "descript": "PhD thesis: Architectural model of a class numerical computing machine and its application on generating smooth curves and surface"
-        }
-      ],
-      "teaching": {
-        "academic_year": "2018-2019",
-        "graduate_course": [ "IT5630 - Advanced Project Management" ],
-        "undergraduate_courses": [ "IT4520 - Software Engineering Economics", "IT4520 - Software Engineering Economics" ]
-      },
-      "thesis": {
-        "link": [
-          {
-            "name": "Proposed Topics for Undergraduate (2018-2019)",
-            "address": "https://users.soict.hust.edu.vn/thanghq/Danh%20sach%20de%20tai%20nghien%20cuu%20-%20DH%20(2018-2019).pdf"
-          },
-  
-          {
-            "name": "Proposed Topics for Undergraduate (2018-2019)",
-            "address": "https://users.soict.hust.edu.vn/thanghq/Danh%20sach%20de%20tai%20nghien%20cuu%20-%20DH%20(2018-2019).pdf"
-          }
-        ],
-  
-        "content": [
-          {
-            "name": "Phd Thesis Supervised",
-            "list-content": [
-              "Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process",
-              "Nguyen Thi Thanh Tu (10/2009-10/2013): Design and construction industrial process controlling and monitoring system based OPCUA",
-              "Nguyen Minh Quy (10/2010-10/2014): Performance Analysis of Parallel Computing Architectures",
-              "Nguyen Hung Cuong (10/2012-10/2015): Software Reliability Evaluation Models using Markov chain and NHPP approaches (Tools to Support Software Reliability Modeling - TSSRM can be downloaded here)"
-            ]
-          },
-  
-          {
-            "name": "Current Phd Students",
-            "list-content": [
-              "Tran Dinh Dien (8/2014-8/2019): Model-Based Software Development for Web Applications",
-              "Nguyen Ngoc Tuan (8/2014-8/2019): Risk Management in Software Project Scheduling using Bayesian Network",
-              "Vu Van Doc (6/2015 - 6/2019): Methods for Software Performance Analysis from UML Specification",
-              "Trinh Bao Ngoc (6/2015-6/2019): Studying on Applying Game Theory and Nash Equilibrium in Project Management"
-            ]
-          }
-        ]
-      },
-      "research_grant": {
-        "subtitle": "Previous Projects",
-        "content": [
-          "Cloud service technologies - creation and providing services, provide digital content, access management. Funded by the Ministry of Science and Technology. Project Code KC.01.01/11-15",
-          "Research on Cloud Computing/Map-Reduce and Application in Student and Alumni information Management and Extraction. Funded by the Ministry of Education and Training. Project Code B2010-01-411-TĐ. http://www.BKProfile.com (in Vietnamese)",
-          "Mechanism and Advanced Techniques for Software Development and Software Quality Assurance (2006-2009). Funded by the Ministry of Science and Technology. Project Code: KHCB2.034.06.",
-          "Fault-Tolerant Software Development Techniques and Application in BKEC (2005-2006). Funded by the Ministry of Education and Training. Project/ Code B2005-28-180",
-          "Mechanism and Models of Cost Estimation, Metrics and Management for Software Development (2004-2005). Funded by the Ministry of Science and Technology. Project Code: KHCB 23.06.04",
-          "Principles and Mechanism of Software Development (2001-2003). Funded by the Ministry of Science and Technology. Project Code: KHCB 23.07.01"
-        ]
-      },
-      "publications": {
-        "book": [
-          "Huynh Quyet Thang. Software Engineering Economics. Bach Khoa Ha Noi Publishing Inc, 2016. ISBN ISBN 978-604-938-864-4",
-          "Nguyen Hung Cuong, Huynh Quyet Thang. Software Requirement Reliability Modeling and Evaluation. Vietnam Education Publishing Inc., 11/2014. ISBN 978-604-0-06662-6",
-          "Huynh Quyet Thang (Editor), Nguyen Huu Duc, Doan Trung Tung, Nguyen Binh Minh, Tran Viet Trung: Cloud Computing, Bach Khoa Ha Noi Publishing Inc., 10/2014. ISBN 978-604-938-162-1",
-          "Huynh Quyet Thang, Le Tan Hung, Vu Duc Vuong, Dinh Thi Phuong Thu. Programming Web, Internet and Wireless Network. Science and Technique Publishing Inc., 2006 (in Vietnamese)",
-          "Huynh Quyet Thang, Le Tan Hung, Tu Minh Phuong. Agent - Based Software Engineering and Agent Technology. Science and Technique Publishing Inc., 2006 (in Vietnamese)",
-          "Huynh Quyet Thang, Le Tan Hung. Introduction on Computer Graphics, Science and Technique Publishing Inc., 2008, 4th Edition (in Vietnamese)"
-        ],
-  
-        "paper": [
-          {
-            "name": "International Journals",
-            "content": [
-              "Van-Quyet Nguyen, <b>Quyet-Thang Huynh</b>, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.",
-              "Nguyen Hung-Cuong, Huynh Quyet-Thang and Le Hai-Trieu. Different Ranking of NHPP Software Reliability Growth Models with Generalized Measure and Predictability. International Journal of Applied Information Systems, Series Volume 7, Number 11, November 2014. ISSN 2249: 0868. pp. 1-6. DOI: 10.5120/ijais14-451257.",
-              "Thanh-Trung Pham, Xavier Defago, Quyet-Thang Huynh. Reliability prediction for component-based software systems: Dealing with concurrent and propagating errors. Journal of Science of Computer Programming, Volume 97, Part 4, 1 January 2015, ISSN 0167-6423, Pages 426-457. DOI: 10.1016/j.scico.2014.03.016 (ISI, Q2 Journal, IF=0.74)",
-              "Nguyen Hung Cuong, Huynh Quyet Thang, Tru Ba Vuong. Rule-based techniques using abstract syntax tree for code optimization and secure programming in Java. Context-Aware Systems and Applications. Lecture Notes of the Institute for Computer Sciences, Social Informatics and Telecommunications Engineering, Volume 128, Springer 2014, ISBN 978-3-319-05938-9, pp.168-177. DOI 10.1007/978-3-319-05939-6_17. Revised Selected Papers from ICCASA 2013 (Thomson ISI- Proceedings)"
-            ]
-          },
-  
-          {
-            "name": "National Journals",
-            "content": [
-              " Huynh Quyet Thang, Phung Dinh Vu, Tong Van Vinh. Vietnam Stock Index Trend Prediction using Gaussian Process Regression and Autoregressive Moving Average Model. Special issue Research and Development on Telecommunications and Information Technology, Volume V-1, No. 38, 11/2018, pp. 35-42, DOI: 10.32913/rd-ict.571",
-              "Bao-Ngoc Trinh, Quyet-Thang Huynh, Xuan-Thang Nguyen, Van-Quyen Ngo, Thanh-Trung Vu. Application of Nash Equilibrium based Approach in Solving the Risk Responses Conflicts. Journal of Science and Technology (JST) - Le Quy Don Technical University - No. 193 (10-2018), Section on Information and Communication Technology – Number 12 (10-2018), Pages 17-31, ISSN 1859-0209",
-              "Nguyen Ngoc Tuan, Tran Trung Hieu, Huynh Quyet Thang. An advanced probabilistic method using a Bayesian Network Model to evaluate uncertainty in software project scheduling. Journal of Science and Technology, Special Section on Information and Communication Technology (JICT), ISSN: 1859-0209, Number 10, 06/2017, pp. 47-63 (in Vietnamese)",
-              "Huynh Quyet Thang, Phung Dinh Vu. Web Service Performance prediction using Queuing Network Model and Gaussian Process Regression Analysis. Special issue Research and Development on Telecommunications and Information Technology, No. 3, Volume V-1, 6/2014, pp. 29-40 (in Vietnamese)"
-            ]
-          }
-        ]
-      }
-  
-    }
-  ]
+      }],
+      "address": "Room 210, Building C1, No. 1 Dai Co Viet, Hai Ba Trung, Hanoi, Vietnam",
+      "phone": "+84 (024) 3868 1812",
+      "fax": "+84 (024) 3869 2006",
+      "mail": ["thanghq@soict.hust.edu.vn", "thang.huynhquyet@hust.edu.vn"]
+  },
+  "research_interests": [{
+      "name": "SOFTWARE QUALITY",
+      "link": "http://soict.hust.edu.vn/index.php/bo-mon-trung-tam/cong-nghe-phan-mem/gioi-thieu-chung"
+  }, {
+      "name": " SOFTWARE TESTING",
+      "link": "http://soict.hust.edu.vn/index.php/bo-mon-trung-tam/cong-nghe-phan-mem/gioi-thieu-chung"
+  }, {
+      "name": "METHODS IN SOFTWARE DEVELOPMENT",
+      "link": "http://soict.hust.edu.vn/index.php/bo-mon-trung-tam/cong-nghe-phan-mem/gioi-thieu-chung"
+  }],
+  "academic": [{
+      "university": "Varna Technical University",
+      "location": "Bulgaria",
+      "level": "PhD degree in Information and Computer Sciences",
+      "time": "3/1991 - 12/1995",
+      "descript": "PhD thesis: Architectural model of a class numerical computing machine and its application on generating smooth curves and surface"
+  }, {
+      "university": "Varna Technical University",
+      "location": "Bulgaria",
+      "level": "PhD degree in Information and Computer Sciences",
+      "time": "3/1991 - 12/1995",
+      "descript": "PhD thesis: Architectural model of a class numerical computing machine and its application on generating smooth curves and surface"
+  }],
+  "teaching": {
+      "academic_year": "2018-2019",
+      "graduate_course": ["IT5630 - Advanced Project Management"],
+      "undergraduate_courses": ["IT4520 - Software Engineering Economics", "IT4520 - Software Engineering Economics"]
+  },
+  "thesis": {
+      "link": [{
+          "name": "Proposed Topics for Undergraduate (2018-2019)",
+          "address": "https://users.soict.hust.edu.vn/thanghq/Danh%20sach%20de%20tai%20nghien%20cuu%20-%20DH%20(2018-2019).pdf"
+      }, {
+          "name": "Proposed Topics for Undergraduate (2018-2019)",
+          "address": "https://users.soict.hust.edu.vn/thanghq/Danh%20sach%20de%20tai%20nghien%20cuu%20-%20DH%20(2018-2019).pdf"
+      }],
+      "content": [{
+          "name": "Phd Thesis Supervised",
+          "list-content": ["Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process", "Nguyen Thi Thanh Tu (10/2009-10/2013): Design and construction industrial process controlling and monitoring system based OPCUA", "Nguyen Minh Quy (10/2010-10/2014): Performance Analysis of Parallel Computing Architectures", "Nguyen Hung Cuong (10/2012-10/2015): Software Reliability Evaluation Models using Markov chain and NHPP approaches (Tools to Support Software Reliability Modeling - TSSRM can be downloaded here)"]
+      }, {
+          "name": "Current Phd Students",
+          "list-content": ["Tran Dinh Dien (8/2014-8/2019): Model-Based Software Development for Web Applications", "Nguyen Ngoc Tuan (8/2014-8/2019): Risk Management in Software Project Scheduling using Bayesian Network", "Vu Van Doc (6/2015 - 6/2019): Methods for Software Performance Analysis from UML Specification", "Trinh Bao Ngoc (6/2015-6/2019): Studying on Applying Game Theory and Nash Equilibrium in Project Management"]
+      }]
+  },
+  "research_grant": {
+      "subtitle": "Previous Projects",
+      "content": ["Cloud service technologies - creation and providing services, provide digital content, access management. Funded by the Ministry of Science and Technology. Project Code KC.01.01/11-15", "Research on Cloud Computing/Map-Reduce and Application in Student and Alumni information Management and Extraction. Funded by the Ministry of Education and Training. Project Code B2010-01-411-TĐ. http://www.BKProfile.com (in Vietnamese)", "Mechanism and Advanced Techniques for Software Development and Software Quality Assurance (2006-2009). Funded by the Ministry of Science and Technology. Project Code: KHCB2.034.06.", "Fault-Tolerant Software Development Techniques and Application in BKEC (2005-2006). Funded by the Ministry of Education and Training. Project/ Code B2005-28-180", "Mechanism and Models of Cost Estimation, Metrics and Management for Software Development (2004-2005). Funded by the Ministry of Science and Technology. Project Code: KHCB 23.06.04", "Principles and Mechanism of Software Development (2001-2003). Funded by the Ministry of Science and Technology. Project Code: KHCB 23.07.01"]
+  },
+  "publications": {
+      "book": ["Huynh Quyet Thang. Software Engineering Economics. Bach Khoa Ha Noi Publishing Inc, 2016. ISBN ISBN 978-604-938-864-4", "Nguyen Hung Cuong, Huynh Quyet Thang. Software Requirement Reliability Modeling and Evaluation. Vietnam Education Publishing Inc., 11/2014. ISBN 978-604-0-06662-6", "Huynh Quyet Thang (Editor), Nguyen Huu Duc, Doan Trung Tung, Nguyen Binh Minh, Tran Viet Trung: Cloud Computing, Bach Khoa Ha Noi Publishing Inc., 10/2014. ISBN 978-604-938-162-1", "Huynh Quyet Thang, Le Tan Hung, Vu Duc Vuong, Dinh Thi Phuong Thu. Programming Web, Internet and Wireless Network. Science and Technique Publishing Inc., 2006 (in Vietnamese)", "Huynh Quyet Thang, Le Tan Hung, Tu Minh Phuong. Agent - Based Software Engineering and Agent Technology. Science and Technique Publishing Inc., 2006 (in Vietnamese)", "Huynh Quyet Thang, Le Tan Hung. Introduction on Computer Graphics, Science and Technique Publishing Inc., 2008, 4th Edition (in Vietnamese)"],
+      "paper": [{
+          "name": "International Journals",
+          "content": ["Van-Quyet Nguyen, <b>Quyet-Thang Huynh</b>, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.", "Nguyen Hung-Cuong, Huynh Quyet-Thang and Le Hai-Trieu. Different Ranking of NHPP Software Reliability Growth Models with Generalized Measure and Predictability. International Journal of Applied Information Systems, Series Volume 7, Number 11, November 2014. ISSN 2249: 0868. pp. 1-6. DOI: 10.5120/ijais14-451257.", "Thanh-Trung Pham, Xavier Defago, Quyet-Thang Huynh. Reliability prediction for component-based software systems: Dealing with concurrent and propagating errors. Journal of Science of Computer Programming, Volume 97, Part 4, 1 January 2015, ISSN 0167-6423, Pages 426-457. DOI: 10.1016/j.scico.2014.03.016 (ISI, Q2 Journal, IF=0.74)", "Nguyen Hung Cuong, Huynh Quyet Thang, Tru Ba Vuong. Rule-based techniques using abstract syntax tree for code optimization and secure programming in Java. Context-Aware Systems and Applications. Lecture Notes of the Institute for Computer Sciences, Social Informatics and Telecommunications Engineering, Volume 128, Springer 2014, ISBN 978-3-319-05938-9, pp.168-177. DOI 10.1007/978-3-319-05939-6_17. Revised Selected Papers from ICCASA 2013 (Thomson ISI- Proceedings)"]
+      }, {
+          "name": "National Journals",
+          "content": [" Huynh Quyet Thang, Phung Dinh Vu, Tong Van Vinh. Vietnam Stock Index Trend Prediction using Gaussian Process Regression and Autoregressive Moving Average Model. Special issue Research and Development on Telecommunications and Information Technology, Volume V-1, No. 38, 11/2018, pp. 35-42, DOI: 10.32913/rd-ict.571", "Bao-Ngoc Trinh, Quyet-Thang Huynh, Xuan-Thang Nguyen, Van-Quyen Ngo, Thanh-Trung Vu. Application of Nash Equilibrium based Approach in Solving the Risk Responses Conflicts. Journal of Science and Technology (JST) - Le Quy Don Technical University - No. 193 (10-2018), Section on Information and Communication Technology – Number 12 (10-2018), Pages 17-31, ISSN 1859-0209", "Nguyen Ngoc Tuan, Tran Trung Hieu, Huynh Quyet Thang. An advanced probabilistic method using a Bayesian Network Model to evaluate uncertainty in software project scheduling. Journal of Science and Technology, Special Section on Information and Communication Technology (JICT), ISSN: 1859-0209, Number 10, 06/2017, pp. 47-63 (in Vietnamese)", "Huynh Quyet Thang, Phung Dinh Vu. Web Service Performance prediction using Queuing Network Model and Gaussian Process Regression Analysis. Special issue Research and Development on Telecommunications and Information Technology, No. 3, Volume V-1, 6/2014, pp. 29-40 (in Vietnamese)"]
+      }]
+  }
+}, {
+  "template": "template2",
+  "login": {
+      "account": "ghostwood1071",
+      "pass": "12345"
+  },
+  "avatar": "",
+  "about": {
+      "name": "Đàm QuangThịnh",
+      "level": "Ph.D",
+      "university": [],
+      "address": "",
+      "phone": "",
+      "fax": "",
+      "mail": []
+  },
+  "research_interests": [],
+  "academic": [],
+  "teaching": {
+      "academic_year": "",
+      "graduate_course": [],
+      "undergraduate_courses": []
+  },
+  "thesis": {
+      "link": [],
+      "content": []
+  },
+  "research_grant": {
+      "subtitle": "",
+      "content": []
+  },
+  "publications": {
+      "book": [],
+      "paper": []
+  }
+}]
