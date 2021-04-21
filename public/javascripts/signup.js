@@ -36,8 +36,29 @@ btn[0].onclick = function() {
             showValidate(input[3])
             check = false;
         }
-    }
-    return check;
+    }   
+    if (!check)
+        return check;
+
+    var first_name = $(input[0]).val();
+    var last_name = $(input[1]).val();
+    var account = $(input[2]).val();
+    var password = $(input[3]).val();
+
+    $.post("signup",
+    {
+        first_name:first_name,
+        last_name:last_name,
+        account:account,
+        password:password
+    },
+    function(data,Status,xhr){
+        if(data){
+            alert(data);
+            return;
+        }
+        alert('Signup Complete')
+    })
 }
 
 $('.input--style-5').each(function(){
