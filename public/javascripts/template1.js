@@ -58,12 +58,14 @@ $('.pub-chosen-right .fa-trash-alt').click(function(){
 })
 
 // Add ckEditable
-item.forEach((el, ind) => {
-    el.setAttribute('contentEditable', 'true');
-    var ck = CKEDITOR.inline(item[ind], {
-        allowedContent: true
+if(!document.querySelector("#forUser")){
+    item.forEach((el, ind) => {
+        el.setAttribute('contentEditable', 'true');
+        var ck = CKEDITOR.inline(item[ind], {
+            allowedContent: true
+        })
     })
-})
+}
 
 // Show button plus
 $('.title').hover(function () {
