@@ -95,35 +95,54 @@ console.log(data.data_2017);
 string = data.data_2017;
 document.getElementById(id+'_content').innerHTML = string;
 */
-
-
-    var name = getDataByID('name');
-
-    var position = getDataByID('position')
-
-    var work = getChildsDataAndLinkByID1('work',1,1)
-
-    var contact = getChildsDataByID('contact',1,0);
-    contact[3]=contact[3].trim();
-    contact[3]=contact[3].split('\n');
-    for(var i = 0 ; i<contact[3].length;i++){
-        contact[3][i]=contact[3][i].trim();
+    var picture=$('#avatar-img')[0].getAttribute("src");
+    var name = $(".name")[0].textContent;
+    var position = $(".position")[0].textContent;
+    var work = [];
+    for (let index = 0; index < $("#group1 div div").length; index++) {
+        const element = $("#group1 div div")[index];
+        work.push([ignoreDoubleSpaces(element.textContent),element.getElementsByTagName('a')[0].getAttribute("href")]);
     }
-    var research_interests =getChildsDataByID('sortlist1',1,0)
-    //
-    var academicItemName = getDataByClassName('academic-item-name');
-    var academicItemLocation = getDataByClassName('academic-item-location');
-    var academicLevel = getDataByClassName('academic-level');
-    var academicDescription= getDataByClassName('academic-description');
-    var academicItemTime= getDataByClassName('academic-item-time');
+    var contact =[];
+    for (let index = 0; index < $(".contact div div").length; index++) {
+        const element = $(".contact div div")[index];
+        contact.push([element.textContent])
+    }
+    contact[3][0]=contact[3][0].trim();
+    contact[3][0]=contact[3][0].split('\n');
+    for (let index = 0; index < contact[3][0].length; index++) {
+        contact[3][0][index]=contact[3][0][index].trim();
+    }
+    var research_interests=[]
+    for (let index = 0; index < $('#group2 div div').length; index++) {
+        const element = $('#group2 div div')[index];
+        research_interests.push(element.textContent);
+    }
     var academic =[]
-    if(academicItemName.length!=0){
-        var count=academicItemName.length;
+    var academicItemName = []
+    var academicItemLocation = []
+    var academicLevel = []
+    var academicDescription= []
+    var academicItemTime= []
+    for (let index = 0; index < $('#group3 div div').length; index++) {
+        const element = $('#group3 div div')[index];
+        if(index%5==0)
+            academicItemTime.push(ignoreDoubleSpaces(element.textContent))
+        if(index%5==1)
+            academicItemName.push(ignoreDoubleSpaces(element.textContent))
+        if(index%5==2)
+            academicItemLocation.push(ignoreDoubleSpaces(element.textContent))
+        if(index%5==3)
+            academicLevel.push(ignoreDoubleSpaces(element.textContent))
+        if(index%5==4)
+            academicDescription.push(ignoreDoubleSpaces(element.textContent)) 
     }
-    for(var i = 0 ; i <count;i++){
-        academic.push([academicItemName[i],academicItemLocation[i],academicLevel[i],academicDescription[i],academicItemTime[i]])
+    for(var i = 0 ; i <academicItemTime.length;i++){
+        academic.push([academicItemTime[i],academicItemName[i],academicItemLocation[i],academicLevel[i],academicDescription[i]])
     }
     
+
+    teaching=[]
     //
     var teachingYear=getDataByClassName('teaching-year');
     var teaching_content=getDataByClassNameHaveChilds('teaching-content')
@@ -132,39 +151,42 @@ document.getElementById(id+'_content').innerHTML = string;
         teaching.push([teachingYear[i],teaching_content[i]])
     }
     //
-
-
-    thesis_link=getChildsDataAndLinkByID2('sortlist3',1);
-    thesis_name=getDataByClassName('thesis-year')
+    var thesis_link=[]
+    for (let index = 0; index < $('.thesis-link div').length; index++) {
+        const element = $('.thesis-link div')[index];
+        thesis_link.push([ignoreDoubleSpaces(element.textContent),element.getElementsByTagName('a')[0].getAttribute("href")]);
+    }
+    thesis_name=[]
+    for (let index = 0; index < $('.thesis-name div').length; index++) {
+        const element = $('.thesis-name div')[index];
+        thesis_name.push(element.textContent)
+    }
     thesis_content=getDataByClassNameHaveChilds('thesis-content')
     thesis=[]
-    thesis.push(thesis_link,[thesis_name,thesis_content])
-
-    
+    thesis.push(thesis_link,[thesis_name,thesis_content])  
     //
-    research=getDataByClassNameHaveChilds('grant-list')
+    research=[];
+    for (let index = 0; index < $('#group5 div div').length; index++) {
+        const element = $('#group5 div div')[index];
+        research.push(element.textContent);
+    }
     //
-
-
-    publication=[]
-    publication_year=getDataByClassName('publication-year')
+    book=[]
+    for (let index = 0; index < $('#group6 div div').length; index++) {
+        const element = $('#group6 div div')[index];
+        book.push(element.textContent);
+    }
+    paper=[]
+    publication_name=[]
+    for (let index = 0; index < $('.publication-name div').length; index++) {
+        const element = $('.publication-name div')[index];
+        publication_name.push(element.textContent)
+    }
     publication_content=getDataByClassNameHaveChilds('publication-content')
-    publication.push(publication_year,publication_content)
+    paper.push(publication_name,publication_content)
     //
     
-    console.log(publication);
 
-
-
-
-
-
-
-
-
-    // console.log(name);
-    // console.log(position);
-    //console.log(work);
      var university ="";
      for(var i = 0 ; i<work.length;i++){
         university+=`{
@@ -178,7 +200,7 @@ document.getElementById(id+'_content').innerHTML = string;
      address=contact[0];
      phone=contact[1];
      fax=contact[2];
-     mail=`["`+contact[3][0]+`","`+contact[3][1]+`"]`
+     mail=`["`+contact[3][0][0]+`","`+contact[3][0][1]+`"]`
      
      research_int="[";
      for(var i = 0 ; i<research_interests.length;i++){
@@ -253,30 +275,37 @@ document.getElementById(id+'_content').innerHTML = string;
     content+=`]`
     //console.log(content);
     research_content="";
-    for(var i = 0 ;i<research[0].length;i++){
-        research_content+=`"`+research[0][i]+`",`
+    for(var i = 0 ;i<research.length;i++){
+        research_content+=`"`+research[i]+`",`
     }
     research_content=research_content.substring(0,research_content.length-1);   
 
-
-    var count = publication[0].length;
-    var pub = "";
-    for(var i =0 ; i <count ; i++){
-        var pub_content="";
-        for(var k = 0 ; k < publication[1][i].length;k++){
-            console.log(pub_content);
-            pub_content+=`"`+publication[1][i][k].toString().replaceAll(`"`,`##`)+`",`
-            console.log(pub_content);
+    var paper_s=""
+    for(var i = 0 ; i < paper[0].length;i++){
+        content_s=""
+        for( var k = 0 ; k < paper[1][i].length;k++){
+            content_s+=`"`+paper[1][i][k]+`",`
         }
-        pub_content=pub_content.substring(0,pub_content.length-1)
-        pub +=`{
-        "year": "`+publication[0][i]+`",
-        "content": [`+pub_content+`]
+        content_s=content_s.substring(0,content_s.length-1);
+        paper_s+=`{
+            "name": "`+paper[0][i]+`",
+            "content": [`+content_s+`]
         },`
     }
-    pub=pub.substring(0,pub.length-1);
+    paper_s=paper_s.substring(0,paper_s.length-1)
+    book_s=""
+    for(var i=0;i<book.length;i++){
+        book_s+=`"`+book[i]+`",`
+    }
+    book_s=book_s.substring(0,book_s.length-1)
 
     json_String=`[{
+    "template": "template2",
+    "login": {
+        "account": "quyetthang",
+        "pass": "12345"
+    },
+    "avatar": "`+picture+`",
     "about":{
         "name": "`+name+`",
         "level":"`+position+`",
@@ -298,39 +327,66 @@ document.getElementById(id+'_content').innerHTML = string;
     "research_grant":{
         "content" :[`+research_content+`]
     },
-    "publications":[
-        `+pub+`
-    ]
-}]
-    `
+    "publications":{
+        "book":[`+book_s+`],
+        "paper":[
+            `+paper_s+`
+        ]
+    }
+}]`
 
     console.log(JSON.parse(json_String));
-
+//**************************************************************************************************** */
 //Save
 function Save(){
-    var name = getDataByID('name');
-    var position = getDataByID('position')
-    var work = getChildsDataAndLinkByID1('work',1,1)
-    var contact = getChildsDataByID('contact',1,0);
-    contact[3]=contact[3].trim();
-    contact[3]=contact[3].split('\n');
-    for(var i = 0 ; i<contact[3].length;i++){
-        contact[3][i]=contact[3][i].trim();
+    var picture=$('#avatar-img')[0].getAttribute("src");
+    var name = $(".name")[0].textContent;
+    var position = $(".position")[0].textContent;
+    var work = [];
+    for (let index = 0; index < $("#group1 div div").length; index++) {
+        const element = $("#group1 div div")[index];
+        work.push([ignoreDoubleSpaces(element.textContent),element.getElementsByTagName('a')[0].getAttribute("href")]);
     }
-    var research_interests =getChildsDataByID('sortlist1',1,0)
-    //
-    var academicItemName = getDataByClassName('academic-item-name');
-    var academicItemLocation = getDataByClassName('academic-item-location');
-    var academicLevel = getDataByClassName('academic-level');
-    var academicDescription= getDataByClassName('academic-description');
-    var academicItemTime= getDataByClassName('academic-item-time');
+    var contact =[];
+    for (let index = 0; index < $(".contact div div").length; index++) {
+        const element = $(".contact div div")[index];
+        contact.push([element.textContent])
+    }
+    contact[3][0]=contact[3][0].trim();
+    contact[3][0]=contact[3][0].split('\n');
+    for (let index = 0; index < contact[3][0].length; index++) {
+        contact[3][0][index]=contact[3][0][index].trim();
+    }
+    var research_interests=[]
+    for (let index = 0; index < $('#group2 div div').length; index++) {
+        const element = $('#group2 div div')[index];
+        research_interests.push(element.textContent);
+    }
     var academic =[]
-    if(academicItemName.length!=0){
-        var count=academicItemName.length;
+    var academicItemName = []
+    var academicItemLocation = []
+    var academicLevel = []
+    var academicDescription= []
+    var academicItemTime= []
+    for (let index = 0; index < $('#group3 div div').length; index++) {
+        const element = $('#group3 div div')[index];
+        if(index%5==0)
+            academicItemTime.push(ignoreDoubleSpaces(element.textContent))
+        if(index%5==1)
+            academicItemName.push(ignoreDoubleSpaces(element.textContent))
+        if(index%5==2)
+            academicItemLocation.push(ignoreDoubleSpaces(element.textContent))
+        if(index%5==3)
+            academicLevel.push(ignoreDoubleSpaces(element.textContent))
+        if(index%5==4)
+            academicDescription.push(ignoreDoubleSpaces(element.textContent)) 
     }
-    for(var i = 0 ; i <count;i++){
-        academic.push([academicItemName[i],academicItemLocation[i],academicLevel[i],academicDescription[i],academicItemTime[i]])
+    for(var i = 0 ; i <academicItemTime.length;i++){
+        academic.push([academicItemTime[i],academicItemName[i],academicItemLocation[i],academicLevel[i],academicDescription[i]])
     }
+    
+
+    teaching=[]
     //
     var teachingYear=getDataByClassName('teaching-year');
     var teaching_content=getDataByClassNameHaveChilds('teaching-content')
@@ -339,20 +395,42 @@ function Save(){
         teaching.push([teachingYear[i],teaching_content[i]])
     }
     //
-    thesis_link=getChildsDataAndLinkByID2('sortlist3',1);
-    thesis_name=getDataByClassName('thesis-year')
+    var thesis_link=[]
+    for (let index = 0; index < $('.thesis-link div').length; index++) {
+        const element = $('.thesis-link div')[index];
+        thesis_link.push([ignoreDoubleSpaces(element.textContent),element.getElementsByTagName('a')[0].getAttribute("href")]);
+    }
+    thesis_name=[]
+    for (let index = 0; index < $('.thesis-name div').length; index++) {
+        const element = $('.thesis-name div')[index];
+        thesis_name.push(element.textContent)
+    }
     thesis_content=getDataByClassNameHaveChilds('thesis-content')
     thesis=[]
-    thesis.push(thesis_link,[thesis_name,thesis_content])
+    thesis.push(thesis_link,[thesis_name,thesis_content])  
     //
-    research=getDataByClassNameHaveChilds('grant-list')
+    research=[];
+    for (let index = 0; index < $('#group5 div div').length; index++) {
+        const element = $('#group5 div div')[index];
+        research.push(element.textContent);
+    }
     //
-    publication=[]
-    publication_year=getDataByClassName('publication-year')
+    book=[]
+    for (let index = 0; index < $('#group6 div div').length; index++) {
+        const element = $('#group6 div div')[index];
+        book.push(element.textContent);
+    }
+    paper=[]
+    publication_name=[]
+    for (let index = 0; index < $('.publication-name div').length; index++) {
+        const element = $('.publication-name div')[index];
+        publication_name.push(element.textContent)
+    }
     publication_content=getDataByClassNameHaveChilds('publication-content')
-    publication.push(publication_year,publication_content)
+    paper.push(publication_name,publication_content)
     //
-    //Convert To Json String
+    
+
      var university ="";
      for(var i = 0 ; i<work.length;i++){
         university+=`{
@@ -361,11 +439,12 @@ function Save(){
         },`
      }
      university=university.substring(0,university.length-1);
+     //console.log(contact);   
 
      address=contact[0];
      phone=contact[1];
      fax=contact[2];
-     mail=`["`+contact[3][0]+`","`+contact[3][1]+`"]`
+     mail=`["`+contact[3][0][0]+`","`+contact[3][0][1]+`"]`
      
      research_int="[";
      for(var i = 0 ; i<research_interests.length;i++){
@@ -374,6 +453,8 @@ function Save(){
      research_int=research_int.substring(0,research_int.length-1);
      research_int+="]";
      
+     //console.log(research);
+
 
      academic_s=``;
      for(var i = 0;i<academic.length;i++){
@@ -386,6 +467,9 @@ function Save(){
         },`
      }
      academic_s=academic_s.substring(0,academic_s.length-1);
+     //console.log(academic);
+     //console.log(teaching);
+
 
      teaching_s="";
      for(var i =0 ; i<teaching.length;i++){
@@ -401,6 +485,9 @@ function Save(){
          },`
      }
      teaching_s=teaching_s.substring(0,teaching_s.length-1);
+
+
+
      
      var count =thesis[0].length
      var link="[";
@@ -412,7 +499,9 @@ function Save(){
      }
      link=link.substring(0,link.length-1);
      link+=`]`
+     //console.log(link);
 
+     //console.log(thesis[1]);
      var content =`[`
     var count =thesis[1][0].length;
     for(var i = 0 ; i < count ; i ++){
@@ -428,31 +517,39 @@ function Save(){
     }
     content=content.substring(0,content.length-1);
     content+=`]`
-
+    //console.log(content);
     research_content="";
-    for(var i = 0 ;i<research[0].length;i++){
-        research_content+=`"`+research[0][i]+`",`
+    for(var i = 0 ;i<research.length;i++){
+        research_content+=`"`+research[i]+`",`
     }
     research_content=research_content.substring(0,research_content.length-1);   
 
-    var count = publication[0].length;
-    var pub = "";
-    for(var i =0 ; i <count ; i++){
-        var pub_content="";
-        for(var k = 0 ; k < publication[1][i].length;k++){
-            console.log(pub_content);
-            pub_content+=`"`+publication[1][i][k].toString().replaceAll(`"`,`##`)+`",`
-            console.log(pub_content);
+    var paper_s=""
+    for(var i = 0 ; i < paper[0].length;i++){
+        content_s=""
+        for( var k = 0 ; k < paper[1][i].length;k++){
+            content_s+=`"`+paper[1][i][k]+`",`
         }
-        pub_content=pub_content.substring(0,pub_content.length-1)
-        pub +=`{
-        "year": "`+publication[0][i]+`",
-        "content": [`+pub_content+`]
+        content_s=content_s.substring(0,content_s.length-1);
+        paper_s+=`{
+            "name": "`+paper[0][i]+`",
+            "content": [`+content_s+`]
         },`
     }
-    pub=pub.substring(0,pub.length-1);
+    paper_s=paper_s.substring(0,paper_s.length-1)
+    book_s=""
+    for(var i=0;i<book.length;i++){
+        book_s+=`"`+book[i]+`",`
+    }
+    book_s=book_s.substring(0,book_s.length-1)
 
     json_String=`[{
+    "template": "template2",
+    "login": {
+        "account": "quyetthang",
+        "pass": "12345"
+    },
+    "avatar": "`+picture+`",
     "about":{
         "name": "`+name+`",
         "level":"`+position+`",
@@ -474,13 +571,13 @@ function Save(){
     "research_grant":{
         "content" :[`+research_content+`]
     },
-    "publications":[
-        `+pub+`
-    ]
-}]
-    `
+    "publications":{
+        "book":[`+book_s+`],
+        "paper":[
+            `+paper_s+`
+        ]
+    }
+}]`
 
     return JSON.parse(json_String);
 }
-
-
