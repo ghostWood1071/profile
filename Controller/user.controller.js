@@ -2,7 +2,7 @@ module.exports.getUserInfo = function (req, res, next) {
     var data = JSON.parse(res.locals.stringData);
     var uid = req.signedCookies.userID;
     var user = data[uid];
-    
+    console.log(user);
     res.render(user.template, {
         avatar: user.avatar,
         about: user.about,

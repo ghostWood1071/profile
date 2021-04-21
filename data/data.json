@@ -81,39 +81,4 @@
           "content": [" Huynh Quyet Thang, Phung Dinh Vu, Tong Van Vinh. Vietnam Stock Index Trend Prediction using Gaussian Process Regression and Autoregressive Moving Average Model. Special issue Research and Development on Telecommunications and Information Technology, Volume V-1, No. 38, 11/2018, pp. 35-42, DOI: 10.32913/rd-ict.571", "Bao-Ngoc Trinh, Quyet-Thang Huynh, Xuan-Thang Nguyen, Van-Quyen Ngo, Thanh-Trung Vu. Application of Nash Equilibrium based Approach in Solving the Risk Responses Conflicts. Journal of Science and Technology (JST) - Le Quy Don Technical University - No. 193 (10-2018), Section on Information and Communication Technology – Number 12 (10-2018), Pages 17-31, ISSN 1859-0209", "Nguyen Ngoc Tuan, Tran Trung Hieu, Huynh Quyet Thang. An advanced probabilistic method using a Bayesian Network Model to evaluate uncertainty in software project scheduling. Journal of Science and Technology, Special Section on Information and Communication Technology (JICT), ISSN: 1859-0209, Number 10, 06/2017, pp. 47-63 (in Vietnamese)", "Huynh Quyet Thang, Phung Dinh Vu. Web Service Performance prediction using Queuing Network Model and Gaussian Process Regression Analysis. Special issue Research and Development on Telecommunications and Information Technology, No. 3, Volume V-1, 6/2014, pp. 29-40 (in Vietnamese)"]
       }]
   }
-}, {
-  "template": "template2",
-  "login": {
-      "account": "ghostwood1071",
-      "pass": "12345"
-  },
-  "avatar": "",
-  "about": {
-      "name": "Đàm QuangThịnh",
-      "level": "Ph.D",
-      "university": [],
-      "address": "",
-      "phone": "",
-      "fax": "",
-      "mail": []
-  },
-  "research_interests": [],
-  "academic": [],
-  "teaching": {
-      "academic_year": "",
-      "graduate_course": [],
-      "undergraduate_courses": []
-  },
-  "thesis": {
-      "link": [],
-      "content": []
-  },
-  "research_grant": {
-      "subtitle": "",
-      "content": []
-  },
-  "publications": {
-      "book": [],
-      "paper": []
-  }
 }]

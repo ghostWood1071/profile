@@ -6,6 +6,8 @@ var loginController = require('../Controller/login.controller');
 
 
 router.get('/', loginController.auth, dataHelper.readData, userController.getUserInfo);
-
+router.post('/', function(req,res,next){
+    res.send(req.body);
+})
 module.exports = router;
 
