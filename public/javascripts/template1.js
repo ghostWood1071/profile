@@ -6,7 +6,6 @@ const sections = document.querySelectorAll('.content');
 navItem.forEach(function(element, index){
     element.classList.remove('active');
     navLinks[index].addEventListener('click', function(){
-        removeAllClassActive();
         element.classList.add('active');
     })
 })
@@ -29,7 +28,7 @@ window.addEventListener("scroll", () => {
     sections.forEach((section, index) => {
       const sectionTop = section.offsetTop;
       
-      if (pageYOffset >= sectionTop) {
+      if (pageYOffset >= sectionTop - 50) {
         current = section.getAttribute("id");
       }
     });
@@ -43,7 +42,36 @@ window.addEventListener("scroll", () => {
         else
             $(this).parent().removeClass('active');
     })
-  });
+});
+
+// Set color
+const rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`;
+
+$('.btn-cogs').click(function(){
+    if($(this).hasClass('active')){
+        $(this).removeClass('active');
+        $(this).parent().css('transform', 'translateX(100%)');
+    }
+    else{
+        $(this).addClass('active');
+        $(this).parent().css('transform', 'translateX(0)');
+    }
+})
+
+$('.list-color li').click(function(){
+    $('.list-color li').removeClass('active');
+    $(this).addClass('active');
+    var newColor = rgb2hex($(this).css('background-color'));
+    document.documentElement.style.setProperty('--primary-color', newColor);
+})
+
+$('.list-background li').click(function(){
+    $('.list-background li').removeClass('active');
+    $(this).addClass('active');
+    var newBackground = $(this).css('background-image');
+    console.log(newBackground)
+    document.documentElement.style.setProperty('--primary-background', newBackground);
+})
 
 // Edit content
 var item = Array.from(document.querySelectorAll('.list-group-item'));
@@ -58,7 +86,7 @@ $('.pub-chosen-right .fa-trash-alt').click(function(){
 })
 
 // Add ckEditable
-if(!document.querySelector("#forUser")){
+if(!document.querySelector("#forGuess")){
     item.forEach((el, ind) => {
         el.setAttribute('contentEditable', 'true');
         var ck = CKEDITOR.inline(item[ind], {
@@ -83,7 +111,7 @@ $('.fa-plus').click(function(){
             <i class="fas fa-arrows-alt btn-arrow"></i>
             <i class="fas fa-trash-alt btn-trash"></i>
             <div class="list-group-item">
-            Department of Software Engineering
+                <a href="#"> Department of Software Engineering</a>
             </div>
         </div>`
     );
@@ -104,7 +132,7 @@ $('.fa-plus').click(function(){
             <div class="d-flex justify-content-between">
             <div class="academic-item col-9">
                 <h4 class="list-group-item academic-item-name">
-                <a class="text-primary" href="#">VARNA TECHNICAL UNIVERSITY</a
+                <a href="#">VARNA TECHNICAL UNIVERSITY</a
                 >, BULGARIA
                 </h4>
                 <div class="list-group-item academic-level">
@@ -123,17 +151,17 @@ $('.fa-plus').click(function(){
         </div>`
     );
     $(this).parent().siblings('#group6').prepend(
-        `<div class="hover">
+        `<div class="hover thesis-link">
             <i class="fas fa-arrows-alt btn-arrow"></i>
             <i class="fas fa-trash-alt btn-trash"></i>
             <div class="list-group-item">
-            <a class="text-primary" href="#"><i> Proposed Topics for Undergraduate (2018-2019)</i></a>
+            <a href="#">Proposed Topics for Undergraduate (2018-2019)</a>
             </div>
         </div>`
     );
 
-    //#group4, #group5,#group7, #group8, #group9, #group10, #group11, #group12, #group13, #group14
-    $(this).parent().siblings(`.list-group[name="same-text"]`).prepend(
+    //#group4, #group5,#group7, #group8, #group9, #group11, #group12, #group13, #group14
+    $(this).parent().siblings(`.list-group[name="same-text"], #group10`).prepend(
         `<div class="hover">
             <i class="fas fa-arrows-alt btn-arrow"></i>
             <i class="fas fa-trash-alt btn-trash"></i>
@@ -161,8 +189,9 @@ $('.list-group').sortable({
 });
 
 /* Change Image */
-const img = document.querySelector('#avatar');
+const img = document.querySelector('#avatar-img');
 const btnFile = document.querySelector('#file');
+
 
 btnFile.addEventListener('change', function() {
     const file = this.files[0];
@@ -174,4 +203,5 @@ btnFile.addEventListener('change', function() {
         }
         reader.readAsDataURL(file);
     }
+    console.log(img.clientHeight)
 })

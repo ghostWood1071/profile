@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= about.name %></title>
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="/stylesheets/template1.css" />
     <!-- Font roboto -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
@@ -22,12 +20,6 @@
     <!-- CkEditable -->
     <script src="/ckeditor/ckeditor.js"></script>
     <!-- Bootstrap -->
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    />
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script> -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -36,9 +28,10 @@
       rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/stylesheets/template1.css" />
   </head>
   <body>
-    <div class="template-name" style="display: none">template1</div>
     <div class="container main">
       <nav class="navbar navbar-expand-sm navbar-light">
         <a href="#" class="navbar-brand">Brand</a>
@@ -56,28 +49,31 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active" data-page="about">
-              <a class="nav-link" href="#about">about</a>
+              <a class="nav-link about" href="#about">about</a>
             </li>
             <li class="nav-item" data-page="thesis">
-              <a class="nav-link" href="#thesis">thesis</a>
+              <a class="nav-link thesis" href="#thesis">thesis</a>
             </li>
             <li class="nav-item" data-page="research-grant">
-              <a class="nav-link" href="#grant">research grant</a>
+              <a class="nav-link grant" href="#grant">research grant</a>
             </li>
             <li class="nav-item" data-page="publications">
-              <a class="nav-link" href="#publications">publications</a>
+              <a class="nav-link publication" href="#publications"
+                >publications</a
+              >
             </li>
           </ul>
         </div>
       </nav>
       <div class="content wrap-about" id="about">
         <div class="avatar col-12 col-sm-12 col-md-5 col-lg-4">
-          <img id="avatar-img" src="/images/avatar.jpg" alt="" />
+          <img id="avatar-img" src="/images/avatar.jpg" alt="avatar" />
           <input type="file" id="file" class="chosen-file" hidden />
           <label for="file" class="label-file btn btn-danger"
-            ><i class="fas fa-upload"></i> Edit</label>
+            ><i class="fas fa-upload"></i
+          ></label>
         </div>
-        <div class="about col-12 col-sm-12 col-md-7 col-lg-8">
+        <div class="about-right col-12 col-sm-12 col-md-7 col-lg-8">
           <h3>
             <div class="name list-group-item">Huynh Quyet Thang</div>
           </h3>
@@ -90,21 +86,23 @@
               <i class="fas fa-arrows-alt btn-arrow"></i>
               <i class="fas fa-trash-alt btn-trash"></i>
               <div class="list-group-item">
-                Department of Software Engineering
+                <a href="#"> Department of Software Engineering</a>
               </div>
             </div>
             <div class="hover">
               <i class="fas fa-arrows-alt btn-arrow"></i>
               <i class="fas fa-trash-alt btn-trash"></i>
               <div class="list-group-item">
-                School of Information and Communication Technology
+                <a href="">
+                School of Information and Communication Technology</a>
               </div>
             </div>
             <div class="hover">
               <i class="fas fa-arrows-alt btn-arrow"></i>
               <i class="fas fa-trash-alt btn-trash"></i>
               <div class="list-group-item">
-                Hanoi University of Science and Technology
+                <a href="">
+                Hanoi University of Science and Technology</a>
               </div>
             </div>
           </div>
@@ -133,14 +131,8 @@
           <div class="contact-group">
             <i class="fa fa-envelope icon" aria-hidden="true"></i>
             <div class="list-group-item">
-              <a class="text-primary" href="mailto: thanghq@soict.hust.edu.vn"
-                >thanghq@soict.hust.edu.vn</a
-              >;
-              <a
-                class="text-primary"
-                href="mailto: thang.huynhquyet@hust.edu.vn"
-                >thang.huynhquyet@hust.edu.vn</a
-              >
+              <a href="#">thanghq@soict.hust.edu.vn</a>;
+              <a href="#">thang.huynhquyet@hust.edu.vn</a>
             </div>
           </div>
         </div>
@@ -189,8 +181,7 @@
             <div class="d-flex justify-content-between">
               <div class="academic-item col-9">
                 <h4 class="list-group-item academic-item-name">
-                  <a class="text-primary" href="#">VARNA TECHNICAL UNIVERSITY</a
-                  >, BULGARIA
+                  <a href="#">VARNA TECHNICAL UNIVERSITY</a>, BULGARIA
                 </h4>
                 <div class="list-group-item academic-level">
                   PHD DEGREE IN INFORMATION AND COMPUTER SCIENCES
@@ -216,8 +207,7 @@
             <div class="d-flex justify-content-between">
               <div class="academic-item col-9">
                 <h4 class="list-group-item academic-item-name">
-                  <a class="text-primary" href="#">VARNA TECHNICAL UNIVERSITY</a
-                  >, BULGARIA
+                  <a href="#">VARNA TECHNICAL UNIVERSITY</a>, BULGARIA
                 </h4>
                 <div class="list-group-item academic-level">
                   BS & MS (DUAL DEGREE), ELECTRONICS AND INFORMATION TECHNOLOGY
@@ -297,29 +287,25 @@
             <i class="fa fa-plus" aria-hidden="true"></i>
           </div>
           <div class="list-group" id="group6">
-            <div class="hover">
+            <div class="hover thesis-link">
               <i class="fas fa-arrows-alt btn-arrow"></i>
               <i class="fas fa-trash-alt btn-trash"></i>
               <div class="list-group-item">
-                <a class="text-primary" href="#"
-                  ><i> Proposed Topics for Undergraduate (2018-2019)</i></a
-                >
+                <a href="#"> Proposed Topics for Undergraduate (2018-2019)</a>
               </div>
             </div>
-            <div class="hover">
+            <div class="hover thesis-link">
               <i class="fas fa-arrows-alt btn-arrow"></i>
               <i class="fas fa-trash-alt btn-trash"></i>
               <div class="list-group-item">
-                <a class="text-primary" href="#"
-                  ><i>Proposed Topics for Master Students (2018-2019)</i></a
-                >
+                <a href="#">Proposed Topics for Master Students (2018-2019)</a>
               </div>
             </div>
           </div>
-          <div class="phd-thesis thesis-content mb-4">
-            <div class="title">
-              <h5 class="mb-2 mt-3">Phd Thesis Supervised</h5>
-              <i class="fa fa-plus mb-2 mt-3" aria-hidden="true"></i>
+          <div class="thesis-item mb-4">
+            <div class="title thesis-name">
+              <h5 class="list-group-item">Phd Thesis Supervised</h5>
+              <i class="fa fa-plus" aria-hidden="true"></i>
             </div>
             <div class="list-group" name="same-text" id="group7">
               <div class="hover">
@@ -357,17 +343,15 @@
                   Nguyen Hung Cuong (10/2012-10/2015): Software Reliability
                   Evaluation Models using Markov chain and NHPP approaches
                   (Tools to Support Software Reliability Modeling -
-                  <a href="#" class="text-primary">
-                    TSSRM can be downloaded here</a
-                  >)
+                  <a href="#"> TSSRM can be downloaded here</a>)
                 </div>
               </div>
             </div>
           </div>
-          <div class="phd-student thesis-content mb-4">
-            <div class="title">
-              <h5 class="mb-2">Current Phd Students</h5>
-              <i class="fa fa-plus mb-2" aria-hidden="true"></i>
+          <div class="thesis-item mb-4">
+            <div class="title thesis-name">
+              <h5 class="list-group-item">Current Phd Students</h5>
+              <i class="fa fa-plus" aria-hidden="true"></i>
             </div>
             <div class="list-group" name="same-text" id="group8">
               <div class="hover">
@@ -408,10 +392,10 @@
               </div>
             </div>
           </div>
-          <div class="master-thesis thesis-content">
-            <div class="title">
-              <h5 class="mb-2">Master Thesis Supervising</h5>
-              <i class="fa fa-plus mb-2" aria-hidden="true"></i>
+          <div class="thesis-item">
+            <div class="title thesis-name">
+              <h5 class="list-group-item">Master Thesis Supervising</h5>
+              <i class="fa fa-plus" aria-hidden="true"></i>
             </div>
             <div class="list-group" name="same-text" id="group9">
               <div class="hover">
@@ -479,77 +463,68 @@
       <div class="content research-grant" id="grant">
         <div class="title">
           <h2>RESEARCH GRANTS</h2>
+          <i class="fa fa-plus" aria-hidden="true"></i>
         </div>
-        <div class="list-group">
-          <div class="prev-project mb-4">
-            <div class="title">
-              <h5 class="mb-1">PREVIOUS PROJECTS</h5>
-              <i class="fa fa-plus mb-1" aria-hidden="true"></i>
+        <div class="list-group" id="group10">
+          <div class="hover">
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
+
+            <div class="list-group-item text-secondary">
+              Cloud service technologies - creation and providing services,
+              provide digital content, access management. Funded by the Ministry
+              of Science and Technology. Project Code KC.01.01/11-15
             </div>
-            <div class="list-group" name="same-text" id="grou10">
-              <div class="hover">
-                <i class="fas fa-arrows-alt btn-arrow"></i>
-                <i class="fas fa-trash-alt btn-trash"></i>
+          </div>
+          <div class="hover">
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
 
-                <div class="list-group-item text-secondary">
-                  Cloud service technologies - creation and providing services,
-                  provide digital content, access management. Funded by the
-                  Ministry of Science and Technology. Project Code
-                  KC.01.01/11-15
-                </div>
-              </div>
-              <div class="hover">
-                <i class="fas fa-arrows-alt btn-arrow"></i>
-                <i class="fas fa-trash-alt btn-trash"></i>
+            <div class="list-group-item text-secondary">
+              Research on Cloud Computing/Map-Reduce and Application in Student
+              and Alumni information Management and Extraction. Funded by the
+              Ministry of Education and Training. Project Code B2010-01-411-TĐ.
+              http://www.BKProfile.com (in Vietnamese)
+            </div>
+          </div>
+          <div class="hover">
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
 
-                <div class="list-group-item text-secondary">
-                  Research on Cloud Computing/Map-Reduce and Application in
-                  Student and Alumni information Management and Extraction.
-                  Funded by the Ministry of Education and Training. Project Code
-                  B2010-01-411-TĐ. http://www.BKProfile.com (in Vietnamese)
-                </div>
-              </div>
-              <div class="hover">
-                <i class="fas fa-arrows-alt btn-arrow"></i>
-                <i class="fas fa-trash-alt btn-trash"></i>
+            <div class="list-group-item text-secondary">
+              Mechanism and Advanced Techniques for Software Development and
+              Software Quality Assurance (2006-2009). Funded by the Ministry of
+              Science and Technology. Project Code: KHCB2.034.06.
+            </div>
+          </div>
+          <div class="hover">
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
 
-                <div class="list-group-item text-secondary">
-                  Mechanism and Advanced Techniques for Software Development and
-                  Software Quality Assurance (2006-2009). Funded by the Ministry
-                  of Science and Technology. Project Code: KHCB2.034.06.
-                </div>
-              </div>
-              <div class="hover">
-                <i class="fas fa-arrows-alt btn-arrow"></i>
-                <i class="fas fa-trash-alt btn-trash"></i>
+            <div class="list-group-item text-secondary">
+              Fault-Tolerant Software Development Techniques and Application in
+              BKEC (2005-2006). Funded by the Ministry of Education and
+              Training. Project/ Code B2005-28-180
+            </div>
+          </div>
+          <div class="hover">
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
 
-                <div class="list-group-item text-secondary">
-                  Fault-Tolerant Software Development Techniques and Application
-                  in BKEC (2005-2006). Funded by the Ministry of Education and
-                  Training. Project/ Code B2005-28-180
-                </div>
-              </div>
-              <div class="hover">
-                <i class="fas fa-arrows-alt btn-arrow"></i>
-                <i class="fas fa-trash-alt btn-trash"></i>
-
-                <div class="list-group-item text-secondary">
-                  Mechanism and Models of Cost Estimation, Metrics and
-                  Management for Software Development (2004-2005). Funded by the
-                  Ministry of Science and Technology. Project Code: KHCB
-                  23.06.04 Principles and Mechanism of Software Development
-                  (2001-2003). Funded by the Ministry of Science and Technology.
-                  Project Code: KHCB 23.07.01
-                </div>
-              </div>
+            <div class="list-group-item text-secondary">
+              Mechanism and Models of Cost Estimation, Metrics and Management
+              for Software Development (2004-2005). Funded by the Ministry of
+              Science and Technology. Project Code: KHCB 23.06.04 Principles and
+              Mechanism of Software Development (2001-2003). Funded by the
+              Ministry of Science and Technology. Project Code: KHCB 23.07.01
             </div>
           </div>
         </div>
       </div>
       <div class="content publications" id="publications">
-        <h2>publications</h2>
+        <h2 class="title">publications</h2>
         <div class="title">
-          <h5>BOOKS</h5>
+          <h5 class="subtitle text-primary">BOOKS</h5>
           <i class="fa fa-plus" aria-hidden="true"></i>
         </div>
         <div class="list-group" name="same-text" id="group11">
@@ -623,7 +598,7 @@
           </div>
         </div>
         <div class="title">
-          <h5>PUBLISHED PAPERS (SELECTED)</h5>
+          <h5 class="subtitle text-primary">PUBLISHED PAPERS (SELECTED)</h5>
         </div>
         <div class="container-drag">
           <div class="title">
@@ -1115,12 +1090,44 @@
           Submit
         </button>
       </div>
+      <div class="theme-setting">
+        <button class="btn btn-light btn-cogs">
+          <i class="fas fa-cogs"></i>
+        </button>
+        <div class="content-theme">
+          <h5>Setting Color</h5>
+          <ul class="list-color">
+            <li data-color="color1" class="active"></li>
+            <li data-color="color2"></li>
+            <li data-color="color3"></li>
+            <li data-color="color4"></li>
+            <li data-color="color5"></li>
+            <li data-color="color6"></li>
+            <li data-color="color7"></li>
+            <li data-color="color8"></li>
+          </ul>
+        </div>
+        <div class="content-theme">
+          <h5>Setting Background</h5>
+          <ul class="list-background">
+            <li data-background="background1" class="active"></li>
+            <li data-background="background2"></li>
+            <li data-background="background3"></li>
+            <li data-background="background4"></li>
+            <li data-background="background5"></li>
+            <li data-background="background6"></li>
+            <li data-background="background7"></li>
+            <li data-background="background8"></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <!-- JS -->
+    <script src="/javascripts/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/sortablejs-make/Sortable.min.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
     <script src="/javascripts/template1.js"></script>
-    <script src="/javascripts/getData2.js"></script>
   </body>
 </html>
