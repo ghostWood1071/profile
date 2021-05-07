@@ -53,11 +53,11 @@ btn[0].onclick = function() {
         password:password
     },
     function(data,Status,xhr){
-        if(data){
-            alert(data);
+        if(data.head){
+            alert(data.content);
             return;
         }
-        alert('Signup Complete')
+        window.location.replace("/login");
     })
 }
 

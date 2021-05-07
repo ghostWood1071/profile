@@ -7,6 +7,6 @@ module.exports.saveLoginCookie = function(req, res, next){
 }
 
 module.exports.clearCookie = function(req,res, next){
-    res.clearCookie('dt');
+    res.clearCookie('userID');
     next();
 }

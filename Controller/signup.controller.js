@@ -18,11 +18,18 @@ module.exports.validate = function(req,res,next) {
     var newAccount = res.locals.newAccount;
     var user =  data.find(user => user.login.account === newAccount.account)
     if(user != undefined){
-        res.send("account already exists");
+        res.send({
+          head: "error",
+          content: "account already exists"
+        });
         return;
     }
     var newUser = {
-        "template": "template1",
+        "template": {
+          "name": "template1",
+          "color": "#c74a73",
+          "background_color": "linear-gradient(to top, rgb(11, 163, 96) 0%, rgb(60, 186, 146) 100%)"
+        },
         "login": {
           "account": newAccount.account,
           "pass": newAccount.password,
@@ -48,10 +55,7 @@ module.exports.validate = function(req,res,next) {
           "link": [],
           "content": []
         },
-        "research_grant": {
-          "subtitle": "",
-          "content": []
-        },
+        "research_grant":  [],
         "publications": {
           "book": [],
           "paper": []

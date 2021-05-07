@@ -1,15 +1,22 @@
-var getTemplateName  = function(){ 
-    return $('.template-name').text()
-};
 
+var getTemplateName  = function(){ 
+    return $('#template').text()
+};
+var getBackGroundColor = function(){
+    return $('html').css('--primary-background');
+}
+
+var getColor = function(){
+    return $('html').css('--primary-color');
+}
 var getAvatar = function(){
     return $('#about .avatar img').attr('src');
 }
 
 var getAbout = function(){
-    var name = $('#about .about h3 .name').text();
-    var position = $('#about .about .position').text();
-    var eduElement = $('#about .about .education .hover');
+    var name = $('#about .about-right  h3 .name').text();
+    var position = $('#about .about-right .position').text();
+    var eduElement = $('#about .about-right .education .hover');
     var educations = [];
     for(var i = 0; i<eduElement.length; i++){
         educations.push($(eduElement[i]).find(".list-group-item p").html().trim());
@@ -22,13 +29,13 @@ var getAbout = function(){
     var mail = $(contactTag[3]).find('.list-group-item p').html().trim().split(';');
 
     return {
-        name: name,
-        level: position,
-        university: educations,
-        address: address,
-        phone: phone,
-        fax: fax,
-        mail: mail
+        'name': name,
+        'level': position,
+        'university': educations,
+        'address': address,
+        'phone': phone,
+        'fax': fax,
+        'mail': mail
     }
 }
 
@@ -89,7 +96,7 @@ var getThesis = function(){
         links.push($(linkTag).find(".list-group-item p").html().trim());
     }
 
-    var thesisItemTag = $('.thesis-content');
+    var thesisItemTag = $('.thesis-item');
     var thesisItem =[];
     for(var i = 0; i<thesisItemTag.length; i++){
         var name = $(thesisItemTag[i]).find('.title h5').html().trim();
@@ -99,25 +106,25 @@ var getThesis = function(){
             list.push($(contentTag[j]).find('.list-group-item p').html().trim())
         }
         thesisItem.push({
-            name: name,
-            'list-content': list
+            'name': name,
+            'list_content': list
         })
     }
     
     return {
-        link: links,
-        content: thesisItem
+        'link': links,
+        'content': thesisItem
     }
     
 }
 
 var getResearchGrant = function(){
-    var researchGrantTag = $('.research-grant #grou10 .hover');
+    var researchGrantTag = $('.research-grant #group10 .hover');
     var researchGrant = [];
     for(var i = 0; i<researchGrantTag.length; i++){
         researchGrant.push($(researchGrantTag[i]).find(".list-group-item p").html().trim());
     }
-    return researchGrant
+    return researchGrant;
 }
 
 var getPublication = function(){
@@ -137,35 +144,41 @@ var getPublication = function(){
             contents.push($(contentTag[j]).find(".list-group-item p").html().trim());
         }
         papers.push({
-            name: name,
-            content: contents
+            'name': name,
+            'content': contents
         });
     }
 
     return {
-        book: books,
-        paper: papers
+        'book': books,
+        'paper': papers
     }
 }
 
 
 function Save(){
 
-    var data = {
-        template: getTemplateName(),
-        avatar: getAvatar(),
-        about: getAbout(),
-        research_interests: getResearchInterest(),
-        academic: getAcademic(),
-        teaching: getTeaching(),
-        thesis: getThesis(),
-        research_grant: getResearchGrant(),
-        publications: getPublication()
-    }
-    $.post("/users", data,
-        function (data, textStatus, jqXHR) {
-            document.write(JSON.stringify(data));
-        },
+        var data ={ 
+            'template':{
+                'name': getTemplateName(),
+                'color': getColor(),
+                'background_color': getBackGroundColor()
+            },
+            'avatar': getAvatar(),
+            'about': getAbout(),
+            'research_interests': getResearchInterest(),
+            'academic': getAcademic(),
+            'teaching': getTeaching(),
+            'thesis': getThesis(),
+            'research_grant': getResearchGrant(),
+            'publications': getPublication()
+        };
+    console.log(JSON.stringify(data));
+    $.post("users", {'content': JSON.stringify(data)},
+        function (dt, textStatus, jqXHR) {
+            alert(dt);
+            //window.location.reload();
+        }
     );
 }
 
