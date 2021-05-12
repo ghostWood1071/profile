@@ -136,27 +136,16 @@
         </div>
         <div class="list-group" id="group3">
           <% academic.forEach(item => { %>
-            <div class="hover">
-              <div class="d-flex justify-content-between">
-                <div class="academic-item col-9">
-                  <h4 class="list-group-item academic-item-name">
-                    <%- item.university %> , <%- item.location %> 
-                  </h4>
-                  <div class="list-group-item academic-level">
-                    <%- item.level %> 
-                  </div>
-                  <div
-                    class="text-secondary list-group-item academic-description"
-                  >
-                    <%- item.descript %> 
-                  </div>
-                </div>
-                <div class="academic-item col-3">
-                  <div class="list-group-item academic-item-time">
-                    <%-item.time%>
-                  </div>
-                </div>
+            <div class="academic-item hover">
+              <i class="fas fa-arrows-alt btn-arrow"></i>
+              <i class="fas fa-trash-alt btn-trash"></i>
+              <div class="list-group-item academic-item-time"><%-item.time%></div>
+              <div class="list-group-item academic-item-name">
+                <a href="#"><%- item.university %></a>
               </div>
+              <div class="list-group-item academic-item-location"><%- item.location %></div>
+              <div class="list-group-item academic-level"><%- item.level %></div>
+              <div class="list-group-item academic-description text-secondary"><%- item.descript %></div>
             </div>
           <% }) %>
         </div>
