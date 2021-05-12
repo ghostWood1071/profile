@@ -1,9 +1,35 @@
-const navLinks = Array.from(document.querySelectorAll('.nav-link'));
-const sections = document.querySelectorAll('section');
+
 
 const nav = document.querySelector('.nav');
 const btnHamburger = document.querySelector('.hamburger');
 const options = document.querySelector('.options')
+
+var navLinks = Array.from(document.querySelectorAll('.nav-link'));
+var sections = document.querySelectorAll('section');
+// Scroll navbar
+
+window.addEventListener("scroll", () => {
+  let current = sections[0].getAttribute('id');
+
+  sections.forEach((section, index) => {
+    const sectionTop = section.offsetTop;
+    
+    if (pageYOffset >= sectionTop) {
+      if(!section.classList.contains('hide')) {
+        current = section.getAttribute("id");
+      }
+    }
+  });
+
+  navLinks.forEach((link) => {
+    if (link.classList.contains(current)) {
+      link.classList.add("current-page");
+    } else {
+      link.classList.remove("current-page");
+    }
+  });
+});
+
 //Options
 $('.circle').click(() => {
   if(options.classList.contains('active')){
@@ -12,6 +38,60 @@ $('.circle').click(() => {
   else {
     options.classList.add('active');
   }  
+})
+// Categories
+$('.btn-list-categories').click(() => {
+  if($('.categories').hasClass("show-categories")) {
+    $('.categories').fadeOut(() => {
+      $('.categories').removeClass('show-categories');
+    });
+  } else {
+    $('.categories').fadeIn(() => {
+      $('.categories').addClass('show-categories');
+    });
+  }
+})
+
+document.querySelectorAll('.btn-checkbox').forEach(function(element) {
+  element.addEventListener('change', function() {
+    if(element.classList.contains('research')) {
+      if($(element).prop('checked') == false) {
+        $('.research:not(.btn-checkbox)').addClass('hide');
+      } else {
+        $('.research:not(.btn-checkbox)').removeClass('hide');
+      }
+    } else if(element.classList.contains('academic')) {
+      if($(element).prop('checked') == false) {
+        $('.academic:not(.btn-checkbox)').addClass('hide');
+      } else {
+        $('.academic:not(.btn-checkbox)').removeClass('hide');
+      }
+    } else if(element.classList.contains('teaching')) {
+      if($(element).prop('checked') == false) {
+        $('.teaching:not(.btn-checkbox)').addClass('hide');
+      } else {
+        $('.teaching:not(.btn-checkbox)').removeClass('hide');
+      }
+    } else if(element.classList.contains('thesis')) {
+      if($(element).prop('checked') == false) {
+        $('.thesis:not(.btn-checkbox)').addClass('hide');
+      } else {
+        $('.thesis:not(.btn-checkbox)').removeClass('hide');
+      }
+    } else if(element.classList.contains('grant')) {
+      if($(element).prop('checked') == false) {
+        $('.grant:not(.btn-checkbox)').addClass('hide');
+      } else {
+        $('.grant:not(.btn-checkbox)').removeClass('hide');
+      }
+    } else if(element.classList.contains('publication')) {
+      if($(element).prop('checked') == false) {
+        $('.publication:not(.btn-checkbox)').addClass('hide');
+      } else {
+        $('.publication:not(.btn-checkbox)').removeClass('hide');
+      }
+    }
+  })
 })
 
 //Colors
@@ -42,27 +122,6 @@ btnHamburger.addEventListener('click', () => {
     document.querySelector('.wrapper').classList.add('toggle');
   }    
 })
-
-// Scroll navbar
-window.addEventListener("scroll", () => {
-  let current = sections[0].getAttribute('id');
-
-  sections.forEach((section, index) => {
-    const sectionTop = section.offsetTop;
-    
-    if (pageYOffset >= sectionTop) {
-      current = section.getAttribute("id");
-    }
-  });
-
-  navLinks.forEach((link) => {
-    if (link.classList.contains(current)) {
-      link.classList.add("current-page");
-    } else {
-      link.classList.remove("current-page");
-    }
-  });
-});
 
 //Set img
 function readURL(input, e) {
@@ -107,6 +166,7 @@ trashBtn.forEach((element) => {
 
 //add
 $('.btn-plus').click(function(element) {
+  loadCKEDITOR();
   $(this).siblings('#group1').prepend(`<div class="hover">
     <i class="fas fa-trash-alt btn-trash"></i>
     <i class="fas fa-arrows-alt btn-arrow"></i>
@@ -179,6 +239,7 @@ const btnPlus = document.querySelectorAll('.btn-plus');
 
 btnPlus.forEach((element) => {
   element.addEventListener('click', function() {
+    
     if (element.parentNode.classList.contains('publication-details-title')) {
       let node = document.createElement('div');
       node.setAttribute('class', 'publication-item');
@@ -205,10 +266,6 @@ btnPlus.forEach((element) => {
           }
         })
       })
-      
-      $(".list-group").sortable({
-        handle: '.btn-arrow'
-      });
 
       const name = document.querySelector('.publication-name > .btn-plus');
       name.addEventListener('click', (element) => {
@@ -235,7 +292,18 @@ btnPlus.forEach((element) => {
             }
           })
         })
+
+        $(".list-group").sortable({
+          handle: '.btn-arrow',
+          animation: 150
+        });
+        loadCKEDITOR();
       })
+      $(".list-group").sortable({
+        handle: '.btn-arrow',
+        animation: 150
+      });
+      loadCKEDITOR();
     } else if(element.parentNode.classList.contains('publication-name')) {
       var content = document.querySelector('.publication-example');
       let nodeChild = document.createElement('div');
@@ -261,6 +329,12 @@ btnPlus.forEach((element) => {
           }
         })
       })
+
+      $(".list-group").sortable({
+        handle: '.btn-arrow',
+        animation: 150
+      });
+      loadCKEDITOR();
     } else if (element.parentNode.classList.contains('add')) {
       let node = document.createElement('div');
       node.setAttribute('class', 'thesis-item');
@@ -287,10 +361,6 @@ btnPlus.forEach((element) => {
           }
         })
       })
-      
-      $(".list-group").sortable({
-        handle: '.btn-arrow'
-      });
 
       const name = document.querySelector('.thesis-name > .btn-plus');
       name.addEventListener('click', (element) => {
@@ -317,7 +387,18 @@ btnPlus.forEach((element) => {
             }
           })
         })
+        $(".list-group").sortable({
+          handle: '.btn-arrow',
+          animation: 150
+        });
+        loadCKEDITOR();
       })
+
+      $(".list-group").sortable({
+        handle: '.btn-arrow',
+        animation: 150
+      });
+      loadCKEDITOR();
     } else if (element.parentNode.classList.contains('thesis-name')) {
         var content = document.querySelector('.thesis-example');
         let nodeChild = document.createElement('div');
@@ -343,6 +424,12 @@ btnPlus.forEach((element) => {
             }
           })
         })
+
+        $(".list-group").sortable({
+          handle: '.btn-arrow',
+          animation: 150
+        });
+        loadCKEDITOR();
     } else if (element.parentNode.classList.contains('teaching-title')) {
       let node = document.createElement('div');
       node.setAttribute('class', 'teaching-item');
@@ -370,10 +457,6 @@ btnPlus.forEach((element) => {
           }
         })
       })
-      
-      $(".list-group").sortable({
-        handle: '.btn-arrow'
-      });
 
       const year = document.querySelector('.teaching-year > .btn-plus');
       year.addEventListener('click', (element) => {
@@ -400,8 +483,18 @@ btnPlus.forEach((element) => {
             }
           })
         })
+        $(".list-group").sortable({
+          handle: '.btn-arrow',
+          animation: 150
+        });
+        loadCKEDITOR();
       })
       
+      $(".list-group").sortable({
+        handle: '.btn-arrow',
+        animation: 150
+      });
+      loadCKEDITOR();
     } else if (element.parentNode.classList.contains('teaching-year')) {
       var content = document.querySelector('.teaching-example');
       let nodeChild = document.createElement('div');
@@ -427,12 +520,43 @@ btnPlus.forEach((element) => {
             }
           })
         })
+
+        $(".list-group").sortable({
+          handle: '.btn-arrow',
+          animation: 150
+        });
+        loadCKEDITOR();
     }
+    loadCKEDITOR();
   })
 })
 
 //Move
 $(".list-group").sortable({
-  handle: '.btn-arrow'
+  handle: '.btn-arrow',
+  animation: 150
 });
 
+// reload ckeditor
+loadCKEDITOR = () => {
+  for(selector in CKEDITOR.instances)
+  {
+      CKEDITOR.instances[selector].destroy(true);
+  }
+}
+
+window.addEventListener('drag', function() {
+  items.forEach((el) => {
+      el.setAttribute('contentEditable', 'false');
+  })
+})
+
+window.addEventListener('dragend', () => {
+  loadCKEDITOR();
+  items.forEach((el, ind) => {
+      el.setAttribute('contentEditable', 'true');
+      var ck = CKEDITOR.inline(items[ind], {
+          allowedContent: true
+      })
+  })
+})
