@@ -131,7 +131,12 @@ var getPublication = function(){
     var bookTag = $('#publications #group11 .hover');
     var books = []
     for(var i = 0; i<bookTag.length; i++){
-        books.push($(bookTag[i]).find(".list-group-item p").html().trim())
+        content=$(bookTag[i]).find(".list-group-item p").html().trim();
+        link=$(bookTag[i]).find(".pub-chosen-right input").value;
+        books.push({
+            'content': content,
+            'link': link
+        })
     }
 
     var paperTag = $('#publications .container-drag')
