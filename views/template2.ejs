@@ -16,7 +16,7 @@
     <!-- Jquery UI -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Custom stylesheet -->
-    <link rel="stylesheet" href="/stylesheets/template2.css">
+    <link rel="stylesheet" href="./assets/css/template2.css">
     
 </head>
 <body>
@@ -31,18 +31,18 @@
             <div class="nav-img">
                 <div class="nav-img-overlay"></div>
                 <i class="fas fa-upload"></i>
-                <img id="avatar-img" src="/images/avatar.jpg" alt="Avatar"/>
+                <img id="avatar-img" src="./assets/img/avatar.jpg" alt="Avatar"/>
                 <input type="file" class="nav-img-upload" onchange="readURL(this, '#avatar-img');">
             </div>
 
             <ul class="nav-list">
-                <li class="nav-item"><a href="#about" class="nav-link about current-page">About</a></li>
-                <li class="nav-item"><a href="#research" class="nav-link research">Research Interests</a></li>
-                <li class="nav-item"><a href="#academic" class="nav-link academic">Academic record</a></li>
-                <li class="nav-item"><a href="#teaching" class="nav-link teaching">Teaching</a></li>
-                <li class="nav-item"><a href="#thesis" class="nav-link thesis">Thesis Advising</a></li>
-                <li class="nav-item"><a href="#grant" class="nav-link grant">Research Grant</a></li>
-                <li class="nav-item"><a href="#publication" class="nav-link publication">Publications</a></li>
+                <li class="nav-item about"><a href="#about" class="nav-link about current-page">About</a></li>
+                <li class="nav-item research"><a href="#research" class="nav-link research">Research Interests</a></li>
+                <li class="nav-item academic"><a href="#academic" class="nav-link academic">Academic record</a></li>
+                <li class="nav-item teaching"><a href="#teaching" class="nav-link teaching">Teaching</a></li>
+                <li class="nav-item thesis"><a href="#thesis" class="nav-link thesis">Thesis Advising</a></li>
+                <li class="nav-item grant"><a href="#grant" class="nav-link grant">Research Grant</a></li>
+                <li class="nav-item publication"><a href="#publication" class="nav-link publication">Publications</a></li>
             </ul>
         </nav>
 
@@ -102,7 +102,7 @@
                 </div>  
             </section>
 
-            <section id="research">
+            <section id="research" class="research">
                 <div class="title">
                     RESEARCH INTERESTS
                     <i class="fas fa-plus-circle btn-plus"></i>
@@ -126,7 +126,7 @@
                 </div>
             </section> 
 
-            <section id="academic">
+            <section id="academic" class="academic">
                 <div class="title">
                     Academic
                     <i class="fas fa-plus-circle btn-plus"></i>
@@ -144,11 +144,10 @@
                         <div class="list-group-item academic-level">PHD DEGREE IN INFORMATION AND COMPUTER SCIENCES</div>
                         <div class="list-group-item academic-description">PhD thesis: Architectural model of a class numerical computing machine and its application on generating smooth curves and surface</div>
                     </div>
-                    
                 </div>
             </section>
             
-            <section id="teaching">
+            <section id="teaching" class="teaching">
                 <div class="title teaching-title">
                     Teaching
                     <i class="fas fa-plus-circle btn-plus"></i>
@@ -182,7 +181,7 @@
                 </div>
             </section>
            
-            <section id="thesis">
+            <section id="thesis" class="thesis">
                 <div class="title">
                     Thesis
                     <i class="fas fa-plus-circle btn-plus"></i>
@@ -241,12 +240,13 @@
                                 </div>
                             </div>
                         </div>
+    
                     </div>
 
                 </div>
             </section>
                 
-            <section id="grant">
+            <section id="grant" class="grant">
                 <div class="title">
                     RESEARCH GRANT
                     <i class="fas fa-plus-circle btn-plus"></i>
@@ -271,7 +271,7 @@
                 
             </section> 
          
-            <section id="publication">
+            <section id="publication" class="publication">
                 <div class="title">
                     Publication
                 </div>
@@ -334,13 +334,14 @@
                                     </div>
                                 </div>
                             </div>
+        
                         </div>
                         
                     </div>
                 </div>
             </section>
             
-            <footer class="footer"><button onclick="Save()" type="submit" class="btn-submit">Submit</button></footer>
+            <footer class="footer"><button type="submit" class="btn-submit">Submit</button></footer>
         </div>
 
         <div class="circle" draggable="true"><i class="fas fa-tools"></i></div>
@@ -350,26 +351,49 @@
             <div class="color green"></div>
             <div class="color brown"></div>
 
-            <div class="categories">
-                <input type="radio" name="research" class="btn-radio">
-                <label for="research">Research Interests</label>
-                <input type="radio" name="academic" class="btn-radio">
-                <label for="academic">Academic record</label>
-                <input type="radio" name="teaching" class="btn-radio">
-                <label for="research">Teaching</label>
-                <input type="radio" name="grant" class="btn-radio">
-                <label for="research">Research Grant</label>
-                <input type="radio" name="publication" class="btn-radio">
-                <label for="research">Publications</label>
+            <div class="options-document">
+                <span class="btn-list-categories"><i class="fas fa-list-alt"></i></span>
+                <div class="categories">
+                    <div>
+                        <input type="checkbox" id="res" class="btn-checkbox research" checked>
+                        <label for="res">Research Interests</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="aca" class="btn-checkbox academic" checked>
+                        <label for="aca">Academic record</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="teach" class="btn-checkbox teaching" checked>
+                        <label for="teach">Teaching</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="thes" class="btn-checkbox thesis" checked>
+                        <label for="thes">Thesis</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="research-grant" class="btn-checkbox grant" checked>
+                        <label for="research-grant">Research Grant</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="pub" class="btn-checkbox publication" checked>
+                        <label for="pub">Publications</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <script src="/javascripts/jquery-3.6.0.min.js"></script>
-    <script src="/ckeditor/ckeditor.js"></script>
-    <script src="/ckeditor/config.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="/javascripts/template2.js"></script>
-    <script src="/javascripts/getData.js"></script>
+    
+
+    <script src="./assets/js/jquery-3.6.0.min.js"></script>
+    <script src="./assets/ckeditor/ckeditor.js"></script>
+    <script src="./assets/ckeditor/config.js"></script>
+    <!-- Sortable -->
+    <script src="https://unpkg.com/sortablejs-make/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
+    <!-- Jquery UI -->
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+    <script src="./assets/js/template2.js"></script>
 </body>
 </html>
