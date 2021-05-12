@@ -44,6 +44,8 @@ window.addEventListener("scroll", () => {
     })
 });
 
+// window load
+
 // Set color
 const rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`;
 
@@ -58,18 +60,17 @@ $('.btn-cogs').click(function(){
     }
 })
 
-$('.list-color li').click(function(){
-    $('.list-color li').removeClass('active');
-    $(this).addClass('active');
+$('.list-color li').click(function() {
+    // $('.list-color li').removeClass('active');
+    // $(this).addClass('active');
     var newColor = rgb2hex($(this).css('background-color'));
     document.documentElement.style.setProperty('--primary-color', newColor);
 })
 
-$('.list-background li').click(function(){
-    $('.list-background li').removeClass('active');
-    $(this).addClass('active');
+$('.list-background li').click(function() {
+    // $('.list-background li').removeClass('active');
+    // $(this).addClass('active');
     var newBackground = $(this).css('background-image');
-    console.log(newBackground)
     document.documentElement.style.setProperty('--primary-background', newBackground);
 })
 
@@ -88,11 +89,13 @@ $('.pub-chosen-right .fa-trash-alt').click(function(){
 // Add ckEditable
 if(!document.querySelector("#forGuess")){
     item.forEach((el, ind) => {
+        
         el.setAttribute('contentEditable', 'true');
         var ck = CKEDITOR.inline(item[ind], {
             allowedContent: true
         })
     })
+
 }
 
 // Show button plus
@@ -106,6 +109,7 @@ $('.title').hover(function () {
 
 // Add content when click button plus
 $('.fa-plus').click(function(){
+    loadCKEDITOR();
     $(this).parent().siblings('#group1').prepend(
         `<div class="hover">
             <i class="fas fa-arrows-alt btn-arrow"></i>
@@ -188,6 +192,8 @@ $('.list-group').sortable({
     handle: '.btn-arrow'
 });
 
+
+
 /* Change Image */
 const img = document.querySelector('#avatar-img');
 const btnFile = document.querySelector('#file');
@@ -204,4 +210,28 @@ btnFile.addEventListener('change', function() {
         reader.readAsDataURL(file);
     }
     console.log(img.clientHeight)
+})
+
+// reload ckeditor
+loadCKEDITOR = () => {
+    for(selector in CKEDITOR.instances)
+    {
+        CKEDITOR.instances[selector].destroy(true);
+    }
+}
+
+window.addEventListener('drag', function() {
+    item.forEach((el) => {
+        el.setAttribute('contentEditable', 'false');
+    })
+})
+
+window.addEventListener('dragend', () => {
+    loadCKEDITOR();
+    item.forEach((el, ind) => {
+        el.setAttribute('contentEditable', 'true');
+        var ck = CKEDITOR.inline(item[ind], {
+            allowedContent: true
+        })
+    })
 })
