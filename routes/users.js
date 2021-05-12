@@ -5,8 +5,8 @@ var dataHelper = require('../middleware/data.midleware');
 var loginController = require('../Controller/login.controller');
 
 
-router.get('/', loginController.auth, dataHelper.readData, userController.getUserInfo);
-router.post('/',dataHelper.readData ,userController.saveData, dataHelper.writeData, userController.saveSuccess);
+router.get('/', loginController.auth, userController.getUserInfo);
+router.post('/',userController.saveData);
 
 module.exports = router;
 

@@ -1,9 +1,11 @@
-
+var fs = require("fs");
 
 module.exports.getUserInfo = function (req, res, next) {
-    var data = JSON.parse(res.locals.stringData);
-    var uid = req.signedCookies.userID;
-    var user = data[uid];
+   console.log("ok user");
+    var dataPath = req.signedCookies.data;
+    console.log(dataPath);
+    var user  = JSON.parse(fs.readFileSync(process.cwd()+"\\data\\"+dataPath+"\\data.json", {encoding: "utf-8"}));
+    console.log(user);
     res.render(user.template.name, {
         template: user.template,
         avatar: user.avatar,
@@ -19,9 +21,8 @@ module.exports.getUserInfo = function (req, res, next) {
 
 module.exports.saveData = function(req, res, next){
     var newUser = JSON.parse(req.body.content);
-    var data = JSON.parse(res.locals.stringData);
-    var userID  = req.signedCookies.userID;
-    var oldUser = data[userID];
+    var dataPath = process.cwd()+"\\data\\"+req.signedCookies.data+"\\data.json"
+    var oldUser  = JSON.parse(fs.readFileSync(dataPath, {encoding: "utf-8"}));
     
     oldUser.template = newUser.template;
     oldUser.avatar = newUser.avatar;
@@ -33,14 +34,16 @@ module.exports.saveData = function(req, res, next){
     oldUser.research_grant = newUser.research_grant;
     oldUser.publications = newUser.publications;
 
-    data[userID] = oldUser;
-    res.locals.jsonObj = data;
-    next();
+    try {
+        fs.writeFileSync(dataPath, JSON.stringify(oldUser));
+        res.send("save sucess");
+    } catch (error) {
+        res.send(error);
+    }
+   
 }
 
-module.exports.saveSuccess = function(req,res,next){
-    res.send('save data sucess');
-}
+
 
 
 

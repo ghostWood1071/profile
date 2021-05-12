@@ -1,6 +1,6 @@
 module.exports.saveLoginCookie = function(req, res, next){
-    var uid = res.locals.uid;
-    res.cookie("userID",uid,{
+    var dataPath = res.locals.path;
+    res.cookie("data",dataPath,{
         signed: true
     });
     res.redirect("/users");

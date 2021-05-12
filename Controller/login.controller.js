@@ -1,5 +1,8 @@
+var fs = require('fs');
+
 module.exports.auth = function(req, res, next){
-    if(req.signedCookies.userID){
+    if(req.signedCookies.data){
+        console.log("ok");
         next();
         return;
     } else
@@ -11,6 +14,7 @@ module.exports.getLoginPage  = function(req, res, next){
         res.redirect("/users");
         return;
     }
+    console.log(process.cwd()+"\\data\\quyetthang");
     res.render('login');
 }
 
@@ -19,7 +23,7 @@ module.exports.getLoginInfo = function(req,res,next){
     var pass = req.body.password;
     res.locals.login = {
         account: account, 
-        pass: pass
+        password: pass
     };
     console.log(res.locals.login);
     next();
@@ -27,12 +31,12 @@ module.exports.getLoginInfo = function(req,res,next){
 
 module.exports.validate = function(req,res,next) {
     var loginInfo = res.locals.login;
-    var data =  JSON.parse(res.locals.stringData);
-    var uid = data.findIndex(x=>x.login.account === loginInfo.account);
-    if(uid>=0){
-        var user = data[uid];
-        if(user.login.pass === loginInfo.pass){
-           res.locals.uid = uid;
+    var loginData = JSON.parse(res.locals.stringData);
+    var user = loginData.find(x=>x.account === loginInfo.account);
+    console.log(user);
+    if(user != undefined){
+        if(user.password === loginInfo.password){
+           res.locals.path = user.data_path;
            next();
            return;
         }
@@ -42,7 +46,6 @@ module.exports.validate = function(req,res,next) {
         });
         return;
     }
-    
     res.send({
         head: "login fail",
         err: "account not found"

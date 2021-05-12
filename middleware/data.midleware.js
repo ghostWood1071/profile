@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 function getDatadir(){
-    var dir =  __dirname.replace("middleware", "data\\data.json");
+    var dir =  __dirname.replace("middleware", "data\\login.json");
     return dir;
 }
 
@@ -10,6 +10,7 @@ module.exports.readData  =  function (req, res, next){
         if(err)
             res.send('error when read file');
         else{
+            console.log(data);
             res.locals.stringData = data;
             next();
         }
