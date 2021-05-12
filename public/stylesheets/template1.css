@@ -307,16 +307,32 @@ input[name*="pdf"] {
 .academic-item {
   border: none !important;
   padding: 0 !important;
+  margin-bottom: 1.5rem;
 }
+
+.academic-item div {
+  margin-bottom: .5rem;
+}
+
 .academic-item:nth-child(1) {
   border-right: 0;
 }
-.academic-item:nth-child(2) {
-  text-align: end;
+.academic-item-time {
+  /* text-align: end; */
   color: var(--primary-color);
   border-top-width: 1px !important;
   border-top: 1px solid rgba(0, 0, 0, 0.125);
   border-left: 0;
+}
+
+.academic-item-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.academic-item-location  {
+  font-weight: 500;
 }
 
 .academic-item .list-group-item {

@@ -130,28 +130,16 @@ $('.fa-plus').click(function(){
         </div>`
     );
     $(this).parent().siblings('#group3').prepend(
-        `<div class="hover mb-4">
-            <i class="fas fa-arrows-alt btn-arrow"></i>
-            <i class="fas fa-trash-alt btn-trash"></i>
-            <div class="d-flex justify-content-between">
-            <div class="academic-item col-9">
-                <h4 class="list-group-item academic-item-name">
-                <a href="#">VARNA TECHNICAL UNIVERSITY</a
-                >, BULGARIA
-                </h4>
-                <div class="list-group-item academic-level">
-                PHD DEGREE IN INFORMATION AND COMPUTER SCIENCES
-                </div>
-                <div class="text-secondary list-group-item academic-description"
-                >PhD thesis: Architectural model of a class numerical
-                computing machine and its application on generating smooth
-                curves and surface</div
-                >
-            </div>
-            <div class="academic-item col-3">
-                <div class="list-group-item academic-item-time">3/1991 - 12/1995</div>
-            </div>
-            </div>
+        `<div class="academic-item hover">
+        <i class="fas fa-arrows-alt btn-arrow"></i>
+        <i class="fas fa-trash-alt btn-trash"></i>
+        <div class="list-group-item academic-item-time">3/1991 - 12/1995</div>
+        <div class="list-group-item academic-item-name">
+          <a href="#">UNIVERSITY</a>
+        </div>
+        <div class="list-group-item academic-item-location">LOCATION</div>
+        <div class="list-group-item academic-level">PHD DEGREE IN INFORMATION AND COMPUTER SCIENCES</div>
+        <div class="list-group-item academic-description text-secondary">PhD thesis: Architectural model of a class numerical computing machine and its application on generating smooth curves and surface</div>
         </div>`
     );
     $(this).parent().siblings('#group6').prepend(
