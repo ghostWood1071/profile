@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./assets/css/template2.css">
 </head>
 <body>
-    <div class="wrapper">
+    <div class="wrapper" id="forGuess">
         <div class="hamburger">
             <span></span>
             <span></span>
@@ -126,28 +126,45 @@
             </section>
             
             <section id="teaching" class="teaching">
-                <div class="title teaching-title">
+                <div class="title">
                     Teaching
                 </div>
 
-                <div class="list-group teaching-list">
-
-                    <div class="teaching-item">
-
-                        <div class="teaching-year">
-                            <div class="list-group-item">2018 - 2019</div>
-                        </div>
-                        <div class="list-group teaching-content teaching-example">
-                            <div class="hover">
-                                <div class="list-group-item">IT5630 - Advanced Project Management</div> 
-                            </div>
-
-                            <div class="hover">
-                                <div class="list-group-item">IT5630 - Advanced Project Management</div> 
-                            </div>
-                        </div>
+                <div class="list-group teaching-container">
+                    <div class="teaching-title">
+                        <span>ACADEMIC YEAR</span>
+                        <div class="list-group-item teaching-year">2018 - 2019</div>
                     </div>
 
+                    <div class="teaching-list">
+                        <div class="teaching-item graduate">
+                            <div class="teaching-name">
+                                <div>GRADUATE COURSES</div>
+                            </div>
+                            <div class="list-group teaching-content" id="group7">
+                                <div class="hover">
+                                    <div class="list-group-item">IT5630 - Advanced Project Management</div> 
+                                </div>
+                                <div class="hover">
+                                    <div class="list-group-item">IT5630 - Advanced Project Management</div> 
+                                </div>
+                            </div> 
+                        </div>
+
+                        <div class="teaching-item undergraduate">
+                            <div class="teaching-name">
+                                <div>UNDERGRADUATE COURSES</div>
+                            </div>
+                            <div class="list-group teaching-content" id="group8">
+                                <div class="hover">
+                                    <div class="list-group-item">IT5630 - Advanced Project Management</div> 
+                                </div>
+                                <div class="hover">
+                                    <div class="list-group-item">IT5630 - Advanced Project Management</div> 
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
                 </div>
             </section>
            
@@ -175,6 +192,8 @@
                     </div>
                 </div>
                 <div class="thesis-container">
+                    <div class="add">
+                    </div>
                     
                     <div class="list-group thesis-list">
 
@@ -193,9 +212,7 @@
                                 </div>
                             </div>
                         </div>
-    
                     </div>
-
                 </div>
             </section>
                 
@@ -229,16 +246,12 @@
                         </div>
 
                         <div class="list-group" id="group6">
-                            <div class="hover">
-                                <div class="list-group-item book-content">Huynh Quyet Thang. Software Engineering Economics. Bach Khoa Ha Noi Publishing Inc, 2016. ISBN ISBN 978-604-938-864-4</div>
+                            <div class="hover book-item">
+                                <div class="list-group-item book-name">Huynh Quyet Thang. Software Engineering Economics. Bach Khoa Ha Noi Publishing Inc, 2016. ISBN ISBN 978-604-938-864-4</div>
                             </div>
 
-                            <div class="hover">
-                                <div class="list-group-item book-content">Huynh Quyet Thang (Editor), Nguyen Huu Duc, Doan Trung Tung, Nguyen Binh Minh, Tran Viet Trung: Cloud Computing, Bach Khoa Ha Noi Publishing Inc., 10/2014. ISBN 978-604-938-162-1</div>
-                            </div>
-
-                            <div class="hover">
-                                <div class="list-group-item book-content">Huynh Quyet Thang, Le Tan Hung, Vu Duc Vuong, Dinh Thi Phuong Thu. Programming Web, Internet and Wireless Network. Science and Technique Publishing Inc., 2006 (in Vietnamese)</div>
+                            <div class="hover book-item">
+                                <div class="list-group-item book-name">Huynh Quyet Thang. Software Engineering Economics. Bach Khoa Ha Noi Publishing Inc, 2016. ISBN ISBN 978-604-938-864-4</div>
                             </div>
                         </div>
                     </div>
@@ -249,7 +262,6 @@
                         </div>
 
                         <div class="list-group publication-list">
-
                             <div class="publication-item">
         
                                 <div class="publication-name">
@@ -271,9 +283,10 @@
             </section>
         </div>
     </div>
-    
 
     <script src="./assets/js/jquery-3.6.0.min.js"></script>
+    <script src="./assets/ckeditor/ckeditor.js"></script>
+    <script src="./assets/ckeditor/config.js"></script>
     <!-- Sortable -->
     <script src="https://unpkg.com/sortablejs-make/Sortable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -281,51 +294,6 @@
     <!-- Jquery UI -->
     <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-    <!-- <script src="./assets/js/template2.js"></script> -->
-    <script>
-        const nav = document.querySelector('.nav');
-        const btnHamburger = document.querySelector('.hamburger');
-
-        //Title
-        document.title = $('.name').text();
-
-        //Hamburger
-        btnHamburger.addEventListener('click', () => {
-        if(nav.classList.contains('open')){
-            nav.classList.remove('open');
-            document.querySelector('.wrapper').classList.remove('toggle');
-        }
-        else {
-            nav.classList.add('open');
-            document.querySelector('.wrapper').classList.add('toggle');
-        }    
-        })
-
-        var navLinks = Array.from(document.querySelectorAll('.nav-link'));
-        var sections = document.querySelectorAll('section');
-        // Scroll navbar
-
-        window.addEventListener("scroll", () => {
-        let current = sections[0].getAttribute('id');
-
-        sections.forEach((section, index) => {
-            const sectionTop = section.offsetTop;
-            
-            if (pageYOffset >= sectionTop) {
-            if(!section.classList.contains('hide')) {
-                current = section.getAttribute("id");
-            }
-            }
-        });
-
-        navLinks.forEach((link) => {
-            if (link.classList.contains(current)) {
-            link.classList.add("current-page");
-            } else {
-            link.classList.remove("current-page");
-            }
-        });
-        });
-    </script>
+    <script src="./assets/js/template2.js"></script>
 </body>
 </html>
