@@ -100,10 +100,10 @@
         <div class="title">
           <h2>Contact Information</h2>
         </div>
-        <div class="list-group">
+        <div class="list-group contact">
           <div class="contact-group">
             <i class="fa fa-address-card icon" aria-hidden="true"></i>
-            <div class="list-group-item">
+            <div class="list-group-item about_address">
              <%-about.address %> 
             </div>
           </div>
@@ -170,7 +170,7 @@
         <div class="list-group">
           <div class="wrap-year d-flex">
             <h4>ACADEMIC YEAR</h4>
-            <div class="list-group-item" style="padding: 0; margin-left: 10px">
+            <div class="list-group-item teaching-year" style="padding: 0; margin-left: 10px">
               <h4><%- teaching.academic_year %></h4>
             </div>
           </div>
@@ -192,7 +192,7 @@
               <% }) %>
             </div>
           </div>
-          <div class="university">
+          <div class="university undergraduate">
             <div class="title">
               <h5 class="text-secondary">UNDERGRADUATE COURSES</h5>
               <i class="fa fa-plus btn-add" aria-hidden="true"></i>
@@ -217,7 +217,7 @@
             <h2>THESIS</h2>
             <i class="fa fa-plus btn-add" aria-hidden="true"></i>
           </div>
-          <div class="list-group" id="group6">
+          <div class="list-group thesis-tag" id="group6">
             <% thesis.link.forEach(element => { %>
               <div class="hover thesis-link">
                 <i class="fas fa-arrows-alt btn-arrow"></i>
@@ -275,7 +275,7 @@
           <i class="fa fa-plus btn-add addContentPublication" aria-hidden="true"></i>
         </div>
         <div class="publications-wrapper list-group">
-          <div class="publication-item">
+          <div class="publication-item publication-book">
             <div class="title">
               <h5 class="subtitle list-group-item">BOOKS</h5>
               <i class="fas fa-arrows-alt"></i>

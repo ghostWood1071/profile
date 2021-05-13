@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV</title>
+    <title><%-about.name %></title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
         </div>
 
         <nav class="nav">
-            <div class="nav-img">
+            <div class="nav-img avatar">
                 <div class="nav-img-overlay"></div>
                 <i class="fas fa-upload"></i>
                 <img id="avatar-img" src="./assets/img/avatar.jpg" alt="Avatar"/>
@@ -47,31 +47,31 @@
 
         <div class="main">
             <section id="about">
-                <div class="list-group-item name">HUYNH QUYET THANG</div>
-                <div class="list-group-item position">Ph.D Candidate</div>
+                <div class="list-group-item name"><%-about.name%></div>
+                <div class="list-group-item position"><%-about.level%></div>
 
                 <div class="work-list">
                     <i class="fas fa-plus-circle btn-plus mg-left-0"></i>
 
-                    <div class="list-group" id="group1">
+                    <div class="list-group education" id="group1">
                         <div class="hover">
                             <i class="fas fa-trash-alt btn-trash"></i>
                             <div class="list-group-item">
-                                <a href="#">Department of Software Engineering</a>
+                                <p>Department of Software Engineering</p>
                             </div>
                             <i class="fas fa-arrows-alt btn-arrow"></i>
                         </div>
                         <div class="hover">
                             <i class="fas fa-trash-alt btn-trash"></i>
                             <div class="list-group-item">
-                                <a href="#">School of Information and Communication Technology</a>
+                                <p>School of Information and Communication Technology</p>
                             </div>
                             <i class="fas fa-arrows-alt btn-arrow"></i>
                         </div>
                         <div class="hover">
                             <i class="fas fa-trash-alt btn-trash"></i>
                             <div class="list-group-item">
-                                <a href="#">Hanoi University of Science and Technology</a>
+                                <p>Hanoi University of Science and Technology</p>
                             </div>
                             <i class="fas fa-arrows-alt btn-arrow"></i>
                         </div>
@@ -81,21 +81,20 @@
                 <div class="list-group contact">
                     <div>
                         <i class="fa fa-address-card"></i>
-                        <div class="list-group-item">Room 210, Building C1, No. 1 Dai Co Viet, Hai Ba Trung, Hanoi, Vietnam</div>
+                        <div class="list-group-item"><p>Room 210, Building C1, No. 1 Dai Co Viet, Hai Ba Trung, Hanoi, Vietnam</p></div>
                     </div>
                     <div>
                         <i class="fa fa-phone-square"></i>
-                        <div class="list-group-item">+84 (024) 3868 1912</div>
+                        <div class="list-group-item"><p>+84 (024) 3868 1912</p></div>
                     </div>
                     <div>
                         <i class="fa fa-fax"></i>
-                        <div class="list-group-item">+84 (024) 3869 2006</div>
+                        <div class="list-group-item"><p>+84 (024) 3869 2006</p></div>
                     </div>
                     <div>
                         <i class="fa fa-envelope"></i>
                         <div class="list-group-item">
-                            <a href="#">thanghq@soict.hust.edu.vn</a>;
-                            <a href="#">thang.huynhquyet@hust.edu.vn</a>
+                            <p><a href="#">thanghq@soict.hust.edu.vn</a></p>;<p><a href="#">thang.huynhquyet@hust.edu.vn</a></p>
                         </div>
                     </div>
                 </div>  
@@ -110,17 +109,17 @@
                     <div class="hover research-item">
                         <i class="fas fa-trash-alt btn-trash"></i>
                         <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">SOFTWARE QUALITY; SOFTWARE TESTING; METHODS IN SOFTWARE DEVELOPMENT</div>
+                        <div class="list-group-item"><p>SOFTWARE QUALITY; SOFTWARE TESTING; METHODS IN SOFTWARE DEVELOPMENT</p></div>
                     </div>
                     <div class="hover research-item">
                         <i class="fas fa-trash-alt btn-trash"></i>
                         <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">MULTI-OBJECTIVE OPTIMIZATION; PROJECT MANAGEMENT</div>
+                        <div class="list-group-item"><p>MULTI-OBJECTIVE OPTIMIZATION; PROJECT MANAGEMENT</p></div>
                     </div>
                     <div class="hover research-item">
                         <i class="fas fa-trash-alt btn-trash"></i>
                         <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">BIG DATA PROCESSING AND ANALYTICS</div>
+                        <div class="list-group-item"><p>BIG DATA PROCESSING AND ANALYTICS</p></div>
                     </div>
                 </div>
             </section> 
@@ -204,7 +203,7 @@
                     Thesis
                     <i class="fas fa-plus-circle btn-plus"></i>
                 </div>
-                <div class="list-group" id="group4">
+                <div class="list-group thesis-tag" id="group4">
                     <div class="hover thesis-link">
                         <i class="fas fa-trash-alt btn-trash"></i>
                         <i class="fas fa-arrows-alt btn-arrow"></i>
@@ -262,7 +261,7 @@
                 </div>
             </section>
                 
-            <section id="grant" class="grant">
+            <section id="grant" class="grant research-grant">
                 <div class="title">
                     RESEARCH GRANT
                     <i class="fas fa-plus-circle btn-plus"></i>

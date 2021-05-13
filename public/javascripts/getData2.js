@@ -10,23 +10,23 @@ var getColor = function(){
     return $('html').css('--primary-color');
 }
 var getAvatar = function(){
-    return $('#about .avatar img').attr('src');
+    return $('.avatar img').attr('src');
 }
 
 var getAbout = function(){
-    var name = $('#about .about-right  h3 .name').text();
-    var position = $('#about .about-right .position').text();
-    var eduElement = $('#about .about-right .education .hover');
+    var name = $('#about .name').text();
+    var position = $('#about .position').text();
+    var eduElement = $('#about .education .hover');
     var educations = [];
     for(var i = 0; i<eduElement.length; i++){
         educations.push($(eduElement[i]).find(".list-group-item p").html().trim());
     }
 
-    var contactTag = $('.wrap-address .list-group .contact-group');
-    var address = $(contactTag[0]).find('.list-group-item p').html().trim();
-    var phone = $(contactTag[1]).find('.list-group-item p').html().trim();
-    var fax = $(contactTag[2]).find('.list-group-item p').html().trim();
-    var mail = $(contactTag[3]).find('.list-group-item p').html().trim().split(';');
+    var contactTag = $('.contact');
+    var address = $(contactTag).find('.list-group-item p')[0].innerHTML.trim();
+    var phone = $(contactTag).find('.list-group-item p')[1].innerHTML.trim();
+    var fax = $(contactTag).find('.list-group-item p')[2].innerHTML.trim();
+    var mail = $(contactTag).find('.list-group-item p')[3].innerHTML.trim().split(';');
 
     return {
         'name': name,
@@ -40,7 +40,7 @@ var getAbout = function(){
 }
 
 var getResearchInterest = function(){
-    var researchTag = $('.research #group2 .hover');
+    var researchTag = $('.research .hover');
     var research_interest = [];
     for(var i = 0; i<researchTag.length; i++){
         research_interest.push($(researchTag[i]).find(".list-group-item p").html().trim());
@@ -67,14 +67,14 @@ var getAcademic = function(){
 
 var getTeaching = function(){
     var teachingTag = $('.teaching .list-group');
-    var academicYear =  $(teachingTag).find(".wrap-year .list-group-item h4").html().trim();
-    var graduateTag = $('.teaching .list-group .graduate .list-group .hover');
+    var academicYear =  $(teachingTag).find(".list-group-item.teaching-year").text().trim();
+    var graduateTag = $('.graduate .list-group .hover');
     var graduate = [];
     for(var i = 0; i<graduateTag.length; i++){
         graduate.push($(graduateTag[i]).find(".list-group-item p").html().trim());
     }
 
-    var unGraduateTag = $('.teaching .list-group .university .list-group .hover');
+    var unGraduateTag = $('.undergraduate .list-group .hover');
     var unGraduate = [];
     for(var i  = 0; i<unGraduateTag.length; i++){
         unGraduate.push($(unGraduateTag[i]).find(".list-group-item p").html().trim());
@@ -89,7 +89,7 @@ var getTeaching = function(){
 }
 
 var getThesis = function(){
-    var linkTag = $('.content-thesis #group6 .hover');
+    var linkTag = $('.thesis .thesis-tag .hover');
     var links = [];
     for(var i = 0; i< linkTag.length; i++){
         links.push($(linkTag).find(".list-group-item p").html().trim());
@@ -98,7 +98,7 @@ var getThesis = function(){
     var thesisItemTag = $('.thesis-item');
     var thesisItem =[];
     for(var i = 0; i<thesisItemTag.length; i++){
-        var name = $(thesisItemTag[i]).find('.title h5').html().trim();
+        var name = $(thesisItemTag[i]).find('.thesis-name').html().trim();
         var contentTag = $(thesisItemTag[i]).find('.list-group .hover');
         var list = []
         for(var j = 0; j<contentTag.length; j++){
@@ -118,7 +118,7 @@ var getThesis = function(){
 }
 
 var getResearchGrant = function(){
-    var researchGrantTag = $('.research-grant #group10 .hover');
+    var researchGrantTag = $('.research-grant list-group .hover');
     var researchGrant = [];
     for(var i = 0; i<researchGrantTag.length; i++){
         researchGrant.push($(researchGrantTag[i]).find(".list-group-item p").html().trim());
@@ -127,11 +127,11 @@ var getResearchGrant = function(){
 }
 
 var getPublication = function(){
-    var bookTag = $('#publications #group11 .hover');
+    var bookTag = $('.publication-book .list-group .hover');
     var books = []
     for(var i = 0; i<bookTag.length; i++){
         content=$(bookTag[i]).find(".list-group-item p").html().trim();
-        link=$(bookTag[i]).find(".pub-chosen-right input").value;
+        link=$(bookTag[i]).find("input").value;
         books.push({
             'content': content,
             'link': link
