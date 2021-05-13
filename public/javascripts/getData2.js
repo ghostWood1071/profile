@@ -49,17 +49,16 @@ var getResearchInterest = function(){
 }
 
 var getAcademic = function(){
-    var academicTag = $('.academic-record #group3 .hover .d-flex');
+    var academicTag = $('.academic-item');
     var academic_record = [];
     for(var i = 0; i<academicTag.length; i++){
         var academicItem = academicTag[i];
-        var info = $(academicItem).find(".col-9");
         var item = {
-            "university":$(info).find("h4").text().split(",")[0].trim(),
-            "location": $(info).find("h4").text().split(",")[1].trim(),
-            "level": $(info).find(".academic-level p").html().trim(),
-            "time": $(academicItem).find(".col-3 .academic-item-time p").html().trim(),
-            "descript": $(info).find(".academic-description p").html().trim()
+            "university":$(academicItem).find(".academic-item-name").text().trim(),
+            "location": $(academicItem).find(".academic-item-location").text().trim(),
+            "level": $(academicItem).find(".academic-level").text().trim(),
+            "time": $(academicItem).find(".academic-item-time").text().trim(),
+            "descript": $(academicItem).find(".academic-description").text().trim()
         }
         academic_record.push(item);
     }
