@@ -81,7 +81,7 @@
           </h3>
           <div class="title">
             <h5><div class="position list-group-item"><%-about.level%></div></h5>
-            <i class="fa fa-plus" aria-hidden="true"></i>
+            <i class="fa fa-plus btn-add" aria-hidden="true"></i>
           </div>
           <div class="list-group education" id="group1">
             <% about.university.forEach(item => { %>
@@ -128,7 +128,7 @@
       <div class="content research">
         <div class="title">
           <h2>RESEARCH INTERESTS</h2>
-          <i class="fa fa-plus" aria-hidden="true"></i>
+          <i class="fa fa-plus btn-add" aria-hidden="true"></i>
         </div>
         <div class="list-group" id="group2">
           <% research_interest.forEach(element => { %>
@@ -145,7 +145,7 @@
       <div class="content academic-record">
         <div class="title mb-3">
           <h2>ACADEMIC RECORD</h2>
-          <i class="fa fa-plus" aria-hidden="true"></i>
+          <i class="fa fa-plus btn-add" aria-hidden="true"></i>
         </div>
         <div class="list-group" id="group3">
           <% academic.forEach(item => { %>
@@ -177,7 +177,7 @@
           <div class="graduate mb-4">
             <div class="title">
               <h5 class="text-secondary">GRADUATE COURSES</h5>
-              <i class="fa fa-plus" aria-hidden="true"></i>
+              <i class="fa fa-plus btn-add" aria-hidden="true"></i>
             </div>
             <div class="list-group" name="same-text" id="group4">
               
@@ -195,7 +195,7 @@
           <div class="university">
             <div class="title">
               <h5 class="text-secondary">UNDERGRADUATE COURSES</h5>
-              <i class="fa fa-plus" aria-hidden="true"></i>
+              <i class="fa fa-plus btn-add" aria-hidden="true"></i>
             </div>
             <div class="list-group" name="same-text" id="group5">
               <% teaching.undergraduate_courses.forEach(item => { %>
@@ -215,7 +215,7 @@
         <div class="content-thesis">
           <div class="title">
             <h2>THESIS</h2>
-            <i class="fa fa-plus" aria-hidden="true"></i>
+            <i class="fa fa-plus btn-add" aria-hidden="true"></i>
           </div>
           <div class="list-group" id="group6">
             <% thesis.link.forEach(element => { %>
@@ -233,7 +233,7 @@
                   <div class="thesis-item">
                     <div class="title thesis-name">
                       <h5 class="list-group-item"><%-thesis.content[i].name%></h5>
-                      <i class="fa fa-plus" aria-hidden="true"></i>
+                      <i class="fa fa-plus btn-add" aria-hidden="true"></i>
                     </div>
                     <div class="list-group" name="same-text" id="group9">
                       <% thesis.content[i].list_content.forEach(item => { %>
@@ -255,7 +255,7 @@
       <div class="content research-grant" id="grant">
         <div class="title">
           <h2>RESEARCH GRANTS</h2>
-          <i class="fa fa-plus" aria-hidden="true"></i>
+          <i class="fa fa-plus btn-add" aria-hidden="true"></i>
         </div>
         <div class="list-group" id="group10">
           <% research_grant.forEach(item => { %>
@@ -270,121 +270,146 @@
         </div>
       </div>
       <div class="content publications" id="publications">
-        <h2 class="title">publications</h2>
         <div class="title">
-          <h5 class="subtitle">BOOKS</h5>
-          <i class="fa fa-plus" aria-hidden="true"></i>
+          <h2 class="title">publications</h2>
+          <i class="fa fa-plus btn-add addContentPublication" aria-hidden="true"></i>
         </div>
-        <div class="list-group" name="same-text" id="group11">
-          <% public.book.forEach(book => { %>
-            <div class="hover">
-              <i class="fas fa-arrows-alt btn-arrow"></i>
-              <div class="pub-chosen-right">
-                <i class="fas fa-trash-alt"></i>
-                <input
-                  type="file"
-                  id="pdf1"
-                  name="pdf"
-                  accept="application/pdf"
-                  value="PDF"
-                />
-                <label class="pdf" for="pdf1">PDF</label>
+        <div class="publications-wrapper list-group">
+          <div class="publication-item">
+            <div class="title">
+              <h5 class="subtitle list-group-item">BOOKS</h5>
+              <i class="fas fa-arrows-alt"></i>
+              <i class="fa fa-plus btn-add" aria-hidden="true"></i>
+              <i class="fas fa-trash-alt"></i>
+            </div>
+            <div class="list-group" name="same-text" id="group11">
+              <% public.book.forEach(book => { %>
+                <div class="hover">
+                  <i class="fas fa-arrows-alt btn-arrow"></i>
+                  <div class="pub-chosen-right">
+                    <i class="fas fa-trash-alt"></i>
+                    <input
+                      type="file"
+                      id="pdf1"
+                      name="pdf"
+                      accept="application/pdf"
+                      value="PDF"
+                    />
+                    <label class="pdf" for="pdf1">PDF</label>
+                  </div>
+                  <div class="list-group-item text-secondary">
+                    <%- book %> 
+                  </div>
+                </div>
+              <% }) %>
+            </div>
+          </div>
+          <div class="publication-list">
+            <div class="publication-item">
+              <div class="title">
+                <h5 class="subtitle list-group-item mr-2">PUBLISHED PAPERS (SELECTED)</h5>
+                <i class="fas fa-arrows-alt"></i>
+                <i class="fa fa-plus btn-add addPublishedPaper" aria-hidden="true"></i>
               </div>
-              <div class="list-group-item text-secondary">
-                <%- book %> 
+              <div class="published-paper-wrapper list-group">
+                <% if (public.paper.length>0) { %>
+                  <div class="container-drag">
+                    <div class="title">
+                      <div class="list-group-item mr-2">
+                        <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
+                          >A) International Journals:</strong
+                        >
+                      </div>
+                      <i class="fas fa-arrows-alt"></i>
+                      <i class="fa fa-plus btn-add" aria-hidden="true"></i>
+                      <i class="fas fa-trash-alt"></i>
+                    </div>
+                    <div class="list-group" name="same-text" id="group12">
+                      <% public.paper[0].content.forEach(element => { %>
+                        <div class="hover">
+                          <i class="fas fa-arrows-alt btn-arrow"></i>
+                          <i class="fas fa-trash-alt btn-trash"></i>
+                          <div class="list-group-item text-secondary">
+                            <%- element %> 
+                          </div>
+                        </div>
+                      <% }) %>
+                    </div>
+                  </div>
+                  <div class="container-drag">
+                    <div class="title">
+                      <div class="list-group-item mr-2">
+                        <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
+                          >B) National Journals:</strong
+                        >
+                      </div>
+                      <i class="fas fa-arrows-alt"></i>
+                      <i class="fa fa-plus btn-add" aria-hidden="true"></i>
+                      <i class="fas fa-trash-alt"></i>
+                    </div>
+                    <div class="list-group" name="same-text" id="group13">
+                      <% public.paper[1].content.forEach(element => { %>
+                        <div class="hover">
+                          <i class="fas fa-arrows-alt btn-arrow"></i>
+                          <i class="fas fa-trash-alt btn-trash"></i>
+                          <div class="list-group-item text-secondary">
+                            <%- element %> 
+                          </div>
+                        </div>
+                      <% }) %>
+                    </div>
+                  </div>
+                  <div class="container-drag">
+                    <div class="title">
+                      <div class="list-group-item mr-2">
+                        <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
+                          >C) International Conferences:</strong
+                        >
+                      </div>
+                      <i class="fas fa-arrows-alt"></i>
+                      <i class="fa fa-plus btn-add" aria-hidden="true"></i>
+                      <i class="fas fa-trash-alt"></i>
+                    </div>
+                    <div class="list-group" name="same-text" id="group14">
+                      <% public.paper[2].content.forEach(element => { %>
+                        <div class="hover">
+                          <i class="fas fa-arrows-alt btn-arrow"></i>
+                          <i class="fas fa-trash-alt btn-trash"></i>
+                          <div class="list-group-item text-secondary">
+                            <%- element %> 
+                          </div>
+                        </div>
+                      <% }) %>
+                    </div>
+                  </div>
+                  <div class="list-group container-drag" id="group15">
+                    <div class="title">
+                      <div class="list-group-item mr-2">
+                        <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
+                          >D) National Conferences:</strong
+                        >
+                      </div>
+                      <i class="fas fa-arrows-alt"></i>
+                      <i class="fa fa-plus btn-add" aria-hidden="true"></i>
+                      <i class="fas fa-trash-alt"></i>
+                    </div>
+                    <div class="list-group" name="same-text" id="group16">
+                      <% public.paper[3].content.forEach(element => { %>
+                        <div class="hover">
+                          <i class="fas fa-arrows-alt btn-arrow"></i>
+                          <i class="fas fa-trash-alt btn-trash"></i>
+                          <div class="list-group-item text-secondary">
+                            <%- element %> 
+                          </div>
+                        </div>
+                      <% }) %>
+                    </div>
+                  </div>
+                <% } %>
               </div>
             </div>
-          <% }) %>
+          </div>
         </div>
-        <div class="title">
-          <h5 class="subtitle">PUBLISHED PAPERS (SELECTED)</h5>
-        </div>
-        <% if (public.paper.length>0) { %>
-          <div class="container-drag">
-            <div class="title">
-              <div>
-                <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
-                  >A) International Journals:</strong
-                >
-              </div>
-              <i class="fa fa-plus" aria-hidden="true"></i>
-            </div>
-            <div class="list-group" name="same-text" id="group12">
-              <% public.paper[0].content.forEach(element => { %>
-                <div class="hover">
-                  <i class="fas fa-arrows-alt btn-arrow"></i>
-                  <i class="fas fa-trash-alt btn-trash"></i>
-                  <div class="list-group-item text-secondary">
-                    <%- element %> 
-                  </div>
-                </div>
-              <% }) %>
-            </div>
-          </div>
-          <div class="container-drag">
-            <div class="title">
-              <div>
-                <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
-                  >B) National Journals:</strong
-                >
-              </div>
-              <i class="fa fa-plus" aria-hidden="true"></i>
-            </div>
-            <div class="list-group" name="same-text" id="group13">
-              <% public.paper[1].content.forEach(element => { %>
-                <div class="hover">
-                  <i class="fas fa-arrows-alt btn-arrow"></i>
-                  <i class="fas fa-trash-alt btn-trash"></i>
-                  <div class="list-group-item text-secondary">
-                    <%- element %> 
-                  </div>
-                </div>
-              <% }) %>
-            </div>
-          </div>
-          <div class="container-drag">
-            <div class="title">
-              <div>
-                <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
-                  >C) International Conferences:</strong
-                >
-              </div>
-              <i class="fa fa-plus" aria-hidden="true"></i>
-            </div>
-            <div class="list-group" name="same-text" id="group14">
-              <% public.paper[2].content.forEach(element => { %>
-                <div class="hover">
-                  <i class="fas fa-arrows-alt btn-arrow"></i>
-                  <i class="fas fa-trash-alt btn-trash"></i>
-                  <div class="list-group-item text-secondary">
-                    <%- element %> 
-                  </div>
-                </div>
-              <% }) %>
-            </div>
-          </div>
-          <div class="list-group container-drag" id="group15">
-            <div class="title">
-              <div>
-                <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
-                  >D) National Conferences:</strong
-                >
-              </div>
-              <i class="fa fa-plus" aria-hidden="true"></i>
-            </div>
-            <div class="list-group" name="same-text" id="group16">
-              <% public.paper[3].content.forEach(element => { %>
-                <div class="hover">
-                  <i class="fas fa-arrows-alt btn-arrow"></i>
-                  <i class="fas fa-trash-alt btn-trash"></i>
-                  <div class="list-group-item text-secondary">
-                    <%- element %> 
-                  </div>
-                </div>
-              <% }) %>
-            </div>
-          </div>
-        <% } %>
         
       </div>
       <div class="submit">
@@ -420,6 +445,13 @@
             <li data-background="background6"></li>
             <li data-background="background7"></li>
             <li data-background="background8"></li>
+          </ul>
+        </div>
+        <div class="content-theme">
+          <h5>Themes</h5>
+          <ul class="list-theme">
+            <li data-theme="theme1">1</li>
+            <li data-theme="theme2">2</li>
           </ul>
         </div>
       </div>
