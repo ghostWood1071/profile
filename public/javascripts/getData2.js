@@ -181,13 +181,11 @@ function Save(){
             'research_grant': getResearchGrant(),
             'publications': getPublication()
         };
-    
-    console.log($("#file").data())
+    console.log(JSON.stringify(data));
     $.post("users", {'content': JSON.stringify(data)},
         function (dt, textStatus, jqXHR) {
-            //alert(dt);
+            alert(dt);
             //window.location.reload();
-            console.log(dt);
         }
     );
 }
