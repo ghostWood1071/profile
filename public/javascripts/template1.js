@@ -75,41 +75,63 @@ $('.list-background li').click(function() {
 })
 
 // Edit content
-var item = Array.from(document.querySelectorAll('.list-group-item'));
+var items = Array.from(document.querySelectorAll('.list-group-item'));
 
-// Remove element
-$('.btn-trash').click(function(){
-    $(this).parent().remove();
-});
-//Remove element has pdf
-$('.pub-chosen-right .fa-trash-alt').click(function(){
-    $(this).parent().parent().remove();
-})
+
+btn_remove = () => {
+    // Remove element
+    $('.btn-trash').click(function(){
+        $(this).parent().remove();
+    });
+    
+    // Remove element has pdf
+    $('.pub-chosen-right .fa-trash-alt').click(function(){
+        $(this).parent().parent().remove();
+    })
+    
+    $('.container-drag .fa-trash-alt').click(function() {
+        $(this).parents('.container-drag').remove();
+    })
+    // Remove element
+    $('.title .fa-trash-alt').click(function(){
+        $(this).parents('.publication-item').remove();
+    })
+    
+    
+}
+
+btn_remove();
 
 // Add ckEditable
 if(!document.querySelector("#forGuess")){
-    item.forEach((el, ind) => {
+    items.forEach((el, ind) => {
         
         el.setAttribute('contentEditable', 'true');
-        var ck = CKEDITOR.inline(item[ind], {
+        var ck = CKEDITOR.inline(items[ind], {
             allowedContent: true
         })
     })
-
 }
 
 // Show button plus
-$('.title').hover(function () {
-        $(this).find('.fa-plus').css('opacity', '1');
-    }, function () {
-        // out
-        $(this).find('.fa-plus').css('opacity', '0');
-    }
-);
+showBtn = () => {
+    $('.title').hover(function () {
+            $(this).find('.fa-plus, .fa-trash-alt').css('opacity', '1');
+        }, function () {
+            // out
+            $(this).find('.fa-plus, .fa-trash-alt').css('opacity', '0');
+        }
+    );
+}
+
+showBtn();
 
 // Add content when click button plus
-$('.fa-plus').click(function(){
+$('.btn-add').click(function() {
     loadCKEDITOR();
+
+    var check = true;
+
     $(this).parent().siblings('#group1').prepend(
         `<div class="hover">
             <i class="fas fa-arrows-alt btn-arrow"></i>
@@ -129,31 +151,21 @@ $('.fa-plus').click(function(){
             </div>
         </div>`
     );
+
     $(this).parent().siblings('#group3').prepend(
-        `<div class="hover mb-4">
-            <i class="fas fa-arrows-alt btn-arrow"></i>
-            <i class="fas fa-trash-alt btn-trash"></i>
-            <div class="d-flex justify-content-between">
-            <div class="academic-item col-9">
-                <h4 class="list-group-item academic-item-name">
-                <a href="#">VARNA TECHNICAL UNIVERSITY</a
-                >, BULGARIA
-                </h4>
-                <div class="list-group-item academic-level">
-                PHD DEGREE IN INFORMATION AND COMPUTER SCIENCES
-                </div>
-                <div class="text-secondary list-group-item academic-description"
-                >PhD thesis: Architectural model of a class numerical
-                computing machine and its application on generating smooth
-                curves and surface</div
-                >
-            </div>
-            <div class="academic-item col-3">
-                <div class="list-group-item academic-item-time">3/1991 - 12/1995</div>
-            </div>
-            </div>
+        `<div class="academic-item hover">
+        <i class="fas fa-arrows-alt btn-arrow"></i>
+        <i class="fas fa-trash-alt btn-trash"></i>
+        <div class="list-group-item academic-item-time">3/1991 - 12/1995</div>
+        <div class="list-group-item academic-item-name">
+          <a href="#">UNIVERSITY</a>
+        </div>
+        <div class="list-group-item academic-item-location">LOCATION</div>
+        <div class="list-group-item academic-level">PHD DEGREE IN INFORMATION AND COMPUTER SCIENCES</div>
+        <div class="list-group-item academic-description text-secondary">PhD thesis: Architectural model of a class numerical computing machine and its application on generating smooth curves and surface</div>
         </div>`
     );
+
     $(this).parent().siblings('#group6').prepend(
         `<div class="hover thesis-link">
             <i class="fas fa-arrows-alt btn-arrow"></i>
@@ -163,7 +175,7 @@ $('.fa-plus').click(function(){
             </div>
         </div>`
     );
-
+    
     //#group4, #group5,#group7, #group8, #group9, #group11, #group12, #group13, #group14
     $(this).parent().siblings(`.list-group[name="same-text"], #group10`).prepend(
         `<div class="hover">
@@ -172,27 +184,120 @@ $('.fa-plus').click(function(){
             <div class="list-group-item text-secondary">Empty</div>
         </div>`
     );
+
+    if($(this).hasClass('addContentPublication')) {
+        $(this).parent().siblings().prepend(
+            `
+            <div class="publication-item">
+                <div class="title">
+                    <h5 class="subtitle list-group-item">TITLE</h5>
+                    <i class="fas fa-arrows-alt"></i>
+                    <i class="fa fa-plus btn-addPub" aria-hidden="true"></i>
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+                <div class="list-group" name="same-text" data-addPub="addPublication">
+                    <div class="hover">
+                        <i class="fas fa-arrows-alt btn-arrow"></i>
+                        <i class="fas fa-trash-alt btn-trash"></i>
+                        <div class="list-group-item text-secondary">
+                        Empty
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+        );
+        
+    } 
+
+    if($(this).hasClass('addPublishedPaper')) {
+        $(this).parent().siblings('.published-paper-wrapper').prepend(
+            `
+            <div class="container-drag">
+                <div class="title">
+                    <div class="list-group-item mr-2">
+                        <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
+                        >F) International Journals:</strong
+                        >
+                    </div>
+                    <i class="fas fa-arrows-alt"></i>
+                    <i class="fa fa-plus btn-addPub" aria-hidden="true"></i>
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+                <div class="list-group" name="same-text">
+                    <div class="hover">
+                    <i class="fas fa-arrows-alt btn-arrow"></i>
+                    <i class="fas fa-trash-alt btn-trash"></i>
+                    <div class="list-group-item text-secondary">
+                        Empty
+                    </div>
+                    </div>
+                </div>
+            </div>
+            `
+        )
+    }
+
+    // Add sortable for elements
+    $('.list-group').sortable({
+        animation: 150,
+        handle: '.fa-arrows-alt',
+        scroll: true,
+        scrollSensitivity: 40
+    });
+
     // Add ckEditable again
-    var item = Array.from(document.querySelectorAll('.list-group-item'));
-    item.forEach((el, ind) => {
+    var items = Array.from(document.querySelectorAll('.list-group-item'));
+    items.forEach((el, ind) => {
         el.setAttribute('contentEditable', 'true');
-        var ck = CKEDITOR.inline(item[ind], {
+        var ck = CKEDITOR.inline(items[ind], {
             allowedContent: true
         })
     })
-    // Remove again
-    $('.btn-trash').click(function(){
-        $(this).parent().remove();
-    });
+
+    btn_remove();
+    showBtn();
+})
+
+var c = 0;
+$('.addContentPublication, .addPublishedPaper').click(function() {
+    
+    $('.btn-addPub').click(function() {
+        loadCKEDITOR();
+        //#group4, #group5,#group7, #group8, #group9, #group11, #group12, #group13, #group14
+        $(this).parent().siblings(`.list-group[name="same-text"]`).prepend(
+            `<div class="hover">
+                <i class="fas fa-arrows-alt btn-arrow"></i>
+                <i class="fas fa-trash-alt btn-trash"></i>
+                <div class="list-group-item text-secondary">Empty</div>
+            </div>`
+        );
+        // Add ckEditable again
+        var item = Array.from(document.querySelectorAll('.list-group-item'));
+        item.forEach((el, ind) => {
+            el.setAttribute('contentEditable', 'true');
+            var ck = CKEDITOR.inline(item[ind], {
+                allowedContent: true
+            })
+        })
+        btn_remove();
+        showBtn();
+    })
 })
 
 // Add sortable for elements
 $('.list-group').sortable({
     animation: 150,
-    handle: '.btn-arrow'
+    handle: '.fa-arrows-alt',
+    scroll: true,
+    scrollSensitivity: 40
 });
 
-
+// $('.published-paper-wrapper').sortable({
+//     animation: 150,
+//     scroll: true,
+//     scrollSensitivity: 40
+// })
 
 /* Change Image */
 const img = document.querySelector('#avatar-img');
@@ -220,18 +325,21 @@ loadCKEDITOR = () => {
     }
 }
 
-window.addEventListener('drag', function() {
-    item.forEach((el) => {
-        el.setAttribute('contentEditable', 'false');
-    })
-})
+window.addEventListener('dragstart', function() {
+    $('.list-group-item').each(function (index, element) {
+        // element == this
+        element.setAttribute('contentEditable', 'false');
+    });
+})    
 
 window.addEventListener('dragend', () => {
     loadCKEDITOR();
-    item.forEach((el, ind) => {
-        el.setAttribute('contentEditable', 'true');
-        var ck = CKEDITOR.inline(item[ind], {
+    $('.list-group-item').each(function (index, element) {
+        // element == this
+        element.setAttribute('contentEditable', 'true');
+        var ck = CKEDITOR.inline(element, {
             allowedContent: true
         })
-    })
+    });
 })
+
