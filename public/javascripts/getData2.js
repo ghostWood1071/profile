@@ -131,7 +131,7 @@ var getPublication = function(){
     var books = []
     for(var i = 0; i<bookTag.length; i++){
         content=$(bookTag[i]).find(".list-group-item p").html().trim();
-        link=$(bookTag[i]).find("input").value;
+        link=$(bookTag[i]).find("input")[0].value;
         books.push({
             'content': content,
             'link': link
