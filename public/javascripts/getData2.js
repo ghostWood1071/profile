@@ -71,13 +71,13 @@ var getTeaching = function(){
     var graduateTag = $('.graduate .list-group .hover');
     var graduate = [];
     for(var i = 0; i<graduateTag.length; i++){
-        graduate.push($(graduateTag[i]).find(".list-group-item p").html().trim());
+        graduate.push($(graduateTag[i]).find(".list-group-item").text().trim());
     }
 
     var unGraduateTag = $('.undergraduate .list-group .hover');
     var unGraduate = [];
     for(var i  = 0; i<unGraduateTag.length; i++){
-        unGraduate.push($(unGraduateTag[i]).find(".list-group-item p").html().trim());
+        unGraduate.push($(unGraduateTag[i]).find(".list-group-item").text().trim());
     }
 
     var teaching = {
