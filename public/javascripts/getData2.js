@@ -29,14 +29,15 @@ var getAbout = function(){
     var eduElement = $('#about .education .hover');
     var educations = [];
     for(var i = 0; i<eduElement.length; i++){
-        educations.push($(eduElement[i]).find(".list-group-item p").html().trim());
+        educations.push($(eduElement[i]).find(".list-group-item").text().trim());
     }
 
     var contactTag = $('.contact');
-    var address = $(contactTag).find('.list-group-item p')[0].innerHTML.trim();
-    var phone = $(contactTag).find('.list-group-item p')[1].innerHTML.trim();
-    var fax = $(contactTag).find('.list-group-item p')[2].innerHTML.trim();
-    var mail = $(contactTag).find('.list-group-item p')[3].innerHTML.trim().split(';');
+    
+    var address = $(contactTag).find('.list-group-item')[0].textContent.trim()
+    var phone = $(contactTag).find('.list-group-item')[1].textContent.trim()
+    var fax = $(contactTag).find('.list-group-item')[2].textContent.trim()
+    var mail = $(contactTag).find('.list-group-item')[3].textContent.trim().split(';');
 
     return {
         'name': name,
@@ -49,11 +50,12 @@ var getAbout = function(){
     }
 }
 
+
 var getResearchInterest = function(){
     var researchTag = $('.research .hover');
     var research_interest = [];
     for(var i = 0; i<researchTag.length; i++){
-        research_interest.push($(researchTag[i]).find(".list-group-item p").html().trim());
+        research_interest.push($(researchTag[i]).find(".list-group-item").text().trim());
     }
     return research_interest;
 }
@@ -81,13 +83,13 @@ var getTeaching = function(){
     var graduateTag = $('.graduate .list-group .hover');
     var graduate = [];
     for(var i = 0; i<graduateTag.length; i++){
-        graduate.push($(graduateTag[i]).find(".list-group-item p").html().trim());
+        graduate.push($(graduateTag[i]).find(".list-group-item").text().trim());
     }
 
     var unGraduateTag = $('.undergraduate .list-group .hover');
     var unGraduate = [];
     for(var i  = 0; i<unGraduateTag.length; i++){
-        unGraduate.push($(unGraduateTag[i]).find(".list-group-item p").html().trim());
+        unGraduate.push($(unGraduateTag[i]).find(".list-group-item").text().trim());
     }
 
     var teaching = {
@@ -102,17 +104,17 @@ var getThesis = function(){
     var linkTag = $('.thesis .thesis-tag .hover');
     var links = [];
     for(var i = 0; i< linkTag.length; i++){
-        links.push($(linkTag).find(".list-group-item p").html().trim());
+        links.push($(linkTag[i]).find(".list-group-item").text().trim());
     }
 
     var thesisItemTag = $('.thesis-item');
     var thesisItem =[];
     for(var i = 0; i<thesisItemTag.length; i++){
-        var name = $(thesisItemTag[i]).find('.thesis-name').html().trim();
+        var name = $('.thesis-name')[i].textContent.trim();
         var contentTag = $(thesisItemTag[i]).find('.list-group .hover');
         var list = []
         for(var j = 0; j<contentTag.length; j++){
-            list.push($(contentTag[j]).find('.list-group-item p').html().trim())
+            list.push($(contentTag[j]).find('.list-group-item').text().trim())
         }
         thesisItem.push({
             'name': name,
@@ -131,7 +133,7 @@ var getResearchGrant = function(){
     var researchGrantTag = $('.research-grant .list-group .hover');
     var researchGrant = [];
     for(var i = 0; i<researchGrantTag.length; i++){
-        researchGrant.push($(researchGrantTag[i]).find(".list-group-item p").html().trim());
+        researchGrant.push($(researchGrantTag[i]).find(".list-group-item").text().trim());
     }
     return researchGrant;
 }
@@ -145,18 +147,9 @@ var getPublication = function(){
     var bookTag = $('.publication-book .list-group .hover');
     var books = []
     for(var i = 0; i<bookTag.length; i++){
-        content=$(bookTag[i]).find(".list-group-item p").html().trim();
-        if($(bookTag[i]).find("input").length=0)
-            link="";
-        else{
-            var fakePath = $(bookTag[i]).find("input")[0].value;
-            if(fakePath!="")
-                link= getFileName(fakePath);
-            else link = "";
-        }
+        content=$(bookTag[i]).find(".list-group-item").text().trim();
         books.push({
-            'content': content,
-            'link': link
+            'content': content
         })
     }
 
@@ -167,7 +160,7 @@ var getPublication = function(){
         var contentTag  = $(paperTag[i]).find(".list-group .hover");
         var contents = [];
         for(var j = 0; j<contentTag.length; j++){
-            contents.push($(contentTag[j]).find(".list-group-item p").html().trim());
+            contents.push($(contentTag[j]).find(".list-group-item").text().trim());
         }
         papers.push({
             'name': name,
@@ -200,7 +193,7 @@ function Save(){
             'publications': getPublication()
         };
     
-    console.log(data);
+    console.log(JSON.stringify(data));
     $.post("users", {'content': JSON.stringify(data)},
         function (dt, textStatus, jqXHR) {
             alert(dt);
