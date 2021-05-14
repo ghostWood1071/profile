@@ -125,16 +125,34 @@ window.addEventListener('click', function(e) {
   }
 })
 
+
 //Popup 
+//Modal successful
+$('.btn-apply').click(function() {
+  $('.modal-themes').fadeOut(() => {
+    $('.modal-themes').css('display', 'none');
+  });
+  $('.modal-successful').fadeIn(() => {
+    $('.modal-successful').css('display', 'block');
+  });
+})
+
 // Show Modal
 $('.themes-item').click(() => {
-  $('.modal').fadeIn(() => {
-      $('.modal').css('display', 'block');
+  $('.modal-themes').fadeIn(() => {
+      $('.modal-themes').css('display', 'block');
   });
 })
 
 // Close Modal
 $('.btn-close-modal').click(() => {
+  $('.modal').fadeOut(() => {
+      $('.modal').css('display', 'none');
+  });
+})
+
+// Close Modal
+$('.btn-ok').click(() => {
   $('.modal').fadeOut(() => {
       $('.modal').css('display', 'none');
   });
