@@ -836,6 +836,33 @@ a.themes-item {
     border-radius: 20px;
 }
 
+.ic-success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #71c341;
+}
+
+.success-title {
+    margin: 1rem 0;
+    font-size: 2.4rem;
+}
+
+.btn-ok {
+    background: #71c341;
+    color: #fff;
+}
+
+.btn-ok:hover {
+    transition: .3s;
+    color: #fff;
+    background: #67af3d;
+}
+
 .modal-body {
     word-spacing: 2px;
     margin: 2rem 0;
