@@ -243,12 +243,17 @@
                   <h5 class="list-group-item"><%-thesis.content[i].name%></h5>
                 </div>
                 <div class="list-group" name="same-text" id="group9">
-                  <% thesis.content[i].list_content.forEach(item => { %>
-                    <div class="hover">
-                      <div class="list-group-item text-secondary">
-                        <%- item %> 
+                  <% thesis.content[i].list_content.forEach((item, ind) => { %>
+                    <ol>
+                      <div class="text-secondary" style="float: left; padding-top: .75rem; margin-right: .5rem;">
+                        <%- ind + 1 %>.
                       </div>
-                    </div>
+                      <div class="hover">
+                        <div class="list-group-item text-secondary">
+                          <%- item %> 
+                        </div>
+                      </div>
+                    </ol>
                   <% }) %>
                 </div>
               </div>
@@ -261,12 +266,17 @@
           <h2>RESEARCH GRANTS</h2>
         </div>
         <div class="list-group" id="group10">
-          <% research_grant.forEach(item => { %>
-            <div class="hover">
-              <div class="list-group-item text-secondary">
-                <%- item %> 
+          <% research_grant.forEach((item, ind) => { %>
+            <ol>
+              <div class="text-secondary" style="float: left; padding-top: .75rem; margin-right: .5rem;">
+                <%- ind + 1 %>.
               </div>
-            </div>
+              <div class="hover">
+                <div class="list-group-item text-secondary">
+                  <%- item %> 
+                </div>
+              </div>
+            </ol>
           <% }) %>
         </div>
       </div>
@@ -280,14 +290,19 @@
               <h5 class="subtitle">BOOKS</h5>
             </div>
             <div class="list-group" name="same-text" id="group11">
-              <% public.book.forEach(book => { %>
-                <div class="hover">
-                  <div class="pub-chosen-right">
+              <% public.book.forEach((book, ind) => { %>
+                <ol>
+                  <div class="text-secondary" style="float: left; padding-top: .75rem; margin-right: .5rem;">
+                    <%- ind + 1 %>.
                   </div>
-                  <div class="list-group-item text-secondary">
-                    <%- book %> 
+                  <div class="hover">
+                    <div class="pub-chosen-right">
+                    </div>
+                    <div class="list-group-item text-secondary">
+                      <%- book %> 
+                    </div>
                   </div>
-                </div>
+                </ol>
               <% }) %>
             </div>
           </div>
@@ -298,7 +313,7 @@
               </div>
               <div class="publication-list list-group">
                 <% if (public.paper.length>0) { %>
-                  <div class="cpublication-item">
+                  <div class="publication-item">
                     <div class="title">
                       <div>
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -307,16 +322,21 @@
                       </div>
                     </div>
                     <div class="list-group" name="same-text" id="group12">
-                      <% public.paper[0].content.forEach(element => { %>
-                        <div class="hover">
-                          <div class="list-group-item text-secondary">
-                            <%- element %> 
-                          </div>
-                        </div>
+                      <% public.paper[0].content.forEach((element, ind) => { %>
+                        <ol>
+                            <div class="text-secondary" style="float: left; padding-top: .75rem; margin-right: .5rem;">
+                              <%- ind + 1 %>.
+                            </div>
+                            <div class="hover">
+                              <div class="list-group-item text-secondary">
+                                <%- element %> 
+                              </div>
+                            </div>
+                        </ol>
                       <% }) %>
                     </div>
                   </div>
-                  <div class="cpublication-item">
+                  <div class="publication-item">
                     <div class="title">
                       <div>
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -325,16 +345,21 @@
                       </div>
                     </div>
                     <div class="list-group" name="same-text" id="group13">
-                      <% public.paper[1].content.forEach(element => { %>
-                        <div class="hover">
-                          <div class="list-group-item text-secondary">
-                            <%- element %> 
+                      <% public.paper[1].content.forEach((element, ind) => { %>
+                        <ol>
+                          <div class="text-secondary" style="float: left; padding-top: .75rem; margin-right: .5rem;">
+                            <%- ind + 1 %>.
                           </div>
-                        </div>
+                          <div class="hover">
+                            <div class="list-group-item text-secondary">
+                              <%- element %> 
+                            </div>
+                          </div>
+                        </ol>
                       <% }) %>
                     </div>
                   </div>
-                  <div class="cpublication-item">
+                  <div class="publication-item">
                     <div class="title">
                       <div>
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -343,16 +368,21 @@
                       </div>
                     </div>
                     <div class="list-group" name="same-text" id="group14">
-                      <% public.paper[2].content.forEach(element => { %>
-                        <div class="hover">
-                          <div class="list-group-item text-secondary">
-                            <%- element %> 
+                      <% public.paper[2].content.forEach((element, ind) => { %>
+                        <ol>
+                          <div class="text-secondary" style="float: left; padding-top: .75rem; margin-right: .5rem;">
+                            <%- ind + 1 %>.
                           </div>
-                        </div>
+                          <div class="hover">
+                            <div class="list-group-item text-secondary">
+                              <%- element %> 
+                            </div>
+                          </div>
+                        </ol>
                       <% }) %>
                     </div>
                   </div>
-                  <div class="list-group cpublication-item" id="group15">
+                  <div class="publication-item" id="group15">
                     <div class="title">
                       <div>
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -361,12 +391,17 @@
                       </div>
                     </div>
                     <div class="list-group" name="same-text" id="group16">
-                      <% public.paper[3].content.forEach(element => { %>
-                        <div class="hover">
-                          <div class="list-group-item text-secondary">
-                            <%- element %> 
+                      <% public.paper[3].content.forEach((element, ind) => { %>
+                        <ol>
+                          <div class="text-secondary" style="float: left; padding-top: .75rem; margin-right: .5rem;">
+                            <%- ind + 1 %>.
                           </div>
-                        </div>
+                          <div class="hover">
+                            <div class="list-group-item text-secondary">
+                              <%- element %> 
+                            </div>
+                          </div>
+                        </ol>
                       <% }) %>
                     </div>
                   </div>

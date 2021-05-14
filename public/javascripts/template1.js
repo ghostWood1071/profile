@@ -134,12 +134,15 @@ $(document).ready(function () {
         });
 
         // Popup alert
+        $('.submit .btn').click(function() {
+            $('.success-wrapper').addClass('active');
+        })
         $('.list-theme li[data-theme="theme2"]').click(function() {
             $('.mood-wrapper').addClass('active');
         })
         //
         $('.btn-close').click(function() {
-                $('.mood-wrapper').removeClass('active');
+                $('.mood-wrapper, .success-wrapper').removeClass('active');
         })
     }
     
@@ -411,5 +414,12 @@ $(document).ready(function () {
             })
         });
     })
+
+    // Save = () => {
+    //     $('.alert-success').addClass('active');
+    //     setTimeout(function() {
+    //         $('.alert-success').removeClass('active'); 
+    //     }, 2000)
+    // }
 });
 
