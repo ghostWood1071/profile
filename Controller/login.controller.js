@@ -14,7 +14,6 @@ module.exports.getLoginPage  = function(req, res, next){
         res.redirect("/users");
         return;
     }
-    console.log(process.cwd()+"\\data\\quyetthang");
     res.render('login');
 }
 
@@ -25,7 +24,6 @@ module.exports.getLoginInfo = function(req,res,next){
         account: account, 
         password: pass
     };
-    console.log(res.locals.login);
     next();
 }
 
@@ -33,7 +31,6 @@ module.exports.validate = function(req,res,next) {
     var loginInfo = res.locals.login;
     var loginData = JSON.parse(res.locals.stringData);
     var user = loginData.find(x=>x.account === loginInfo.account);
-    console.log(user);
     if(user != undefined){
         if(user.password === loginInfo.password){
            res.locals.path = user.data_path;

@@ -1,3 +1,4 @@
+var fs = require("fs");
 
 module.exports.getSignUpPage = function (req, res, next) {
     res.render('signup');
@@ -8,7 +9,7 @@ module.exports.getSignUpInfo = function(req, res, next){
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         account: req.body.account,
-        password: req.body.password[0]
+        password: req.body.password
     }
     next();
 }
@@ -16,7 +17,7 @@ module.exports.getSignUpInfo = function(req, res, next){
 module.exports.validate = function(req,res,next) {
     var data = JSON.parse(res.locals.stringData);
     var newAccount = res.locals.newAccount;
-    var user =  data.find(user => user.login.account === newAccount.account)
+    var user =  data.find(user => user.account === newAccount.account)
     if(user != undefined){
         res.send({
           head: "error",
@@ -29,10 +30,6 @@ module.exports.validate = function(req,res,next) {
           "name": "template1",
           "color": "#c74a73",
           "background_color": "linear-gradient(to top, rgb(11, 163, 96) 0%, rgb(60, 186, 146) 100%)"
-        },
-        "login": {
-          "account": newAccount.account,
-          "pass": newAccount.password,
         },
         "avatar": "",
         "about": {
@@ -61,10 +58,24 @@ module.exports.validate = function(req,res,next) {
           "paper": []
         }
     
-      }
-    data.push(newUser)
-    res.locals.jsonObj = data;
-    next();
+    }
+    var userId = Date.now();
+    fs.mkdir( process.cwd()+"/data/"+userId.toString(), function(err){
+        if(err){
+          res.send("create account fail");
+          return;
+        } 
+        data.push({
+          id: userId.toString(),
+          account: newAccount.account,
+          password: newAccount.password,
+          data_path: userId.toString()
+        });
+        fs.writeFileSync(process.cwd()+"/data/login.json", JSON.stringify(data), {encoding: "utf-8"});
+        fs.writeFileSync(process.cwd()+"/data/"+userId.toString()+"/data.json", JSON.stringify(newUser), {encoding:"utf-8"});
+        res.redirect('/login');
+    });
+
 }
 
 module.exports.redirectLoginPage = function(req,res,next){

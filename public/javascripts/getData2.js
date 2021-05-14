@@ -10,7 +10,10 @@ var getColor = function(){
     return $('html').css('--primary-color');
 }
 var getAvatar = function(){
-    return $('.avatar img').attr('src');
+    if($("#file").val() == "")
+        return $('.avatar img').attr('src');
+    else 
+        return getFileName($("#file").val());
 }
 
 var getAbout = function(){
@@ -118,12 +121,17 @@ var getThesis = function(){
 }
 
 var getResearchGrant = function(){
-    var researchGrantTag = $('.research-grant list-group .hover');
+    var researchGrantTag = $('.research-grant .list-group .hover');
     var researchGrant = [];
     for(var i = 0; i<researchGrantTag.length; i++){
         researchGrant.push($(researchGrantTag[i]).find(".list-group-item p").html().trim());
     }
     return researchGrant;
+}
+
+function getFileName(s){
+    var fileName = s.substr(s.lastIndexOf("\\")+1);
+    return fileName;
 }
 
 var getPublication = function(){
@@ -134,7 +142,10 @@ var getPublication = function(){
         if($(bookTag[i]).find("input").length=0)
             link="";
         else{
-            link=$(bookTag[i]).find("input")[0].value;
+            var fakePath = $(bookTag[i]).find("input")[0].value;
+            if(fakePath!="")
+                link= getFileName(fakePath);
+            else link = "";
         }
         books.push({
             'content': content,
@@ -182,14 +193,34 @@ function Save(){
             'publications': getPublication()
         };
     
-    console.log($("#file").data())
+    console.log(data);
     $.post("users", {'content': JSON.stringify(data)},
         function (dt, textStatus, jqXHR) {
-            //alert(dt);
-            //window.location.reload();
+            alert(dt);
+            window.location.reload();
             console.log(dt);
         }
     );
+    var data = new FormData();
+
+    $.each($("input"), function (i, fileInput) { 
+         data.append('file-'+i,  $(fileInput).get(0).files[0])
+         console.log($(fileInput).val())
+    });
+
+    $.ajax({
+        url: '/users/upfile',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'POST',
+        type: 'POST', // For jQuery < 1.9
+        success: function(data){
+            alert(data);
+        }
+    });
+
 }
 
 

@@ -15,7 +15,8 @@ module.exports.getUserInfo = function (req, res, next) {
         teaching: user.teaching,
         thesis: user.thesis,
         research_grant: user.research_grant,
-        public: user.publications
+        public: user.publications,
+        path: "/user_public/"+dataPath+"/"
     });
 }
 
@@ -40,7 +41,8 @@ module.exports.saveData = function(req, res, next){
     } catch (error) {
         res.send(error);
     }
-   
+  
+   res.send("ok");
 }
 
 
