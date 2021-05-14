@@ -17,8 +17,6 @@
       integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
       crossorigin="anonymous"
     />
-    <!-- CkEditable -->
-    <script src="/ckeditor/ckeditor.js"></script>
     <!-- Bootstrap -->
     <link
       rel="stylesheet"
@@ -34,7 +32,7 @@
   <body id="forGuess">
     <div class="container main">
       <nav class="navbar navbar-expand-sm navbar-light">
-        <a href="#" class="navbar-brand">Brand</a>
+        <a href="#" class="navbar-brand">Home</a>
         <button
           class="navbar-toggler d-lg-none"
           type="button"
@@ -51,11 +49,17 @@
             <li class="nav-item active" data-page="about">
               <a class="nav-link about" href="#about">about</a>
             </li>
+            <li class="nav-item" data-page="new">
+              <a class="nav-link new" href="#new">new</a>
+            </li>
+            <li class="nav-item" data-page="teach">
+              <a class="nav-link teach" href="#teach">teach</a>
+            </li>
             <li class="nav-item" data-page="thesis">
               <a class="nav-link thesis" href="#thesis">thesis</a>
             </li>
-            <li class="nav-item" data-page="research-grant">
-              <a class="nav-link grant" href="#grant">research grant</a>
+            <li class="nav-item" data-page="research">
+              <a class="nav-link grant" href="#research">research</a>
             </li>
             <li class="nav-item" data-page="publications">
               <a class="nav-link publication" href="#publications"
@@ -150,7 +154,32 @@
           <% }) %>
         </div>
       </div>
-      <div class="content teaching">
+      <div class="content new" id="new">
+        <div class="title">
+          <h2>NEW</h2>
+        </div>
+        <div class="list-group" id="groupNew">
+          <div class="hover">
+            <div class="list-group-item">
+              <span
+                >SOFTWARE QUALITY; SOFTWARE TESTING; METHODS IN SOFTWARE
+                DEVELOPMENT</span
+              >
+            </div>
+          </div>
+          <div class="hover">
+            <div class="list-group-item">
+              <span>MULTI-OBJECTIVE OPTIMIZATION; PROJECT MANAGEMENT</span>
+            </div>
+          </div>
+          <div class="hover">
+            <div class="list-group-item">
+              <span>BIG DATA PROCESSING AND ANALYTICS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content teaching" id="teach">
         <div class="title">
           <h2>TEACHING</h2>
         </div>
@@ -227,7 +256,7 @@
           <% } %>
         </div>
       </div>
-      <div class="content research-grant" id="grant">
+      <div class="content research-grant" id="research">
         <div class="title">
           <h2>RESEARCH GRANTS</h2>
         </div>
@@ -262,14 +291,14 @@
               <% }) %>
             </div>
           </div>
-          <div class="publication-list">
-            <div class="publication-item">
+          <div class="publication-detail">
+            <div class="publication-wrapper">
               <div class="title">
                 <h5 class="subtitle">PUBLISHED PAPERS (SELECTED)</h5>
               </div>
-              <div class="published-paper-wrapper list-group">
+              <div class="publication-list list-group">
                 <% if (public.paper.length>0) { %>
-                  <div class="container-drag">
+                  <div class="cpublication-item">
                     <div class="title">
                       <div>
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -287,7 +316,7 @@
                       <% }) %>
                     </div>
                   </div>
-                  <div class="container-drag">
+                  <div class="cpublication-item">
                     <div class="title">
                       <div>
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -305,7 +334,7 @@
                       <% }) %>
                     </div>
                   </div>
-                  <div class="container-drag">
+                  <div class="cpublication-item">
                     <div class="title">
                       <div>
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -323,7 +352,7 @@
                       <% }) %>
                     </div>
                   </div>
-                  <div class="list-group container-drag" id="group15">
+                  <div class="list-group cpublication-item" id="group15">
                     <div class="title">
                       <div>
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -350,10 +379,7 @@
     </div>
     <!-- JS -->
     <script src="/javascripts/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/sortablejs-make/Sortable.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
     <script src="/javascripts/template1.js"></script>
   </body>
 </html>

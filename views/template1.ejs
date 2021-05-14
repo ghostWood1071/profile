@@ -36,7 +36,7 @@
     <div style="display:none" id="template"><%=template.name%></div>
     <div class="container main">
       <nav class="navbar navbar-expand-sm navbar-light">
-        <a href="#" class="navbar-brand">Brand</a>
+        <a href="#" class="navbar-brand">Home</a>
         <button
           class="navbar-toggler d-lg-none"
           type="button"
@@ -53,11 +53,17 @@
             <li class="nav-item active" data-page="about">
               <a class="nav-link about" href="#about">about</a>
             </li>
+            <li class="nav-item" data-page="new">
+              <a class="nav-link new" href="#new">new</a>
+            </li>
+            <li class="nav-item" data-page="teach">
+              <a class="nav-link teach" href="#teach">teach</a>
+            </li>
             <li class="nav-item" data-page="thesis">
               <a class="nav-link thesis" href="#thesis">thesis</a>
             </li>
-            <li class="nav-item" data-page="research-grant">
-              <a class="nav-link grant" href="#grant">research grant</a>
+            <li class="nav-item" data-page="research">
+              <a class="nav-link grant" href="#research">research</a>
             </li>
             <li class="nav-item" data-page="publications">
               <a class="nav-link publication" href="#publications"
@@ -163,7 +169,39 @@
           <% }) %>
         </div>
       </div>
-      <div class="content teaching">
+      <div class="content new" id="new">
+        <div class="title">
+          <h2>NEW</h2>
+          <i class="fa fa-plus btn-add" aria-hidden="true"></i>
+        </div>
+        <div class="list-group" id="groupNew">
+          <div class="hover">
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
+            <div class="list-group-item">
+              <span
+                >SOFTWARE QUALITY; SOFTWARE TESTING; METHODS IN SOFTWARE
+                DEVELOPMENT</span
+              >
+            </div>
+          </div>
+          <div class="hover">
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
+            <div class="list-group-item">
+              <span>MULTI-OBJECTIVE OPTIMIZATION; PROJECT MANAGEMENT</span>
+            </div>
+          </div>
+          <div class="hover">
+            <i class="fas fa-arrows-alt btn-arrow"></i>
+            <i class="fas fa-trash-alt btn-trash"></i>
+            <div class="list-group-item">
+              <span>BIG DATA PROCESSING AND ANALYTICS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content teaching" id="teach">
         <div class="title">
           <h2>TEACHING</h2>
         </div>
@@ -252,7 +290,7 @@
             
         </div>
       </div>
-      <div class="content research-grant" id="grant">
+      <div class="content research-grant" id="research">
         <div class="title">
           <h2>RESEARCH GRANTS</h2>
           <i class="fa fa-plus btn-add" aria-hidden="true"></i>
@@ -286,7 +324,8 @@
               <% for( let i = 0; i < public.book.length; i++ ) { %>
                 <div class="hover">
                   <i class="fas fa-arrows-alt btn-arrow"></i>
-                  <div class="pub-chosen-right">
+                  <i class="fas fa-trash-alt btn-trash"></i>
+                  <!-- <div class="pub-chosen-right">
                     <i class="fas fa-trash-alt"></i>
                     <input
                       type="file"
@@ -296,7 +335,7 @@
                       value="PDF"
                     />
                     <label class="pdf" for="pdf<%=i%>">PDF</label>
-                  </div>
+                  </div> -->
                   <div class="list-group-item text-secondary">
                     <%- public.book[i].content %> 
                     <% if (public.book[i].link != "") { %>
@@ -308,16 +347,16 @@
               
             </div>
           </div>
-          <div class="publication-list">
-            <div class="publication-item">
+          <div class="publication-detail">
+            <div class="publication-wrapper">
               <div class="title">
                 <h5 class="subtitle list-group-item mr-2">PUBLISHED PAPERS (SELECTED)</h5>
                 <i class="fas fa-arrows-alt"></i>
                 <i class="fa fa-plus btn-add addPublishedPaper" aria-hidden="true"></i>
               </div>
-              <div class="published-paper-wrapper list-group">
+              <div class="publication-list list-group">
                 <% if (public.paper.length>0) { %>
-                  <div class="container-drag">
+                  <div class="publication-item">
                     <div class="title">
                       <div class="list-group-item mr-2">
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -328,11 +367,21 @@
                       <i class="fa fa-plus btn-add" aria-hidden="true"></i>
                       <i class="fas fa-trash-alt"></i>
                     </div>
-                    <div class="list-group" name="same-text" id="group12">
+                    <div class="list-group" name="same-pdf" id="group12">
                       <% public.paper[0].content.forEach(element => { %>
                         <div class="hover">
                           <i class="fas fa-arrows-alt btn-arrow"></i>
-                          <i class="fas fa-trash-alt btn-trash"></i>
+                          <div class="pub-chosen-right">
+                            <i class="fas fa-trash-alt"></i>
+                            <input
+                              type="file"
+                              id="pdf"
+                              name="pdf"
+                              accept="application/pdf"
+                              value="PDF"
+                            />
+                            <label class="pdf" for="pdf">PDF</label>
+                          </div>
                           <div class="list-group-item text-secondary">
                             <%- element %> 
                           </div>
@@ -340,7 +389,7 @@
                       <% }) %>
                     </div>
                   </div>
-                  <div class="container-drag">
+                  <div class="publication-item">
                     <div class="title">
                       <div class="list-group-item mr-2">
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -351,11 +400,21 @@
                       <i class="fa fa-plus btn-add" aria-hidden="true"></i>
                       <i class="fas fa-trash-alt"></i>
                     </div>
-                    <div class="list-group" name="same-text" id="group13">
+                    <div class="list-group" name="same-pdf" id="group13">
                       <% public.paper[1].content.forEach(element => { %>
                         <div class="hover">
                           <i class="fas fa-arrows-alt btn-arrow"></i>
-                          <i class="fas fa-trash-alt btn-trash"></i>
+                          <div class="pub-chosen-right">
+                            <i class="fas fa-trash-alt"></i>
+                            <input
+                              type="file"
+                              id="pdf"
+                              name="pdf"
+                              accept="application/pdf"
+                              value="PDF"
+                            />
+                            <label class="pdf" for="pdf">PDF</label>
+                          </div>
                           <div class="list-group-item text-secondary">
                             <%- element %> 
                           </div>
@@ -363,7 +422,7 @@
                       <% }) %>
                     </div>
                   </div>
-                  <div class="container-drag">
+                  <div class="publication-item">
                     <div class="title">
                       <div class="list-group-item mr-2">
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -374,11 +433,21 @@
                       <i class="fa fa-plus btn-add" aria-hidden="true"></i>
                       <i class="fas fa-trash-alt"></i>
                     </div>
-                    <div class="list-group" name="same-text" id="group14">
+                    <div class="list-group" name="same-pdf" id="group14">
                       <% public.paper[2].content.forEach(element => { %>
                         <div class="hover">
                           <i class="fas fa-arrows-alt btn-arrow"></i>
-                          <i class="fas fa-trash-alt btn-trash"></i>
+                          <div class="pub-chosen-right">
+                            <i class="fas fa-trash-alt"></i>
+                            <input
+                              type="file"
+                              id="pdf"
+                              name="pdf"
+                              accept="application/pdf"
+                              value="PDF"
+                            />
+                            <label class="pdf" for="pdf">PDF</label>
+                          </div>
                           <div class="list-group-item text-secondary">
                             <%- element %> 
                           </div>
@@ -386,7 +455,7 @@
                       <% }) %>
                     </div>
                   </div>
-                  <div class="list-group container-drag" id="group15">
+                  <div class="list-group publication-item" id="group15">
                     <div class="title">
                       <div class="list-group-item mr-2">
                         <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
@@ -397,11 +466,21 @@
                       <i class="fa fa-plus btn-add" aria-hidden="true"></i>
                       <i class="fas fa-trash-alt"></i>
                     </div>
-                    <div class="list-group" name="same-text" id="group16">
+                    <div class="list-group" name="same-pdf" id="group16">
                       <% public.paper[3].content.forEach(element => { %>
                         <div class="hover">
                           <i class="fas fa-arrows-alt btn-arrow"></i>
-                          <i class="fas fa-trash-alt btn-trash"></i>
+                          <div class="pub-chosen-right">
+                            <i class="fas fa-trash-alt"></i>
+                            <input
+                              type="file"
+                              id="pdf"
+                              name="pdf"
+                              accept="application/pdf"
+                              value="PDF"
+                            />
+                            <label class="pdf" for="pdf">PDF</label>
+                          </div>
                           <div class="list-group-item text-secondary">
                             <%- element %> 
                           </div>
@@ -457,6 +536,20 @@
             <li data-theme="theme1">1</li>
             <li data-theme="theme2">2</li>
           </ul>
+        </div>
+      </div>
+      <div class="mood-wrapper">
+        <div class="mood">
+          <div class="main-mood">
+              <button type="button" class="close btn-close" data-dismiss="alert">&times;</button>
+              <div class="mood-content">
+                 Bạn có muốn chuyển sang giao diện 2?
+              </div>
+              <div class="mood-btn-wrapper">
+                <button class="btn btn-danger">Xác nhận</button>
+                <button class="btn btn-secondary btn-close">Suy nghĩ lại</button>
+              </div>
+          </div>
         </div>
       </div>
     </div>
