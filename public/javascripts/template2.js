@@ -58,6 +58,12 @@ document.querySelectorAll('.btn-checkbox').forEach(function(element) {
       } else {
         $('.academic:not(.btn-checkbox)').removeClass('hide');
       }
+    } else if(element.classList.contains('new')) {
+      if($(element).prop('checked') == false) {
+        $('.new:not(.btn-checkbox)').addClass('hide');
+      } else {
+        $('.new:not(.btn-checkbox)').removeClass('hide');
+      }
     } else if(element.classList.contains('teaching')) {
       if($(element).prop('checked') == false) {
         $('.teaching:not(.btn-checkbox)').addClass('hide');
@@ -81,6 +87,18 @@ document.querySelectorAll('.btn-checkbox').forEach(function(element) {
         $('.publication:not(.btn-checkbox)').addClass('hide');
       } else {
         $('.publication:not(.btn-checkbox)').removeClass('hide');
+      }
+    } else if(element.classList.contains('book')) {
+      if($(element).prop('checked') == false) {
+        $('.book:not(.btn-checkbox)').addClass('hide');
+      } else {
+        $('.book:not(.btn-checkbox)').removeClass('hide');
+      }
+    } else if(element.classList.contains('paper')) {
+      if($(element).prop('checked') == false) {
+        $('.paper:not(.btn-checkbox)').addClass('hide');
+      } else {
+        $('.paper:not(.btn-checkbox)').removeClass('hide');
       }
     }
   })
@@ -107,6 +125,29 @@ window.addEventListener('click', function(e) {
   }
 })
 
+//Popup 
+// Show Modal
+$('.themes-item').click(() => {
+  $('.modal').fadeIn(() => {
+      $('.modal').css('display', 'block');
+  });
+})
+
+// Close Modal
+$('.btn-close-modal').click(() => {
+  $('.modal').fadeOut(() => {
+      $('.modal').css('display', 'none');
+  });
+})
+
+$(window).click((e) => {
+  if($(e.target).hasClass("modal")) {
+      $('.modal').fadeOut(() => {
+          $('.modal').css('display', 'none');
+      });
+  }
+});
+
 //Colors
 const colors = document.querySelectorAll('.color');
 colors.forEach((element) => {
@@ -120,7 +161,6 @@ colors.forEach((element) => {
     }
   })
 })
-
 //Title
 document.title = $('.name').text();
 
@@ -180,14 +220,14 @@ if(!document.getElementById('forGuess')) {
         allowedContent: true,
         startupFocus: true
       })
-      if(element.classList.contains('book-name')) {
+      if(element.classList.contains('item-pdf')) {
         element.previousElementSibling.style.opacity = 1;
       }
     })
   
-    document.querySelectorAll('.book-name').forEach(function(book) {
-      book.addEventListener('blur', function() {
-        book.previousElementSibling.style.opacity = 0;
+    document.querySelectorAll('.item-pdf').forEach(function(item) {
+      item.addEventListener('blur', function() {
+        item.previousElementSibling.style.opacity = 0;
       })
     })
   })
@@ -266,8 +306,7 @@ $('.btn-plus').click(function(element) {
   $(this).parent().siblings('#group6').prepend(`<div class="hover book-item">
   <i class="fas fa-trash-alt btn-trash"></i>
   <i class="fas fa-arrows-alt btn-arrow"></i>
-  <i class="far fa-file-pdf btn-pdf"></i>
-  <div class="list-group-item book-name">NEW ITEM</div>
+  <div class="list-group-item item-pdf">NEW ITEM</div>
   </div>`)
 
   $(this).parent().siblings('#group7').prepend(`<div class="hover">
@@ -281,6 +320,25 @@ $('.btn-plus').click(function(element) {
   <i class="fas fa-arrows-alt btn-arrow"></i>
   <div class="list-group-item">NEW ITEM</div> 
   </div>`)
+
+  $(this).parent().siblings('#group9').prepend(`<div class="hover">
+  <i class="fas fa-trash-alt btn-trash"></i>
+  <i class="fas fa-arrows-alt btn-arrow"></i>
+  <i class="far fa-file-pdf btn-pdf"></i>
+  <div class="list-group-item item-pdf">NEW ITEM</div> 
+  </div>`)
+
+  $(this).parent().siblings('#group10').prepend(`<div class="hover">
+  <i class="fas fa-trash-alt btn-trash"></i>
+  <i class="fas fa-arrows-alt btn-arrow"></i>
+  <div class="list-group-item">NEW ITEM</div> 
+  </div>`)
+
+  $(this).parent().siblings('#group11').prepend(`<div class="hover new-item">
+  <i class="fas fa-trash-alt btn-trash"></i>
+  <i class="fas fa-arrows-alt btn-arrow"></i>
+  <div class="list-group-item">NEW ITEM</div>
+  </div>`);
   
   // //PDF
   $('.btn-pdf').click(function() {
@@ -313,14 +371,14 @@ $('.btn-plus').click(function(element) {
         allowedContent: true,
         startupFocus: true
       })
-      if(element.classList.contains('book-name')) {
+      if(element.classList.contains('item-pdf')) {
         element.previousElementSibling.style.opacity = 1;
       }
     })
   
-    document.querySelectorAll('.book-name').forEach(function(book) {
-      book.addEventListener('blur', function() {
-        book.previousElementSibling.style.opacity = 0;
+    document.querySelectorAll('.item-pdf').forEach(function(item) {
+      item.addEventListener('blur', function() {
+        item.previousElementSibling.style.opacity = 0;
       })
     })
   })
@@ -361,8 +419,9 @@ btnPlus.forEach((element) => {
     if (element.parentNode.classList.contains('publication-details-title')) {
       let node = document.createElement('div');
       node.setAttribute('class', 'publication-item');
-
-      node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="publication-name"><div class="list-group-item">A) International Journals</div><i class="fas fa-plus-circle btn-plus"></i></div><div class="list-group publication-content"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">Van-Quyet Nguyen, Quyet-Thang Huynh, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">Nguyen Hung-Cuong, Huynh Quyet-Thang and Le Hai-Trieu. Different Ranking of NHPP Software Reliability Growth Models with Generalized Measure and Predictability. International Journal of Applied Information Systems, Series Volume 7, Number 11, November 2014. ISSN 2249: 0868. pp. 1-6. DOI: 10.5120/ijais14-451257.</div></div></div>`;
+      // Cái ban đầu
+      // node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="publication-name"><div class="list-group-item">A) International Journals</div><i class="fas fa-plus-circle btn-plus"></i></div><div class="list-group publication-content"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">Van-Quyet Nguyen, Quyet-Thang Huynh, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">Nguyen Hung-Cuong, Huynh Quyet-Thang and Le Hai-Trieu. Different Ranking of NHPP Software Reliability Growth Models with Generalized Measure and Predictability. International Journal of Applied Information Systems, Series Volume 7, Number 11, November 2014. ISSN 2249: 0868. pp. 1-6. DOI: 10.5120/ijais14-451257.</div></div></div>`;
+      node.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="publication-name"><div class="list-group-item">A) International Journals</div><i class="fas fa-plus-circle btn-plus"></i></div><div id="group9" class="list-group publication-content publication-example"><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><i class="far fa-file-pdf btn-pdf"></i><div class="list-group-item item-pdf">Van-Quyet Nguyen, Quyet-Thang Huynh, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.</div></div><div class="hover"><i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><i class="far fa-file-pdf btn-pdf"></i><div class="list-group-item item-pdf">Nguyen Hung-Cuong, Huynh Quyet-Thang and Le Hai-Trieu. Different Ranking of NHPP Software Reliability Growth Models with Generalized Measure and Predictability. International Journal of Applied Information Systems, Series Volume 7, Number 11, November 2014. ISSN 2249: 0868. pp. 1-6. DOI: 10.5120/ijais14-451257.</div></div></div>`;
       document.querySelector('.publication-list').insertBefore(node, document.querySelector('.publication-list').childNodes[0]);
       var content = document.querySelector('.publication-content');
 
@@ -375,14 +434,13 @@ btnPlus.forEach((element) => {
             allowedContent: true,
             startupFocus: true
           })
-          if(element.classList.contains('book-name')) {
+          if(element.classList.contains('item-pdf')) {
             element.previousElementSibling.style.opacity = 1;
           }
         })
-      
-        document.querySelectorAll('.book-name').forEach(function(book) {
-          book.addEventListener('blur', function() {
-            book.previousElementSibling.style.opacity = 0;
+        document.querySelectorAll('.item-pdf').forEach(function(item) {
+          item.addEventListener('blur', function() {
+            item.previousElementSibling.style.opacity = 0;
           })
         })
       })
@@ -401,15 +459,28 @@ btnPlus.forEach((element) => {
       name.addEventListener('click', (element) => {
         let nodeChild = document.createElement('div');
         nodeChild.setAttribute('class', 'hover');
-        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">NEW ITEM</div>`;
+        //Ban đầu
+        // nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">NEW ITEM</div>`;
+        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><i class="far fa-file-pdf btn-pdf"></i><div class="list-group-item item-pdf">Van-Quyet Nguyen, Quyet-Thang Huynh, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.</div>`;
         content.insertBefore(nodeChild, content.childNodes[0]) 
 
         const items = document.querySelectorAll('.list-group-item');
         const trashBtn = document.querySelectorAll('.btn-trash');
         items.forEach((element, index) => {
-          element.setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(element, {
-            allowedContent: true
+          $(element).click(function() {
+            element.setAttribute('contentEditable', 'true');
+            CKEDITOR.inline(element, {
+              allowedContent: true,
+              startupFocus: true
+            })
+            if(element.classList.contains('item-pdf')) {
+              element.previousElementSibling.style.opacity = 1;
+            }
+          })
+          document.querySelectorAll('.item-pdf').forEach(function(item) {
+            item.addEventListener('blur', function() {
+              item.previousElementSibling.style.opacity = 0;
+            })
           })
         })
         
@@ -443,63 +514,46 @@ btnPlus.forEach((element) => {
               })
           })
         })
-      })
-      $(".list-group").sortable({
-        handle: '.btn-arrow',
-        animation: 150
-      });
-
-      window.addEventListener('dragstart', function() {
-        items.forEach((el) => {
-            el.setAttribute('contentEditable', 'false');
-        })
-      })
-    
-      window.addEventListener('dragend', () => {
-        loadCKEDITOR();
-        items.forEach((el, ind) => {
-            el.setAttribute('contentEditable', 'true');
-            var ck = CKEDITOR.inline(items[ind], {
-                allowedContent: true
+        //PDF
+        $('.btn-pdf').click(function() {
+          if($(this).parent().children().length == 4) {
+            $(this).parent().append(`<div class="upload-pdf">
+            <input type="file" name="pdf" accept=".pdf" class="file-pdf"/>
+            <label for="#" class="lbl-pdf">PDF</label>
+            <i class="fas fa-trash-alt btn-trash"></i>
+            </div>`);
+            const trashBtn = document.querySelectorAll('.btn-trash');
+            trashBtn.forEach((element) => {
+            element.addEventListener('click', function() {
+              if(element.parentElement.classList.contains('item-list')) {
+                element.parentNode.parentNode.remove();
+              } else {
+                element.parentNode.remove();
+              }
             })
-        })
-      })
-    } else if(element.parentNode.classList.contains('publication-name')) {
-      var content = document.querySelector('.publication-example');
-      let nodeChild = document.createElement('div');
-      nodeChild.setAttribute('class', 'hover');
-      nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">NEW ITEM</div> `;
-      content.insertBefore(nodeChild, content.childNodes[0]) 
-
-      const items = document.querySelectorAll('.list-group-item');
-      const trashBtn = document.querySelectorAll('.btn-trash');
-      items.forEach((element, index) => {
-        $(element).click(function() {
-          element.setAttribute('contentEditable', 'true');
-          CKEDITOR.inline(element, {
-            allowedContent: true,
-            startupFocus: true
-          })
-          if(element.classList.contains('book-name')) {
-            element.previousElementSibling.style.opacity = 1;
+            })
           }
         })
-      
-        document.querySelectorAll('.book-name').forEach(function(book) {
-          book.addEventListener('blur', function() {
-            book.previousElementSibling.style.opacity = 0;
-          })
-        })
       })
-      
-      trashBtn.forEach((element) => {
-        element.addEventListener('click', function() {
-          if(element.parentElement.classList.contains('item-list')) {
-            element.parentNode.parentNode.remove();
-          } else {
-            element.parentNode.remove();
-          }
-        })
+      //PDF
+      $('.btn-pdf').click(function() {
+        if($(this).parent().children().length == 4) {
+          $(this).parent().append(`<div class="upload-pdf">
+          <input type="file" name="pdf" accept=".pdf" class="file-pdf"/>
+          <label for="#" class="lbl-pdf">PDF</label>
+          <i class="fas fa-trash-alt btn-trash"></i>
+          </div>`);
+          const trashBtn = document.querySelectorAll('.btn-trash');
+          trashBtn.forEach((element) => {
+          element.addEventListener('click', function() {
+            if(element.parentElement.classList.contains('item-list')) {
+              element.parentNode.parentNode.remove();
+            } else {
+              element.parentNode.remove();
+            }
+          })
+          })
+        }
       })
 
       $(".list-group").sortable({
@@ -538,14 +592,14 @@ btnPlus.forEach((element) => {
             allowedContent: true,
             startupFocus: true
           })
-          if(element.classList.contains('book-name')) {
+          if(element.classList.contains('item-pdf')) {
             element.previousElementSibling.style.opacity = 1;
           }
         })
       
-        document.querySelectorAll('.book-name').forEach(function(book) {
-          book.addEventListener('blur', function() {
-            book.previousElementSibling.style.opacity = 0;
+        document.querySelectorAll('.item-pdf').forEach(function(item) {
+          item.addEventListener('blur', function() {
+            item.previousElementSibling.style.opacity = 0;
           })
         })
       })
@@ -627,64 +681,6 @@ btnPlus.forEach((element) => {
             })
         })
       })
-    } else if (element.parentNode.classList.contains('thesis-name')) {
-        var content = document.querySelector('.thesis-example');
-        let nodeChild = document.createElement('div');
-        nodeChild.setAttribute('class', 'hover');
-        nodeChild.innerHTML = `<i class="fas fa-trash-alt btn-trash"></i><i class="fas fa-arrows-alt btn-arrow"></i><div class="list-group-item">NEW ITEM</div>`;
-        content.insertBefore(nodeChild, content.childNodes[0]) 
-
-        const items = document.querySelectorAll('.list-group-item');
-        const trashBtn = document.querySelectorAll('.btn-trash');
-        items.forEach((element, index) => {
-          $(element).click(function() {
-            element.setAttribute('contentEditable', 'true');
-            CKEDITOR.inline(element, {
-              allowedContent: true,
-              startupFocus: true
-            })
-            if(element.classList.contains('book-name')) {
-              element.previousElementSibling.style.opacity = 1;
-            }
-          })
-        
-          document.querySelectorAll('.book-name').forEach(function(book) {
-            book.addEventListener('blur', function() {
-              book.previousElementSibling.style.opacity = 0;
-            })
-          })
-        })
-        
-        trashBtn.forEach((element) => {
-          element.addEventListener('click', function() {
-            if(element.parentElement.classList.contains('item-list')) {
-              element.parentNode.parentNode.remove();
-            } else {
-              element.parentNode.remove();
-            }
-          })
-        })
-
-        $(".list-group").sortable({
-          handle: '.btn-arrow',
-          animation: 150
-        });
-
-        window.addEventListener('dragstart', function() {
-          items.forEach((el) => {
-              el.setAttribute('contentEditable', 'false');
-          })
-        })
-      
-        window.addEventListener('dragend', () => {
-          loadCKEDITOR();
-          items.forEach((el, ind) => {
-              el.setAttribute('contentEditable', 'true');
-              var ck = CKEDITOR.inline(items[ind], {
-                  allowedContent: true
-              })
-          })
-        })
     } 
   })
 })
