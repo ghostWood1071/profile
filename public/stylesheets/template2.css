@@ -8,18 +8,11 @@
     --titleColor: #343a40;
 }
 
-.default {
-    --primaryColor: #bd5d38;
-}
+.default { --primaryColor: #bd5d38; }
 
-.green {
-    --primaryColor: #458966;
-}
+.green { --primaryColor: #458966; }
 
-.brown {
-    --primaryColor: #493d34;
-}
-
+.brown { --primaryColor: #493d34; }
 
 * {
     margin: 0;
@@ -97,7 +90,6 @@ input[type="file"].file-pdf {
     opacity: 1;
 }
 
-
 /* Navbar verticle */
 .hide {
     display: none;
@@ -145,18 +137,6 @@ input[type=file] {
     transition: .5s;
 }
 
-/* .nav-img::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 115%;
-    height: 3px;
-    background: #e5e5e5;
-    border-radius: 0;
-    transform: translate(-30px, -13px) rotate(24deg);
-} */
-
 .nav-img img {
     width: 100%;
     height: 100%;
@@ -186,7 +166,7 @@ input[type=file] {
 }
 
 .nav-item:not(:last-child) {
-    margin-bottom: 1rem;
+    margin-bottom: .3rem;
 }
 
 .nav-link {
@@ -317,6 +297,7 @@ a:not(.nav-link) {
 }
 
 .subtitle {
+    position: relative;
     display: flex;
     align-items: center;
     font-family: 'Oswald', sans-serif;
@@ -326,12 +307,27 @@ a:not(.nav-link) {
     margin-bottom: 1rem;
 }
 
-.subtitle:hover .btn-plus {
+.subtitle .btn-arrow {
+    width: 20px;
+    top: 5px;
+    left: -35px; 
+}
+
+.subtitle:hover .btn-plus,
+.subtitle:hover .btn-arrow {
     opacity: 1;
 }
 
 /* Research interest */
 .research-item {
+    color: var(--primaryColor);
+    font-size: 2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+/* News */
+.new-item {
     color: var(--primaryColor);
     font-size: 2rem;
     font-weight: 500;
@@ -371,7 +367,6 @@ a:not(.nav-link) {
 }
 
 /* Teaching */
-
 .teaching-title {
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
@@ -406,7 +401,6 @@ a:not(.nav-link) {
     align-items: flex-start;
     margin-bottom: .5rem;
 }
-
 
 /* Thesis */
 #group4 .list-group-item {
@@ -474,7 +468,7 @@ a:not(.nav-link) {
 }
 
 /* Publication */
-.book-name {
+.item-pdf {
     color: grey;
 }
 
@@ -583,7 +577,6 @@ a:not(.nav-link) {
     color: var(--whiteColor) !important;
 }
 
-
 /* btn */
 .btn-plus {
     color: var(--primaryColor);
@@ -671,8 +664,6 @@ a:not(.nav-link) {
     background: #E44D26;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #F16529, #E44D26);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #F16529, #E44D26); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    /* animation: changeColor 3s infinite;
-    animation-duration: 4s; */
     z-index: 99999999;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .3) ;
 }
@@ -770,6 +761,10 @@ input[type=checkbox] {
     display: none;
 }
 
+.categories {
+    width: 310px;
+}
+
 .themes-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -783,7 +778,7 @@ input[type=checkbox] {
     margin-bottom: 1rem;
 }
 
-a.themmes-item {
+a.themes-item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -812,6 +807,70 @@ a.themmes-item {
 .show-themes {
     display: grid;
 }
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .5);
+    display: none;
+    z-index: 999999;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 320px;
+    min-height: 200px;
+    padding: 1rem 2rem;
+    background: #fff;
+    border-radius: 20px;
+}
+
+.modal-body {
+    word-spacing: 2px;
+    margin: 2rem 0;
+    font-size: 1.4rem;
+}
+
+.modal-close {
+    text-align: right;
+}
+
+.btn-close-modal {
+    margin-left: auto;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: .5rem 1rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn-apply {
+    background: var(--primaryColor);
+    color: #fff;
+}
+
+.btn-apply:hover {
+    transition: .3s;
+    color: #fff;
+    background: #cc582a;
+} 
+
 
 
 
