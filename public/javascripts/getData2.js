@@ -10,10 +10,17 @@ var getColor = function(){
     return $('html').css('--primary-color');
 }
 var getAvatar = function(){
-    if($("#file").val() == "")
-        return $('.avatar img').attr('src');
-    else 
-        return getFileName($("#file").val());
+    if($("#file").val() === ""){
+        var attr = $('.avatar img').attr('src')
+        console.log(getFileName(attr));
+        return attr;
+    }
+    else {
+        
+        var atts = getFileName($("#file").val());
+        console.log(atts)
+        return atts;
+    }
 }
 
 var getAbout = function(){
