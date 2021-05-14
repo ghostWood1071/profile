@@ -200,6 +200,7 @@ function Save(){
             window.location.reload();
             console.log(dt);
         }
+
     );
     var data = new FormData();
 
