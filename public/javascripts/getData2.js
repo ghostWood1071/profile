@@ -1,15 +1,14 @@
-
 var getTemplateName  = function(){ 
     return $('#template').text()
-};
-var getBackGroundColor = function(){
+  };
+  var getBackGroundColor = function(){
     return $('html').css('--primary-background');
-}
-
-var getColor = function(){
+  }
+  
+  var getColor = function(){
     return $('html').css('--primary-color');
-}
-var getAvatar = function(){
+  }
+  var getAvatar = function(){
     if($("#file").val() === ""){
         var attr = $('.avatar img').attr('src')
         console.log(getFileName(attr));
@@ -21,9 +20,9 @@ var getAvatar = function(){
         console.log(atts)
         return atts;
     }
-}
-
-var getAbout = function(){
+  }
+  
+  var getAbout = function(){
     var name = $('#about .name').text();
     var position = $('#about .position').text();
     var eduElement = $('#about .education .hover');
@@ -31,14 +30,14 @@ var getAbout = function(){
     for(var i = 0; i<eduElement.length; i++){
         educations.push($(eduElement[i]).find(".list-group-item").text().trim());
     }
-
+  
     var contactTag = $('.contact');
     
     var address = $(contactTag).find('.list-group-item')[0].textContent.trim()
     var phone = $(contactTag).find('.list-group-item')[1].textContent.trim()
     var fax = $(contactTag).find('.list-group-item')[2].textContent.trim()
     var mail = $(contactTag).find('.list-group-item')[3].textContent.trim().split(';');
-
+  
     return {
         'name': name,
         'level': position,
@@ -48,19 +47,19 @@ var getAbout = function(){
         'fax': fax,
         'mail': mail
     }
-}
-
-
-var getResearchInterest = function(){
+  }
+  
+  
+  var getResearchInterest = function(){
     var researchTag = $('.research .hover');
     var research_interest = [];
     for(var i = 0; i<researchTag.length; i++){
         research_interest.push($(researchTag[i]).find(".list-group-item").text().trim());
     }
     return research_interest;
-}
-
-var getAcademic = function(){
+  }
+  
+  var getAcademic = function(){
     var academicTag = $('.academic-item');
     var academic_record = [];
     for(var i = 0; i<academicTag.length; i++){
@@ -75,9 +74,9 @@ var getAcademic = function(){
         academic_record.push(item);
     }
     return academic_record;
-}
-
-var getTeaching = function(){
+  }
+  
+  var getTeaching = function(){
     var teachingTag = $('.teaching .list-group');
     var academicYear =  $(teachingTag).find(".list-group-item.teaching-year").text().trim();
     var graduateTag = $('.graduate .list-group .hover');
@@ -85,28 +84,28 @@ var getTeaching = function(){
     for(var i = 0; i<graduateTag.length; i++){
         graduate.push($(graduateTag[i]).find(".list-group-item").text().trim());
     }
-
+  
     var unGraduateTag = $('.undergraduate .list-group .hover');
     var unGraduate = [];
     for(var i  = 0; i<unGraduateTag.length; i++){
         unGraduate.push($(unGraduateTag[i]).find(".list-group-item").text().trim());
     }
-
+  
     var teaching = {
         "academic_year": academicYear,
         "graduate_course": graduate,
         "undergraduate_courses": unGraduate
     }
     return teaching;
-}
-
-var getThesis = function(){
+  }
+  
+  var getThesis = function(){
     var linkTag = $('.thesis .thesis-tag .hover');
     var links = [];
     for(var i = 0; i< linkTag.length; i++){
         links.push($(linkTag[i]).find(".list-group-item").text().trim());
     }
-
+  
     var thesisItemTag = $('.thesis-item');
     var thesisItem =[];
     for(var i = 0; i<thesisItemTag.length; i++){
@@ -127,23 +126,24 @@ var getThesis = function(){
         'content': thesisItem
     }
     
-}
-
-var getResearchGrant = function(){
+  }
+  
+  var getResearchGrant = function(){
     var researchGrantTag = $('.research-grant .list-group .hover');
     var researchGrant = [];
     for(var i = 0; i<researchGrantTag.length; i++){
         researchGrant.push($(researchGrantTag[i]).find(".list-group-item").text().trim());
     }
     return researchGrant;
-}
-
-function getFileName(s){
+  }
+  
+  function getFileName(s){
     var fileName = s.substr(s.lastIndexOf("\\")+1);
     return fileName;
-}
-
-var getPublication = function(){
+  }
+  
+  var getPublication = function(){
+    var publications=[];
     var bookTag = $('.publication-book .list-group .hover');
     var books = []
     for(var i = 0; i<bookTag.length; i++){
@@ -152,7 +152,7 @@ var getPublication = function(){
             'content': content
         })
     }
-
+  
     var paperTag = $('#publications .container-drag')
     var papers = [];
     for(var i = 0; i<paperTag.length; i++){
@@ -160,23 +160,36 @@ var getPublication = function(){
         var contentTag  = $(paperTag[i]).find(".list-group .hover");
         var contents = [];
         for(var j = 0; j<contentTag.length; j++){
-            contents.push($(contentTag[j]).find(".list-group-item").text().trim());
+            content=$(contentTag[j]).find(".list-group-item").text().trim()
+            if($(paperTag[i]).find("input").length=0)
+                link="";
+            else{
+                var fakePath = $(paperTag[i]).find("input")[0].value;
+                if(fakePath!="")
+                    link= getFileName(fakePath);
+                else link = "";
+            }
+            contents.push({
+                'content':content,
+                'link':link
+            });
         }
         papers.push({
             'name': name,
-            'content': contents
+            'contents': contents
         });
-    }
-
-    return {
+      }
+  
+    publications.push({
         'book': books,
         'paper': papers
-    }
-}
-
-
-function Save(){
-
+    })
+    return publications;
+  }
+  console.log(getPublication())
+  
+  function Save(){
+  
         var data ={ 
             'template':{
                 'name': getTemplateName(),
@@ -193,22 +206,22 @@ function Save(){
             'publications': getPublication()
         };
     
-    console.log(JSON.stringify(data));
+    console.log(data);
     $.post("users", {'content': JSON.stringify(data)},
         function (dt, textStatus, jqXHR) {
             alert(dt);
             window.location.reload();
             console.log(dt);
         }
-
+  
     );
     var data = new FormData();
-
+  
     $.each($("input"), function (i, fileInput) { 
          data.append('file-'+i,  $(fileInput).get(0).files[0])
          console.log($(fileInput).val())
     });
-
+  
     $.ajax({
         url: '/users/upfile',
         data: data,
@@ -221,8 +234,5 @@ function Save(){
             alert(data);
         }
     });
-
-}
-
-
-
+  
+  }
