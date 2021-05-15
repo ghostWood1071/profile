@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    //
+    $('.navbar-toggler').click(function() {
+        $(this).siblings('.collapse-wrapper').slideToggle();
+    });
+
     var navItem = Array.from(document.querySelectorAll('.nav-item'));
     const sections = document.querySelectorAll('.content');
     
@@ -99,7 +104,7 @@ $(document).ready(function () {
     btn_remove();
 
     // Add ckEditable
-    if(!document.querySelector("#forGuess")){
+    if(document.querySelector("#admin")){
         // Edit content
         $('.list-group-item').each(function (index, element) {
             // element == this
@@ -421,5 +426,12 @@ $(document).ready(function () {
     //         $('.alert-success').removeClass('active'); 
     //     }, 2000)
     // }
+    
+    // Remove edit tool
+    removeEdit = () => {
+        $('[contentEditable = "true"]').attr('contentEditable', 'false');
+        $('[draggable = "true"]').attr('draggable', 'false');
+        $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .chosen-file, .label-file, .pub-chosen-right').remove();
+    }
 });
 

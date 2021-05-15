@@ -46,10 +46,6 @@ nav.sticky {
   border-radius: 0;
 }
 
-.navbar-brand {
-  padding-left: 8px;
-}
-
 .nav-item {
   text-transform: capitalize !important;
 }
@@ -57,6 +53,7 @@ nav.sticky {
 .nav-link {
   font-size: 18px;
   font-weight: 500;
+  text-transform: uppercase;
 }
 
 .nav-link:hover {
@@ -442,7 +439,7 @@ p {
 }
 
 /* Submit data */
-.submit {
+.footer {
   padding: 0 24px;
   padding-bottom: 15px;
   display: flex;
@@ -750,6 +747,7 @@ ol {
   .main-success {
     width: 50%;
   }
+
 }
 
 @media (min-width: 577px) and (max-width: 767px) {
@@ -777,5 +775,26 @@ ol {
   .about-right{
     padding: 0 !important;
     padding-top: 2rem !important;
+  }
+}
+
+@media (min-width: 1000px){
+  .navbar-expand-custom {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+  }
+  .navbar-expand-custom .navbar-nav {
+      flex-direction: row;
+  }
+  .navbar-expand-custom .navbar-nav .nav-link {
+      padding-right: .5rem;
+      padding-left: .5rem;
+  }
+  .navbar-expand-custom .navbar-collapse {
+      display: flex !important;
+  }
+  .navbar-expand-custom .navbar-toggler {
+      display: none;
   }
 }

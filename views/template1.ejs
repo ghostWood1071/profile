@@ -14,8 +14,6 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
     />
     <!-- CkEditable -->
     <script src="/ckeditor/ckeditor.js"></script>
@@ -32,11 +30,11 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/stylesheets/template1.css" />
   </head>
-  <body>
+  <body id="admin">
     <div style="display:none" id="template"><%=template.name%></div>
     <div class="container main">
-      <nav class="navbar navbar-expand-sm navbar-light">
-        <a href="#" class="navbar-brand">Home</a>
+      <nav class="navbar navbar-expand-custom navbar-light">
+        <a href="#" class="navbar-brand">HOME</a>
         <button
           class="navbar-toggler d-lg-none"
           type="button"
@@ -56,17 +54,17 @@
             <li class="nav-item" data-page="new">
               <a class="nav-link new" href="#new">new</a>
             </li>
-            <li class="nav-item" data-page="teach">
-              <a class="nav-link teach" href="#teach">teach</a>
+            <li class="nav-item" data-page="teaching">
+              <a class="nav-link teaching" href="#teaching">teaching</a>
             </li>
             <li class="nav-item" data-page="thesis">
-              <a class="nav-link thesis" href="#thesis">thesis</a>
+              <a class="nav-link thesis" href="#thesis">thesis advising</a>
             </li>
             <li class="nav-item" data-page="research">
-              <a class="nav-link grant" href="#research">research</a>
+              <a class="nav-link grant" href="#research">research grant</a>
             </li>
-            <li class="nav-item" data-page="publications">
-              <a class="nav-link publication" href="#publications"
+            <li class="nav-item" data-page="publication">
+              <a class="nav-link publication" href="#publication"
                 >publications</a
               >
             </li>
@@ -148,9 +146,9 @@
           <% }) %>
         </div>
       </div>
-      <div class="content academic-record">
+      <div class="content academic">
         <div class="title mb-3">
-          <h2>ACADEMIC RECORD</h2>
+          <h2>ACADEMIC</h2>
           <i class="fa fa-plus btn-add" aria-hidden="true"></i>
         </div>
         <div class="list-group" id="group3">
@@ -201,7 +199,7 @@
           </div>
         </div>
       </div>
-      <div class="content teaching" id="teach">
+      <div class="content teaching" id="teaching">
         <div class="title">
           <h2>TEACHING</h2>
         </div>
@@ -307,7 +305,7 @@
           <% }) %>
         </div>
       </div>
-      <div class="content publications" id="publications">
+      <div class="content publication" id="publication">
         <div class="title">
           <h2 class="title">publications</h2>
           <i class="fa fa-plus btn-add addContentPublication" aria-hidden="true"></i>
@@ -495,8 +493,8 @@
         </div>
         
       </div>
-      <div class="submit">
-        <button type="submit" onclick="Save()" class="btn btn-danger">
+      <div class="footer">
+        <button type="submit" onclick="Save()" class="btn btn-danger btn-submit">
           Save
         </button>
       </div>
