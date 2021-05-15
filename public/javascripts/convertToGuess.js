@@ -12,6 +12,7 @@ function Check_Empty(){
     //check new element
     if (Check_Element_Empty($('#new'))){
         $('#new').remove()
+        $('a.new').parent().remove()
     }
 
     //check tearch element
@@ -19,6 +20,7 @@ function Check_Empty(){
     var check_university = Check_Element_Empty($('.teaching .undergraduate'))
     if (check_graduate && check_university){
         $('.teaching').remove()
+        $('a.teaching').parent().remove()
     }   
     else if (check_graduate){
         $('.teaching .graduate').remove()
@@ -39,11 +41,13 @@ function Check_Empty(){
         //check thesis-tag element
         if (Check_Element_Empty($('#thesis'))){
             $('#thesis').remove()
+            $('a.thesis').parent().remove()
         }
 
     //check grants element
-    if(Check_Element_Empty($('#research'))){
-        $('#research').remove()
+    if(Check_Element_Empty($('.research-grant'))){
+        $('.research-grant').remove()
+        $('a.grant').parent().remove()
     }
 
     //check publications element
@@ -51,6 +55,7 @@ function Check_Empty(){
     var check_paper = Check_Element_Empty($('.publication .publication-detail'))
     if (check_book && check_paper){
         $('.publication').remove()
+        $('a.publication').parent().remove()
     }
     else{
         //check book element
@@ -68,6 +73,14 @@ function Check_Empty(){
             $('.publication .publication-detail .publication-item').remove()
         }
     }
+    
+    //remove btn-submit
+    $('.btn-submit').remove()
+    if ($('.footer').html() == '')
+        $('.footer').remove()
+    var html = '<!DOCTYPE html>\n'
+    html +=document.documentElement.innerHTML
+    return html
 }
 function Check_Element_Empty(element){
     var list_group = $(element).find('.list-group')[0]
