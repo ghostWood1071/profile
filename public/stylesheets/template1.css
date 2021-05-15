@@ -116,7 +116,7 @@ nav.sticky {
   transform: scale(1.05);
 }
 
-.avatar:hover .label-file {
+.avatar:hover .label-file-img {
   opacity: 1;
 }
 
@@ -778,7 +778,7 @@ ol {
   }
 }
 
-@media (min-width: 1000px){
+@media (min-width: 992px){
   .navbar-expand-custom {
       flex-direction: row;
       flex-wrap: nowrap;
@@ -790,6 +790,12 @@ ol {
   .navbar-expand-custom .navbar-nav .nav-link {
       padding-right: .5rem;
       padding-left: .5rem;
+      text-align: center;
+  }
+  .navbar-expand-custom .navbar-nav .nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .navbar-expand-custom .navbar-collapse {
       display: flex !important;

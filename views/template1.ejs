@@ -33,7 +33,7 @@
   <body id="admin">
     <div style="display:none" id="template"><%=template.name%></div>
     <div class="container main">
-      <nav class="navbar navbar-expand-custom navbar-light">
+      <nav class="navbar navbar-expand-custom navbar-light nav">
         <a href="#" class="navbar-brand">HOME</a>
         <button
           class="navbar-toggler d-lg-none"
@@ -47,23 +47,29 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active" data-page="about">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-list">
+            <li class="nav-item about active" data-page="about">
               <a class="nav-link about" href="#about">about</a>
             </li>
-            <li class="nav-item" data-page="new">
+            <li class="nav-item research" data-page="research">
+              <a href="#research" class="nav-link research">Research Interests</a>
+            </li>
+            <li class="nav-item academic" data-page="academic">
+              <a class="academic nav-link" href="#academic">Academic</a>
+            </li>
+            <li class="nav-item new" data-page="new">
               <a class="nav-link new" href="#new">new</a>
             </li>
-            <li class="nav-item" data-page="teaching">
+            <li class="nav-item teaching" data-page="teaching">
               <a class="nav-link teaching" href="#teaching">teaching</a>
             </li>
-            <li class="nav-item" data-page="thesis">
-              <a class="nav-link thesis" href="#thesis">thesis advising</a>
+            <li class="nav-item thesis" data-page="thesis">
+              <a class="nav-link thesis" href="#thesis">thesis</a>
             </li>
-            <li class="nav-item" data-page="research">
-              <a class="nav-link grant" href="#research">research grant</a>
+            <li class="nav-item grant" data-page="grant">
+              <a class="nav-link grant" href="#grant">research grant</a>
             </li>
-            <li class="nav-item" data-page="publication">
+            <li class="nav-item publication" data-page="publication">
               <a class="nav-link publication" href="#publication"
                 >publications</a
               >
@@ -74,8 +80,8 @@
       <div class="content wrap-about" id="about">
         <div class="avatar col-12 col-sm-12 col-md-5 col-lg-4">
           <img id="avatar-img" src="<%=path+avatar%>" alt="avatar" />
-          <input type="file" id="file" class="chosen-file" hidden />
-          <label for="file" class="label-file btn btn-danger"
+          <input type="file" id="file" class="chosen-file nav-img-upload" hidden />
+          <label for="file" class="label-file-img btn btn-danger"
             ><i class="fas fa-upload"></i
           ></label>
         </div>
@@ -129,7 +135,7 @@
           </div>
         </div>
       </div>
-      <div class="content research">
+      <div class="content research" id="research">
         <div class="title">
           <h2>RESEARCH INTERESTS</h2>
           <i class="fa fa-plus btn-add" aria-hidden="true"></i>
@@ -146,7 +152,7 @@
           <% }) %>
         </div>
       </div>
-      <div class="content academic">
+      <div class="content academic" id="academic">
         <div class="title mb-3">
           <h2>ACADEMIC</h2>
           <i class="fa fa-plus btn-add" aria-hidden="true"></i>
@@ -288,7 +294,7 @@
             
         </div>
       </div>
-      <div class="content research-grant" id="research">
+      <div class="content research-grant" id="grant">
         <div class="title">
           <h2>RESEARCH GRANTS</h2>
           <i class="fa fa-plus btn-add" aria-hidden="true"></i>
