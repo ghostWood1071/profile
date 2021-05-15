@@ -154,18 +154,18 @@ var getTemplateName  = function(){
         })
     }
   
-    var paperTag = $('#publications .container-drag')
+    var paperTag = $('.publication-name')
     var papers = [];
     for(var i = 0; i<paperTag.length; i++){
-        var name = $(paperTag[i]).find('.title div').text().trim();
-        var contentTag  = $(paperTag[i]).find(".list-group .hover");
+        var name = $($(paperTag)[i]).text().trim();
+        var contentTag  = $($($(paperTag)[0]).siblings()).find('.hover');
         var contents = [];
         for(var j = 0; j<contentTag.length; j++){
             content=$(contentTag[j]).find(".list-group-item").text().trim()
-            if($(paperTag[i]).find("input").length=0)
+            if(contentTag.find('input').length=0)
                 link="";
             else{
-                var fakePath = $(paperTag[i]).find("input")[0].value;
+                var fakePath = contentTag.find('input')[j].value;
                 if(fakePath!="")
                     link= getFileName(fakePath);
                 else link = "";
