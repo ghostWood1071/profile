@@ -5,8 +5,8 @@ function Check_Empty(){
     }
 
     //check academic-record element
-    if (Check_Element_Empty($('.academic_record'))){
-        $('.academic_record').remove()
+    if (Check_Element_Empty($('.academic'))){
+        $('.academic').remove()
     }
 
     //check new element
@@ -15,16 +15,16 @@ function Check_Empty(){
     }
 
     //check tearch element
-    var check_graduate = Check_Element_Empty($('#teach .graduate'))
-    var check_university = Check_Element_Empty($('#teach .university'))
+    var check_graduate = Check_Element_Empty($('.teaching .graduate'))
+    var check_university = Check_Element_Empty($('.teaching .undergraduate'))
     if (check_graduate && check_university){
-        $('#teach').remove()
+        $('.teaching').remove()
     }   
     else if (check_graduate){
-        $('#teach .graduate').remove()
+        $('.teaching .graduate').remove()
     }
     else if (check_university){
-        $('#teach .university').remove()
+        $('.teaching .undergraduate').remove()
     } 
 
     //check thesis element
@@ -47,18 +47,25 @@ function Check_Empty(){
     }
 
     //check publications element
-    if (Check_Element_Empty($('#publications'))){
-        $('#publications').remove()
+    var check_book = Check_Element_Empty($('.publication .publication-book'))
+    var check_paper = Check_Element_Empty($('.publication .publication-detail'))
+    if (check_book && check_paper){
+        $('.publication').remove()
     }
     else{
         //check book element
-        if (Check_Element_Empty($('#publications .publication-book'))){
-            $('#publications .publication-book').remove()
+        if (check_book){
+            $('.publication .publication-book').remove()
         }
 
         //check paper element
-        if (Check_Element_Empty($('#publications .publiccation-detail'))){
-            $('#publications .publiccation-detail').remove()
+        if (check_paper){
+            $('.publication .publication-detail').remove()
+        }
+
+        //check publication-item element
+        if (Check_Element_Empty($('.publication .publication-detail .publication-item'))){
+            $('.publication .publication-detail .publication-item').remove()
         }
     }
 }
@@ -72,9 +79,8 @@ function Check_Element_Empty(element){
 removeEdit = () => {
     $('[contentEditable = "true"]').attr('contentEditable', 'false');
     $('[draggable = "true"]').attr('draggable', 'false');
-    $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .chosen-file, .label-file, .pub-chosen-right').remove();
+    $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .chosen-file, .label-file, .pub-chosen-right, .nav-img-upload, .fa-upload').remove();
 }
-
 function Save(){
     Check_Empty()
     removeEdit()
