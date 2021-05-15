@@ -10,8 +10,9 @@ var getTemplateName  = function(){
   }
   var getAvatar = function(){
     if($("#file").val() === ""){
-        var attr = $('.avatar img').attr('src')
-        console.log(getFileName(attr));
+        var attr = $('.avatar img').attr('src');
+        attr = attr.substr(attr.lastIndexOf("/")+1);
+        console.log(attr);
         return attr;
     }
     else {
