@@ -138,10 +138,24 @@ $('.btn-apply').click(function() {
 })
 
 // Show Modal
-$('.themes-item').click(() => {
-  $('.modal-themes').fadeIn(() => {
+$('.themes-item').each(function() {
+  $(this).click(function() {
+    var templateName = $(this).html();
+    $('.modal-themes').fadeIn(() => {
       $('.modal-themes').css('display', 'block');
-  });
+    });
+
+    $('.btn-apply').click(function() {
+      $('#template').html(`Template ${templateName}`);
+
+      $('.modal-themes').fadeOut(() => {
+        $('.modal-themes').css('display', 'none');
+      });
+      $('.modal-successful').fadeIn(() => {
+        $('.modal-successful').css('display', 'block');
+      });
+    })
+  })
 })
 
 // Close Modal
