@@ -1,9 +1,8 @@
 
     function getHtmlPage(){
-        $("i.fas.fa-upload").remove();
-        $(".label-file-img.btn.btn-danger").remove();
+        
 
-        $("body").removeAttr("id");
+        
         //check research-interest element
         if (Check_Element_Empty($('.research'))){
             $('.research').remove()

@@ -230,7 +230,7 @@ $('.btn-pdf').click(function() {
 })
 // Click
 const items = document.querySelectorAll('.list-group-item');
-if(!document.getElementById('forGuess')) {
+if(document.getElementById('admin')) {
   items.forEach((element, index) => {
     $(element).click(function() {
       element.setAttribute('contentEditable', 'true');

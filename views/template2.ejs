@@ -18,7 +18,8 @@
     <!-- Custom stylesheet -->
     <link rel="stylesheet" href="/stylesheets/template2.css">
 </head>
-<body>
+<body id="admin">
+    <div style="display:none" id="template"><%=template.name%></div>
     <div class="wrapper">
         <div class="hamburger">
             <span></span>
@@ -31,7 +32,7 @@
                 <div class="nav-img-overlay"></div>
                 <i class="fas fa-upload"></i>
                 <img id="avatar-img" src="/images/avatar.jpg" alt="Avatar"/>
-                <input type="file" class="nav-img-upload" onchange="readURL(this, '#avatar-img');">
+                <input type="file" id="file-img" class="nav-img-upload" onchange="readURL(this, '#avatar-img');">
             </div>
 
             <ul class="nav-list">
@@ -379,7 +380,7 @@
             <footer class="footer"><button type="submit" class="btn-submit" onclick="Save()">Submit</button></footer>
         </div>
 
-        <div class="circle" draggable="true"><i class="fas fa-cog"></i></div>
+        <div class="circle theme-setting" draggable="true"><i class="fas fa-cog"></i></div>
 
         <div class="options">
             <div class="color default"></div>

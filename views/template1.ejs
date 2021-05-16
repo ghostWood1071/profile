@@ -80,7 +80,7 @@
       <div class="content wrap-about" id="about">
         <div class="avatar col-12 col-sm-12 col-md-5 col-lg-4">
           <img id="avatar-img" src="<%=path+avatar%>" alt="avatar" />
-          <input type="file" id="file" class="chosen-file nav-img-upload" hidden />
+          <input type="file" id="file-img" class="chosen-file nav-img-upload" hidden />
           <label for="file" class="label-file-img btn btn-danger"
             ><i class="fas fa-upload"></i
           ></label>
@@ -93,6 +93,8 @@
             <h5><div class="position list-group-item"><%-about.level%></div></h5>
             <i class="fa fa-plus btn-add" aria-hidden="true"></i>
           </div>
+          
+          <!-- university container -->
           <div class="list-group education" id="group1">
             <% about.university.forEach(item => { %>
               <div class="hover">
@@ -103,38 +105,53 @@
                 </div>
               </div>
             <% }) %>
+            <!-- -------------------------------------------------------------------- -->
           </div>
         </div>
       </div>
+
+      <!-- contact container -->
       <div class="content wrap-address">
         <div class="title">
           <h2>Contact Information</h2>
         </div>
         <div class="list-group contact">
+
           <div class="contact-group">
             <i class="fa fa-address-card icon" aria-hidden="true"></i>
             <div class="list-group-item about_address">
              <%-about.address %> 
             </div>
           </div>
+
           <div class="contact-group">
             <i class="fa fa-phone-square icon" aria-hidden="true"></i>
             <div class="list-group-item"><%-about.phone %></div>
           </div>
+
           <div class="contact-group">
             <i class="fa fa-fax icon" aria-hidden="true"></i>
             <div class="list-group-item"><%-about.fax %></div>
           </div>
+
+          <!-- mail container -->
           <div class="contact-group">
             <i class="fa fa-envelope icon" aria-hidden="true"></i>
             <div class="list-group-item">
-              <% about.mail.forEach(mail => { %>
-               <%- mail %>;
-              <% }) %>
+              <% for( let i = 0; i < about.mail-1; i++ ) { %>
+                    <%-about.mail[i]%>; 
+              <% } %>
+              <% if (about.mail.length-1>=0) { %>
+                <%-about.mail[about.mail.length-1]%>
+              <% } %>
             </div>
           </div>
+
         </div>
+        <!-- ---------------------------------------------- -->
       </div>
+
+      <!-- research interest container -->
       <div class="content research" id="research">
         <div class="title">
           <h2>RESEARCH INTERESTS</h2>
@@ -152,6 +169,9 @@
           <% }) %>
         </div>
       </div>
+       <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- academic container -->
       <div class="content academic" id="academic">
         <div class="title mb-3">
           <h2>ACADEMIC</h2>
@@ -173,9 +193,12 @@
           <% }) %>
         </div>
       </div>
+      <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- news container -->
       <div class="content new" id="new">
         <div class="title">
-          <h2>NEW</h2>
+          <h2>NEWS</h2>
           <i class="fa fa-plus btn-add" aria-hidden="true"></i>
         </div>
         <div class="list-group" id="groupNew">
@@ -205,6 +228,9 @@
           </div>
         </div>
       </div>
+      <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- teaching container -->
       <div class="content teaching" id="teaching">
         <div class="title">
           <h2>TEACHING</h2>
@@ -216,6 +242,7 @@
               <h4><%- teaching.academic_year %></h4>
             </div>
           </div>
+
           <div class="graduate mb-4">
             <div class="title">
               <h5 class="text-secondary">GRADUATE COURSES</h5>
@@ -232,13 +259,16 @@
                   </div>
                 </div>
               <% }) %>
+
             </div>
           </div>
+
           <div class="university undergraduate">
             <div class="title">
               <h5 class="text-secondary">UNDERGRADUATE COURSES</h5>
               <i class="fa fa-plus btn-add" aria-hidden="true"></i>
             </div>
+
             <div class="list-group" name="same-text" id="group5">
               <% teaching.undergraduate_courses.forEach(item => { %>
                 <div class="hover">
@@ -250,15 +280,21 @@
                 </div>
               <% }) %>
             </div>
+
           </div>
         </div>
       </div>
+      <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- thesis container -->
       <div class="content thesis" id="thesis">
         <div class="content-thesis">
           <div class="title">
             <h2>THESIS</h2>
             <i class="fa fa-plus btn-add" aria-hidden="true"></i>
           </div>
+
+          <!-- link container -->
           <div class="list-group thesis-tag" id="group6">
             <% thesis.link.forEach(element => { %>
               <div class="hover thesis-link">
@@ -270,6 +306,7 @@
               </div>
             <% }) %>
           </div>
+
           <% for( let i = 0; i < thesis.content.length; i++ ) { %>
                 <% if (thesis.content[i].list_content) { %>
                   <div class="thesis-item">
@@ -294,6 +331,9 @@
             
         </div>
       </div>
+      <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- research grant container -->
       <div class="content research-grant" id="grant">
         <div class="title">
           <h2>RESEARCH GRANTS</h2>
@@ -311,12 +351,16 @@
           <% }) %>
         </div>
       </div>
+      <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- public container -->
       <div class="content publication" id="publication">
         <div class="title">
           <h2 class="title">publications</h2>
           <i class="fa fa-plus btn-add addContentPublication" aria-hidden="true"></i>
         </div>
         <div class="publications-wrapper list-group">
+          <!-- book container -->
           <div class="publication-item publication-book">
             <div class="title">
               <h5 class="subtitle list-group-item">BOOKS</h5>
@@ -329,180 +373,60 @@
                 <div class="hover">
                   <i class="fas fa-arrows-alt btn-arrow"></i>
                   <i class="fas fa-trash-alt btn-trash"></i>
-                  <!-- <div class="pub-chosen-right">
-                    <i class="fas fa-trash-alt"></i>
-                    <input
-                      type="file"
-                      id="pdf<%=i%>"
-                      name="pdf"
-                      accept="application/pdf"
-                      value="PDF"
-                    />
-                    <label class="pdf" for="pdf<%=i%>">PDF</label>
-                  </div> -->
                   <div class="list-group-item text-secondary">
                     <%- public.book[i].content %> 
-                    <% if (public.book[i].link != "") { %>
-                      <a href="<%=path+public.book[i].link%>">PDF</a>
-                    <% } %>
                   </div>
                 </div>
               <% } %>
-              
             </div>
           </div>
+
+          <!-- paper container -->
           <div class="publication-detail">
             <div class="publication-wrapper">
+
               <div class="title">
                 <h5 class="subtitle list-group-item mr-2">PUBLISHED PAPERS (SELECTED)</h5>
                 <i class="fas fa-arrows-alt"></i>
                 <i class="fa fa-plus btn-add addPublishedPaper" aria-hidden="true"></i>
               </div>
+
               <div class="publication-list list-group">
-                <% if (public.paper.length>0) { %>
-                  <div class="publication-item">
-                    <div class="title publication-name">
-                      <div class="list-group-item mr-2">
-                        <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
-                          >A) International Journals:</strong
-                        >
-                      </div>
-                      <i class="fas fa-arrows-alt"></i>
-                      <i class="fa fa-plus btn-add" aria-hidden="true"></i>
-                      <i class="fas fa-trash-alt"></i>
-                    </div>
-                    <div class="list-group" name="same-pdf" id="group12">
-                      <% public.paper[0].content.forEach(element => { %>
-                        <div class="hover">
-                          <i class="fas fa-arrows-alt btn-arrow"></i>
-                          <div class="pub-chosen-right">
-                            <i class="fas fa-trash-alt"></i>
-                            <input
-                              type="file"
-                              id="pdf"
-                              name="pdf"
-                              accept="application/pdf"
-                              value="PDF"
-                            />
-                            <label class="pdf" for="pdf">PDF</label>
-                          </div>
-                          <div class="list-group-item text-secondary">
-                            <%- element %> 
-                          </div>
+                <% public.paper.forEach(paperGroup => { %>
+                    <div class="publication-item">
+                      <div class="title publication-name">
+                        <div class="list-group-item mr-2">
+                          <strong class="text-dark" style="opacity: 0.9; font-size: 17px"><%-paperGroup.name%> </strong>
                         </div>
-                      <% }) %>
-                    </div>
-                  </div>
-                  <div class="publication-item">
-                    <div class="title publication-name">
-                      <div class="list-group-item mr-2">
-                        <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
-                          >B) National Journals:</strong
-                        >
+                        <i class="fas fa-arrows-alt"></i>
+                        <i class="fa fa-plus btn-add" aria-hidden="true"></i>
+                        <i class="fas fa-trash-alt"></i>
                       </div>
-                      <i class="fas fa-arrows-alt"></i>
-                      <i class="fa fa-plus btn-add" aria-hidden="true"></i>
-                      <i class="fas fa-trash-alt"></i>
-                    </div>
-                    <div class="list-group" name="same-pdf" id="group13">
-                      <% public.paper[1].content.forEach(element => { %>
-                        <div class="hover">
-                          <i class="fas fa-arrows-alt btn-arrow"></i>
-                          <div class="pub-chosen-right">
-                            <i class="fas fa-trash-alt"></i>
-                            <input
-                              type="file"
-                              id="pdf"
-                              name="pdf"
-                              accept="application/pdf"
-                              value="PDF"
-                            />
-                            <label class="pdf" for="pdf">PDF</label>
+                      <div class="list-group" name="same-pdf" id="group12">
+                        <% paperGroup.content.forEach(element => { %>
+                          <div class="hover">
+                            <i class="fas fa-arrows-alt btn-arrow"></i>
+                            <div class="pub-chosen-right">
+                              <i class="fas fa-trash-alt"></i>
+                              <input type="file" id="pdf" name="pdf" accept="application/pdf" value="PDF"/>
+                              <label class="pdf" for="pdf">PDF</label>
+                            </div>
+                            <div class="list-group-item text-secondary">
+                              <%- element %> 
+                            </div>
                           </div>
-                          <div class="list-group-item text-secondary">
-                            <%- element %> 
-                          </div>
-                        </div>
-                      <% }) %>
-                    </div>
-                  </div>
-                  <div class="publication-item">
-                    <div class="title publication-name">
-                      <div class="list-group-item mr-2">
-                        <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
-                          >C) International Conferences:</strong
-                        >
+                        <% }) %>
                       </div>
-                      <i class="fas fa-arrows-alt"></i>
-                      <i class="fa fa-plus btn-add" aria-hidden="true"></i>
-                      <i class="fas fa-trash-alt"></i>
                     </div>
-                    <div class="list-group" name="same-pdf" id="group14">
-                      <% public.paper[2].content.forEach(element => { %>
-                        <div class="hover">
-                          <i class="fas fa-arrows-alt btn-arrow"></i>
-                          <div class="pub-chosen-right">
-                            <i class="fas fa-trash-alt"></i>
-                            <input
-                              type="file"
-                              id="pdf"
-                              name="pdf"
-                              accept="application/pdf"
-                              value="PDF"
-                            />
-                            <label class="pdf" for="pdf">PDF</label>
-                          </div>
-                          <div class="list-group-item text-secondary">
-                            <%- element %> 
-                          </div>
-                        </div>
-                      <% }) %>
-                    </div>
-                  </div>
-                  <div class="publication-item" id="group15">
-                    <div class="title publication-name">
-                      <div class="list-group-item mr-2">
-                        <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
-                          >D) National Conferences:</strong
-                        >
-                      </div>
-                      <i class="fas fa-arrows-alt"></i>
-                      <i class="fa fa-plus btn-add" aria-hidden="true"></i>
-                      <i class="fas fa-trash-alt"></i>
-                    </div>
-                    <div class="list-group" name="same-pdf" id="group16">
-                      <% public.paper[3].content.forEach(element => { %>
-                        <div class="hover">
-                          <i class="fas fa-arrows-alt btn-arrow"></i>
-                          <div class="pub-chosen-right">
-                            <i class="fas fa-trash-alt"></i>
-                            <input
-                              type="file"
-                              id="pdf"
-                              name="pdf"
-                              accept="application/pdf"
-                              value="PDF"
-                            />
-                            <label class="pdf" for="pdf">PDF</label>
-                          </div>
-                          <div class="list-group-item text-secondary">
-                            <%- element %> 
-                          </div>
-                        </div>
-                      <% }) %>
-                    </div>
-                  </div>
-                <% } %>
+                <% }) %>
               </div>
+
             </div>
           </div>
         </div>
-        
       </div>
       <div class="footer">
-        <button type="submit" onclick="Save()" class="btn btn-danger btn-submit">
-          Save
-        </button>
+        <button type="submit" onclick="Save()" class="btn btn-danger btn-submit">Save</button>
       </div>
       <div class="theme-setting">
         <button class="btn btn-light btn-cogs">

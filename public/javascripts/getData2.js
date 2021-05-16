@@ -9,8 +9,8 @@ var getTemplateName  = function(){
     return $('html').css('--primary-color');
   }
   var getAvatar = function(){
-    if($("#file").val() === ""){
-        var attr = $('.avatar img').attr('src');
+    if($("#file-img").val() === ""){
+        var attr = $('#avatar-img').attr('src');
         attr = attr.substr(attr.lastIndexOf("/")+1);
         console.log(attr);
         return attr;
@@ -60,6 +60,7 @@ var getTemplateName  = function(){
     return research_interest;
   }
   
+
   var getAcademic = function(){
     var academicTag = $('.academic-item');
     var academic_record = [];
@@ -77,6 +78,26 @@ var getTemplateName  = function(){
     return academic_record;
   }
   
+  var getNew = function(){
+      var name="";
+      var content = []
+      if($('#new').length=0){}
+      else{
+        var newTag = $('#new');
+        var name = newTag.find('.title').text().trim();
+        var contentNewTag=newTag.find('.hover');
+        for (let i = 0; i < contentNewTag.length; i++) {
+            const element = contentNewTag[i];
+            content.push(element.textContent.trim());
+        }
+      }
+      var newObj = {
+          'name':name,
+          'content':content
+      }
+      return newObj;
+    } 
+    console.log(getNew())
   var getTeaching = function(){
     var teachingTag = $('.teaching .list-group');
     var academicYear =  $(teachingTag).find(".list-group-item.teaching-year").text().trim();
@@ -201,6 +222,7 @@ var getTemplateName  = function(){
             'about': getAbout(),
             'research_interests': getResearchInterest(),
             'academic': getAcademic(),
+            'new':getNew(),
             'teaching': getTeaching(),
             'thesis': getThesis(),
             'research_grant': getResearchGrant(),
@@ -218,7 +240,7 @@ var getTemplateName  = function(){
     // );
     var data = new FormData();
   
-    $.each($("input"), function (i, fileInput) { 
+    $.each($("input[type = 'file']"), function (i, fileInput) { 
          data.append('file-'+i,  $(fileInput).get(0).files[0])
          console.log($(fileInput).val())
     });
