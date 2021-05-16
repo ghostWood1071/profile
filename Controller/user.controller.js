@@ -16,7 +16,8 @@ module.exports.getUserInfo = function (req, res, next) {
         thesis: user.thesis,
         research_grant: user.research_grant,
         public: user.publications,
-        path: "/user_public/"+dataPath+"/"
+        path: "/user_public/"+dataPath+"/",
+        news: user.news
     });
 }
 
@@ -34,6 +35,7 @@ module.exports.saveData = function(req, res, next){
     oldUser.thesis = newUser.thesis;
     oldUser.research_grant = newUser.research_grant;
     oldUser.publications = newUser.publications;
+    oldUser.new = newUser.new;
 
     try {
         fs.writeFileSync(dataPath, JSON.stringify(oldUser));

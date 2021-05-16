@@ -138,7 +138,7 @@
           <div class="contact-group">
             <i class="fa fa-envelope icon" aria-hidden="true"></i>
             <div class="list-group-item">
-              <% for( let i = 0; i < about.mail-1; i++ ) { %>
+              <% for( let i = 0; i < about.mail.length-1; i++ ) { %>
                     <%-about.mail[i]%>; 
               <% } %>
               <% if (about.mail.length-1>=0) { %>
@@ -202,30 +202,17 @@
           <i class="fa fa-plus btn-add" aria-hidden="true"></i>
         </div>
         <div class="list-group" id="groupNew">
-          <div class="hover">
-            <i class="fas fa-arrows-alt btn-arrow"></i>
-            <i class="fas fa-trash-alt btn-trash"></i>
-            <div class="list-group-item">
-              <span
-                >SOFTWARE QUALITY; SOFTWARE TESTING; METHODS IN SOFTWARE
-                DEVELOPMENT</span
-              >
+          <% news.forEach(element => { %>
+            <div class="hover">
+              <i class="fas fa-arrows-alt btn-arrow"></i>
+              <i class="fas fa-trash-alt btn-trash"></i>
+              <div class="list-group-item">
+                <span><%-element%> </span>
+              </div>
             </div>
-          </div>
-          <div class="hover">
-            <i class="fas fa-arrows-alt btn-arrow"></i>
-            <i class="fas fa-trash-alt btn-trash"></i>
-            <div class="list-group-item">
-              <span>MULTI-OBJECTIVE OPTIMIZATION; PROJECT MANAGEMENT</span>
-            </div>
-          </div>
-          <div class="hover">
-            <i class="fas fa-arrows-alt btn-arrow"></i>
-            <i class="fas fa-trash-alt btn-trash"></i>
-            <div class="list-group-item">
-              <span>BIG DATA PROCESSING AND ANALYTICS</span>
-            </div>
-          </div>
+          <% }) %>
+          
+         
         </div>
       </div>
       <!-- ------------------------------------------------------------------------------------ -->
@@ -403,7 +390,7 @@
                         <i class="fas fa-trash-alt"></i>
                       </div>
                       <div class="list-group" name="same-pdf" id="group12">
-                        <% paperGroup.content.forEach(element => { %>
+                        <% paperGroup.contents.forEach(element => { %>
                           <div class="hover">
                             <i class="fas fa-arrows-alt btn-arrow"></i>
                             <div class="pub-chosen-right">
@@ -412,7 +399,10 @@
                               <label class="pdf" for="pdf">PDF</label>
                             </div>
                             <div class="list-group-item text-secondary">
-                              <%- element %> 
+                              <%- element.content %>
+                              <% if (element.link != "") { %>
+                                    <%-element.link%> 
+                              <% } %>
                             </div>
                           </div>
                         <% }) %>

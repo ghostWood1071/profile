@@ -31,7 +31,7 @@
             <div class="nav-img avatar">
                 <div class="nav-img-overlay"></div>
                 <i class="fas fa-upload"></i>
-                <img id="avatar-img" src="/images/avatar.jpg" alt="Avatar"/>
+                <img id="avatar-img" src="<%=path+avatar%> " alt="Avatar"/>
                 <input type="file" id="file-img" class="nav-img-upload" onchange="readURL(this, '#avatar-img');">
             </div>
 
@@ -48,6 +48,7 @@
         </nav>
 
         <div class="main">
+
             <section id="about">
                 <div class="list-group-item name"><%-about.name%></div>
                 <div class="list-group-item position"><%-about.level%></div>
@@ -56,47 +57,40 @@
                     <i class="fas fa-plus-circle btn-plus mg-left-0"></i>
 
                     <div class="list-group education" id="group1">
-                        <div class="hover">
-                            <i class="fas fa-trash-alt btn-trash"></i>
-                            <div class="list-group-item">
-                                <p>Department of Software Engineering</p>
+                        <% about.university.forEach(element => { %>
+                            <div class="hover">
+                                <i class="fas fa-trash-alt btn-trash"></i>
+                                <div class="list-group-item">
+                                    <p><%-element%> </p>
+                                </div>
+                                <i class="fas fa-arrows-alt btn-arrow"></i>
                             </div>
-                            <i class="fas fa-arrows-alt btn-arrow"></i>
-                        </div>
-                        <div class="hover">
-                            <i class="fas fa-trash-alt btn-trash"></i>
-                            <div class="list-group-item">
-                                <p>School of Information and Communication Technology</p>
-                            </div>
-                            <i class="fas fa-arrows-alt btn-arrow"></i>
-                        </div>
-                        <div class="hover">
-                            <i class="fas fa-trash-alt btn-trash"></i>
-                            <div class="list-group-item">
-                                <p>Hanoi University of Science and Technology</p>
-                            </div>
-                            <i class="fas fa-arrows-alt btn-arrow"></i>
-                        </div>
+                        <% }) %>
                     </div>
                 </div>
 
                 <div class="list-group contact">
                     <div>
                         <i class="fa fa-address-card"></i>
-                        <div class="list-group-item"><p>Room 210, Building C1, No. 1 Dai Co Viet, Hai Ba Trung, Hanoi, Vietnam</p></div>
+                        <div class="list-group-item"><p><%-about.address%> </p></div>
                     </div>
                     <div>
                         <i class="fa fa-phone-square"></i>
-                        <div class="list-group-item"><p>+84 (024) 3868 1912</p></div>
+                        <div class="list-group-item"><p><%-about.phone%> </p></div>
                     </div>
                     <div>
                         <i class="fa fa-fax"></i>
-                        <div class="list-group-item"><p>+84 (024) 3869 2006</p></div>
+                        <div class="list-group-item"><p><%-about.fax%> ></p></div>
                     </div>
                     <div>
                         <i class="fa fa-envelope"></i>
-                        <div class="list-group-item">
-                            <p><a href="#">thanghq@soict.hust.edu.vn</a></p>;<p><a href="#">thang.huynhquyet@hust.edu.vn</a></p>
+                        <div class="list-group-item mail">
+                            <% for( let i = 0; i < about.mail.length-1; i++ ) { %>
+                                <p><a href="#"><%-about.mail[i]%></a></p>; 
+                            <% } %>
+                            <% if (about.mail.length-1>=0) { %>
+                                <p><a href="#"><%-about.mail[about.mail.length-1]%></a></p>
+                            <% } %>
                         </div>
                     </div>
                 </div>  
@@ -108,21 +102,13 @@
                     <i class="fas fa-plus-circle btn-plus"></i>
                 </div>
                 <div class="list-group" id="group2">
-                    <div class="hover research-item">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item"><p>SOFTWARE QUALITY; SOFTWARE TESTING; METHODS IN SOFTWARE DEVELOPMENT</p></div>
-                    </div>
-                    <div class="hover research-item">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item"><p>MULTI-OBJECTIVE OPTIMIZATION; PROJECT MANAGEMENT</p></div>
-                    </div>
-                    <div class="hover research-item">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item"><p>BIG DATA PROCESSING AND ANALYTICS</p></div>
-                    </div>
+                    <%research_interest.forEach(element => { %>
+                        <div class="hover research-item">
+                            <i class="fas fa-trash-alt btn-trash"></i>
+                            <i class="fas fa-arrows-alt btn-arrow"></i>
+                            <div class="list-group-item"><p><%-element%></p></div>
+                        </div>
+                    <% }) %>
                 </div>
             </section> 
 
@@ -132,42 +118,36 @@
                     <i class="fas fa-plus-circle btn-plus"></i>
                 </div>
                 <div class="list-group" id="group3">
-                    <div class="academic-item hover">
-                        <i class="fas fa-trash-alt btn-trash top-0"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <i class="fas fa-graduation-cap ic-academic"></i>
-                        <div class="list-group-item academic-item-time text-primary">3/1991 - 12/1995</div>
-                        <div class="list-group-item academic-item-name text-primary">
-                            <a href="#">VARNA TECHNICAL UNIVERSITY</a>
+                    <% academic.forEach(element => { %>
+                        <div class="academic-item hover">
+                            <i class="fas fa-trash-alt btn-trash top-0"></i>
+                            <i class="fas fa-arrows-alt btn-arrow"></i>
+                            <i class="fas fa-graduation-cap ic-academic"></i>
+                            <div class="list-group-item academic-item-time text-primary"><%- element.time %> </div>
+                            <div class="list-group-item academic-item-name text-primary">
+                                <%-element.university%> 
+                            </div>
+                            <div class="list-group-item academic-item-location"><%-element.location%> </div>
+                            <div class="list-group-item academic-level"><%-element.level%></div>
+                            <div class="list-group-item academic-description"><%-element.descript%></div>
                         </div>
-                        <div class="list-group-item academic-item-location">BULGARIA</div>
-                        <div class="list-group-item academic-level">PHD DEGREE IN INFORMATION AND COMPUTER SCIENCES</div>
-                        <div class="list-group-item academic-description">PhD thesis: Architectural model of a class numerical computing machine and its application on generating smooth curves and surface</div>
-                    </div>
+                    <% }) %>
                 </div>
             </section>
             
             <section id="new" class="new">
                 <div class="title">
-                    New
+                    News
                     <i class="fas fa-plus-circle btn-plus"></i>
                 </div>
                 <div class="list-group" id="group11">
-                    <div class="hover new-item">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">This is new 1</div>
-                    </div>
-                    <div class="hover new-item">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">This is new 2</div>
-                    </div>
-                    <div class="hover new-item">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">This is new 3</div>
-                    </div>
+                    <% news.forEach(element => { %>
+                        <div class="hover new-item">
+                            <i class="fas fa-trash-alt btn-trash"></i>
+                            <i class="fas fa-arrows-alt btn-arrow"></i>
+                            <div class="list-group-item"><%-element%></div>
+                        </div>
+                    <% }) %>
                 </div>
             </section>
             
@@ -179,7 +159,7 @@
                 <div class="list-group teaching-container">
                     <div class="teaching-title">
                         <span>ACADEMIC YEAR</span>
-                        <div class="list-group-item teaching-year">2018 - 2019</div>
+                        <div class="list-group-item teaching-year"><%-teaching.academic_year%></div>
                     </div>
 
                     <div class="teaching-list">
@@ -189,16 +169,13 @@
                                 <i class="fas fa-plus-circle btn-plus"></i>
                             </div>
                             <div class="list-group teaching-content" id="group7">
-                                <div class="hover">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <div class="list-group-item">IT5630 - Advanced Project Management</div> 
-                                </div>
-                                <div class="hover">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <div class="list-group-item">IT5630 - Advanced Project Management</div> 
-                                </div>
+                                <% teaching.graduate_course.forEach(element => { %>
+                                    <div class="hover">
+                                        <i class="fas fa-trash-alt btn-trash"></i>
+                                        <i class="fas fa-arrows-alt btn-arrow"></i>
+                                        <div class="list-group-item"><%-element%> </div> 
+                                    </div>
+                                <% }) %>
                             </div> 
                         </div>
 
@@ -208,16 +185,13 @@
                                 <i class="fas fa-plus-circle btn-plus"></i>
                             </div>
                             <div class="list-group teaching-content" id="group8">
-                                <div class="hover">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <div class="list-group-item">IT5630 - Advanced Project Management</div> 
-                                </div>
-                                <div class="hover">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <div class="list-group-item">IT5630 - Advanced Project Management</div> 
-                                </div>
+                                <% teaching.undergraduate_courses.forEach(element => { %>
+                                    <div class="hover">
+                                        <i class="fas fa-trash-alt btn-trash"></i>
+                                        <i class="fas fa-arrows-alt btn-arrow"></i>
+                                        <div class="list-group-item"><%-element%> </div> 
+                                    </div>
+                                <% }) %>
                             </div> 
                         </div>
                     </div>
@@ -230,29 +204,15 @@
                     <i class="fas fa-plus-circle btn-plus"></i>
                 </div>
                 <div class="list-group" id="group4">
-                    <div class="hover thesis-link">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">
-                            <a href="#">Proposed Topics for Undergraduate (2018-2019)</a>
+                    <% thesis.link.forEach(element => { %>
+                        <div class="hover thesis-link">
+                            <i class="fas fa-trash-alt btn-trash"></i>
+                            <i class="fas fa-arrows-alt btn-arrow"></i>
+                            <div class="list-group-item">
+                               <%-element%> 
+                            </div>
                         </div>
-                    </div>
-    
-                    <div class="hover thesis-link">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">
-                            <a href="#">Proposed Topics for Master Students (2018-2019)</a>
-                        </div>
-                    </div>
-
-                    <div class="hover thesis-link">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">
-                            <a href="#">Proposed Topics for Master Students (2018-2019)</a>
-                        </div>
-                    </div>
+                    <% }) %>
                 </div>
                 <div class="thesis-container">
                     <div class="add">
@@ -260,29 +220,28 @@
                     </div>
                     
                     <div class="list-group thesis-list">
-
-                        <div class="thesis-item">
-                            <i class="fas fa-trash-alt btn-trash"></i>
-                            <i class="fas fa-arrows-alt btn-arrow"></i>
-    
-                            <div class="thesis-name">
-                                <div class="list-group-item">Phd Thesis Supervised</div>
-                                <i class="fas fa-plus-circle btn-plus"></i>
-                            </div>
-                            <div id="group10" class="list-group thesis-content thesis-example">
-                                <div class="hover">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <div class="list-group-item">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div> 
+                        <% thesis.content.forEach(element => { %>
+                            <div class="thesis-item">
+                                <i class="fas fa-trash-alt btn-trash"></i>
+                                <i class="fas fa-arrows-alt btn-arrow"></i>
+                                
+                                <div class="thesis-name">
+                                    <div class="list-group-item"><%-element.name%> </div>
+                                    <i class="fas fa-plus-circle btn-plus"></i>
                                 </div>
     
-                                <div class="hover">
-                                    <i class="fas fa-trash-alt btn-trash"></i>
-                                    <i class="fas fa-arrows-alt btn-arrow"></i>
-                                    <div class="list-group-item">Pham Thi Quynh (2007-2010): Measurement and checking Web service and business process</div> 
+                                <div id="group10" class="list-group thesis-content thesis-example">
+                                    <% element.list_content.forEach(content => { %>
+                                        <div class="hover">
+                                            <i class="fas fa-trash-alt btn-trash"></i>
+                                            <i class="fas fa-arrows-alt btn-arrow"></i>
+                                            <div class="list-group-item"><%-content%></div> 
+                                        </div>
+                                    <% }) %>
                                 </div>
                             </div>
-                        </div>
+                        <% }) %>
+                        
                     </div>
                 </div>
             </section>
@@ -293,23 +252,14 @@
                     <i class="fas fa-plus-circle btn-plus"></i>
                 </div>
                 <div class="list-group" id="group5">
-                    <div class="hover grant-item">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">Cloud service technologies - creation and providing services, provide digital content, access management. Funded by the Ministry of Science and Technology. Project Code KC.01.01/11-15</div>
-                    </div>
-                    <div class="hover grant-item">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">Research on Cloud Computing/Map-Reduce and Application in Student and Alumni information Management and Extraction. Funded by the Ministry of Education and Training. Project Code B2010-01-411-TĐ. http://www.BKProfile.com (in Vietnamese)</div>
-                    </div>
-                    <div class="hover grant-item">
-                        <i class="fas fa-trash-alt btn-trash"></i>
-                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                        <div class="list-group-item">Mechanism and Advanced Techniques for Software Development and Software Quality Assurance (2006-2009). Funded by the Ministry of Science and Technology. Project Code: KHCB2.034.06.</div>
-                    </div>
+                    <% research_grant.forEach(element => { %>
+                        <div class="hover grant-item">
+                            <i class="fas fa-trash-alt btn-trash"></i>
+                            <i class="fas fa-arrows-alt btn-arrow"></i>
+                            <div class="list-group-item"><%-element%> </div>
+                        </div>
+                    <% }) %>
                 </div>
-                
             </section> 
          
             <section id="publication" class="publication">
@@ -331,12 +281,13 @@
                                 <i class="fas fa-arrows-alt btn-arrow"></i>
                                 <div class="list-group-item item-pdf">Huynh Quyet Thang. Software Engineering Economics. Bach Khoa Ha Noi Publishing Inc, 2016. ISBN ISBN 978-604-938-864-4</div>
                             </div>
-
-                            <div class="hover book-item">
-                                <i class="fas fa-trash-alt btn-trash"></i>
-                                <i class="fas fa-arrows-alt btn-arrow"></i>
-                                <div class="list-group-item item-pdf">Huynh Quyet Thang. Software Engineering Economics. Bach Khoa Ha Noi Publishing Inc, 2016. ISBN ISBN 978-604-938-864-4</div>
-                            </div>
+                            <% public.book.forEach(element => { %>
+                                <div class="hover book-item">
+                                    <i class="fas fa-trash-alt btn-trash"></i>
+                                    <i class="fas fa-arrows-alt btn-arrow"></i>
+                                    <div class="list-group-item item-pdf"><%-element.content%></div>
+                                </div>
+                            <% }) %>
                         </div>
                     </div>
 
@@ -348,30 +299,32 @@
                         </div>
 
                         <div class="list-group publication-list">
-                            <div class="publication-item">
-                                <i class="fas fa-trash-alt btn-trash"></i>
-                                <i class="fas fa-arrows-alt btn-arrow"></i>
-        
-                                <div class="publication-name">
-                                    <div class="list-group-item">A) International Journals</div>
-                                    <i class="fas fa-plus-circle btn-plus"></i>
-                                </div>
-                                <div id="group9" class="list-group publication-content">
-                                    <div class="hover">
-                                        <i class="fas fa-trash-alt btn-trash"></i>
-                                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                                        <i class="far fa-file-pdf btn-pdf"></i>
-                                        <div class="list-group-item item-pdf">Van-Quyet Nguyen, Quyet-Thang Huynh, Kyungbaek Kim. Estimating searching cost of regular path queries on large graphs by exploiting unit-subqueries. Journal of Heuristics (2018). https://doi.org/10.1007/s10732-018-9402-0. ISI, Q1 Journal, IF=1.129.</div> 
+                            <% public.paper.forEach(element => { %>
+                                <div class="publication-item">
+                                    <i class="fas fa-trash-alt btn-trash"></i>
+                                    <i class="fas fa-arrows-alt btn-arrow"></i>
+            
+                                    <div class="publication-name">
+                                        <div class="list-group-item"><%-element.name%> </div>
+                                        <i class="fas fa-plus-circle btn-plus"></i>
                                     </div>
-        
-                                    <div class="hover">
-                                        <i class="fas fa-trash-alt btn-trash"></i>
-                                        <i class="fas fa-arrows-alt btn-arrow"></i>
-                                        <i class="far fa-file-pdf btn-pdf"></i>
-                                        <div class="list-group-item item-pdf">Nguyen Hung-Cuong, Huynh Quyet-Thang and Le Hai-Trieu. Different Ranking of NHPP Software Reliability Growth Models with Generalized Measure and Predictability. International Journal of Applied Information Systems, Series Volume 7, Number 11, November 2014. ISSN 2249: 0868. pp. 1-6. DOI: 10.5120/ijais14-451257.</div> 
+                                    <div id="group9" class="list-group publication-content">
+                                        <% element.contents.forEach(content => { %>
+                                            <div class="hover">
+                                                <i class="fas fa-trash-alt btn-trash"></i>
+                                                <i class="fas fa-arrows-alt btn-arrow"></i>
+                                                <i class="far fa-file-pdf btn-pdf"></i>
+                                                <div class="list-group-item item-pdf">
+                                                    <%-content.content%>
+                                                    <% if (content.link !== "") { %>
+                                                        <%-content.link%> 
+                                                    <% } %>
+                                                </div> 
+                                            </div>
+                                        <% }) %>
                                     </div>
                                 </div>
-                            </div>
+                            <% }) %>
                         </div>
                     </div>
                 </div>

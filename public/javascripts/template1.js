@@ -1,6 +1,5 @@
 $(document).ready(function () {
     //
-    console.log(window);
     $('.navbar-toggler').click(function() {
         $(this).siblings('.collapse-wrapper').slideToggle();
     });
@@ -402,7 +401,6 @@ $(document).ready(function () {
             CKEDITOR.instances[selector].destroy(true);
         }
     }
-    console.log(window);
     window.addEventListener('dragstart', function() {
         $('.list-group-item').each(function (index, element) {
             // element == this

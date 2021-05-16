@@ -79,25 +79,18 @@ var getTemplateName  = function(){
   }
   
   var getNew = function(){
-      var name="";
       var content = []
       if($('#new').length=0){}
       else{
         var newTag = $('#new');
-        var name = newTag.find('.title').text().trim();
         var contentNewTag=newTag.find('.hover');
         for (let i = 0; i < contentNewTag.length; i++) {
             const element = contentNewTag[i];
             content.push(element.textContent.trim());
         }
       }
-      var newObj = {
-          'name':name,
-          'content':content
-      }
-      return newObj;
+      return content;
     } 
-    console.log(getNew())
   var getTeaching = function(){
     var teachingTag = $('.teaching .list-group');
     var academicYear =  $(teachingTag).find(".list-group-item.teaching-year").text().trim();
@@ -208,7 +201,7 @@ var getTemplateName  = function(){
     })
     return publications;
   }
-  console.log(getPublication())
+
   
   function Save(){
   
@@ -222,7 +215,7 @@ var getTemplateName  = function(){
             'about': getAbout(),
             'research_interests': getResearchInterest(),
             'academic': getAcademic(),
-            'new':getNew(),
+            'news':getNew(),
             'teaching': getTeaching(),
             'thesis': getThesis(),
             'research_grant': getResearchGrant(),
