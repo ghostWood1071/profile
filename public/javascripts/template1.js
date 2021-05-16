@@ -109,7 +109,7 @@ $(document).ready(function () {
         // Edit content
         $('.list-group-item').each(function (index, element) {
             // element == this
-            element.setAttribute('contenteditable', 'true');
+            element.setAttribute('contentEditable', 'true');
             var ck = CKEDITOR.inline(element, {
                 allowedContent: true
             })
@@ -319,7 +319,7 @@ $(document).ready(function () {
             // Add ckEditable again
             var items = Array.from(document.querySelectorAll('.list-group-item'));
             items.forEach((el, ind) => {
-                el.setAttribute('contenteditable', 'true');
+                el.setAttribute('contentEditable', 'true');
                 var ck = CKEDITOR.inline(items[ind], {
                     allowedContent: true
                 })
@@ -348,7 +348,7 @@ $(document).ready(function () {
             // Add ckEditable again
             var items = Array.from(document.querySelectorAll('.list-group-item'));
             items.forEach((el, ind) => {
-                el.setAttribute('contenteditable', 'true');
+                el.setAttribute('contentEditable', 'true');
                 var ck = CKEDITOR.inline(items[ind], {
                     allowedContent: true
                 })
@@ -385,7 +385,7 @@ $(document).ready(function () {
             // Add ckEditable again
             var items = Array.from(document.querySelectorAll('.list-group-item'));
             items.forEach((el, ind) => {
-                el.setAttribute('contenteditable', 'true');
+                el.setAttribute('contentEditable', 'true');
                 var ck = CKEDITOR.inline(items[ind], {
                     allowedContent: true
                 })
@@ -406,7 +406,7 @@ $(document).ready(function () {
     window.addEventListener('dragstart', function() {
         $('.list-group-item').each(function (index, element) {
             // element == this
-            element.setAttribute('contenteditable', 'false');
+            element.setAttribute('contentEditable', 'false');
         });
     })    
     
@@ -414,7 +414,7 @@ $(document).ready(function () {
         loadCKEDITOR();
         $('.list-group-item').each(function (index, element) {
             // element == this
-            element.setAttribute('contenteditable', 'true');
+            element.setAttribute('contentEditable', 'true');
             var ck = CKEDITOR.inline(element, {
                 allowedContent: true
             })
@@ -422,10 +422,10 @@ $(document).ready(function () {
     })
     
     // Remove edit tool
-    removeEditTool = () => {
-        $("[contenteditable = 'true']").removeAttr('contenteditable');
-        $('[draggable = "true"]').removeAttr('draggable');
-        $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .chosen-file, .label-file, .pub-chosen-right, .success-wrapper, .mood-wrapper, .theme-setting, .footer, .submit').remove();
+    removeEditTools = () => {
+        $('[contentEditable = "true"]').attr('contentEditable', 'false');
+        $('[draggable = "true"]').attr('draggable', 'false');
+        $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .nav-img-upload, .label-file-img, .pub-chosen-right, .success-wrapper, .mood-wrapper, .theme-setting, .footer, .submit').remove();
         $('script').each(function(ind, el) {
             if($(el).attr('src') == 'https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js'
             || $(el).attr('src') == 'https://unpkg.com/sortablejs-make/Sortable.min.js'
@@ -436,6 +436,6 @@ $(document).ready(function () {
         loadCKEDITOR();
     }
 
-    if($('body').attr('id') != 'admin') removeEditTool();
+    if($('body').attr('id') != 'admin') removeEditTools();
 });
 
