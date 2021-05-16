@@ -1,5 +1,9 @@
-$(document).ready(function () {
-    function Check_Empty(){
+
+    function getHtmlPage(){
+        $("i.fas.fa-upload").remove();
+        $(".label-file-img.btn.btn-danger").remove();
+
+        $("body").removeAttr("id");
         //check research-interest element
         if (Check_Element_Empty($('.research'))){
             $('.research').remove()
@@ -79,8 +83,8 @@ $(document).ready(function () {
         $('.btn-submit').remove()
         if ($('.footer').html() == '')
             $('.footer').remove()
-        var html = '<!DOCTYPE html>\n'
-        html +=document.documentElement.innerHTML
+        var html = '<!DOCTYPE html>\n <html> \n'
+        html += $('html').html()+"\n </html>";
         return html
     }
     function Check_Element_Empty(element){
@@ -97,9 +101,9 @@ $(document).ready(function () {
         }
     }
     
-    removeEditTools = () => {
-        $('[contentEditable = "true"]').attr('contentEditable', 'false');
-        $('[draggable = "true"]').attr('draggable', 'false');
+    var removeEditTools = () => {
+        $("[contenteditable = 'true']").removeAttr('contenteditable');
+        $('[draggable = "true"]').removeAttr('draggable');
         $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .chosen-file, .label-file, .pub-chosen-right, .success-wrapper, .mood-wrapper, .theme-setting, .footer, .submit').remove();
         $('script').each(function(ind, el) {
             if($(el).attr('src') == 'https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js'
@@ -111,8 +115,7 @@ $(document).ready(function () {
         loadCKEDITOR();
     }
     
-    function Save(){
-        Check_Empty()
-        removeEditTools()
+    function getGuessHtml(){
+        removeEditTools();
+        return getHtmlPage();
     }    
-});

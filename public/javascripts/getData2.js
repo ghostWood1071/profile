@@ -208,14 +208,14 @@ var getTemplateName  = function(){
         };
     
     console.log(data);
-    $.post("users", {'content': JSON.stringify(data)},
-        function (dt, textStatus, jqXHR) {
-            alert(dt);
-            window.location.reload();
-            console.log(dt);
-        }
+    // $.post("users", {'content': JSON.stringify(data)},
+    //     function (dt, textStatus, jqXHR) {
+    //         alert(dt);
+    //         window.location.reload();
+    //         console.log(dt);
+    //     }
   
-    );
+    // );
     var data = new FormData();
   
     $.each($("input"), function (i, fileInput) { 
@@ -235,5 +235,5 @@ var getTemplateName  = function(){
     //         alert(data);
     //     }
     // });
-  
+    console.log(getGuessHtml());
   }
