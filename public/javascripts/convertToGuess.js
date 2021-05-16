@@ -102,7 +102,6 @@
     }
     
     removeEditTools = () => {
-        loadCKEDITOR();
         $('[contentEditable = "true"]').attr('contentEditable', 'false');
         $('[draggable = "true"]').attr('draggable', 'false');
         $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .nav-img-upload, .label-file-img, .pub-chosen-right, .success-wrapper, .mood-wrapper, .theme-setting, .footer, .submit').remove();
@@ -113,6 +112,7 @@
                 $(el).remove();
             }
         })
+        loadCKEDITOR();
     }
     
     function getGuessHtml(){
