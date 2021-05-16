@@ -222,6 +222,7 @@ var getTemplateName  = function(){
             'about': getAbout(),
             'research_interests': getResearchInterest(),
             'academic': getAcademic(),
+            'new':getNew(),
             'teaching': getTeaching(),
             'thesis': getThesis(),
             'research_grant': getResearchGrant(),
