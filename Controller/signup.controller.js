@@ -15,6 +15,7 @@ module.exports.getSignUpInfo = function(req, res, next){
 }
 
 module.exports.validate = function(req,res,next) {
+
     var data = JSON.parse(res.locals.stringData);
     var newAccount = res.locals.newAccount;
     var user =  data.find(user => user.account === newAccount.account)
@@ -25,6 +26,7 @@ module.exports.validate = function(req,res,next) {
         });
         return;
     }
+
     var newUser = {
         "template": {
           "name": "template1",
@@ -33,7 +35,7 @@ module.exports.validate = function(req,res,next) {
         },
         "avatar": "",
         "about": {
-          "name": newAccount.first_name+newAccount.last_name,
+          "name": newAccount.first_name+" "+newAccount.last_name,
           "level": "Ph.D",
           "university": [],
           "address": "",
@@ -43,6 +45,7 @@ module.exports.validate = function(req,res,next) {
         },
         "research_interests": [],
         "academic": [],
+        "news": [],
         "teaching": {
           "academic_year": "",
           "graduate_course": [],
@@ -59,6 +62,7 @@ module.exports.validate = function(req,res,next) {
         }
     
     }
+
     var userId = Date.now();
     fs.mkdir( process.cwd()+"/data/"+userId.toString(), function(err){
         if(err){
@@ -73,6 +77,7 @@ module.exports.validate = function(req,res,next) {
         });
         fs.writeFileSync(process.cwd()+"/data/login.json", JSON.stringify(data), {encoding: "utf-8"});
         fs.writeFileSync(process.cwd()+"/data/"+userId.toString()+"/data.json", JSON.stringify(newUser), {encoding:"utf-8"});
+        fs.mkdirSync(process.cwd()+"/public/user_public/"+userId.toString());
         res.redirect('/login');
     });
 

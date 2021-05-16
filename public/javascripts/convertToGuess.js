@@ -83,8 +83,7 @@ var path = imgSrc.substr(0, imgSrc.lastIndexOf("/")+1);
         $('.btn-submit').remove()
         if ($('.footer').html() == '')
             $('.footer').remove()
-        var html = '<!DOCTYPE html>\n <html> \n'
-        html += $('html').html()+"\n </html>";
+        var html = '<!DOCTYPE html>\n'+document.documentElement.outerHTML;
         return html
     }
     function Check_Element_Empty(element){
