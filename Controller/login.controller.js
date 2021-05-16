@@ -2,7 +2,7 @@ var fs = require('fs');
 
 module.exports.auth = function(req, res, next){
     if(req.signedCookies.data){
-        console.log("ok");
+        
         next();
         return;
     } else

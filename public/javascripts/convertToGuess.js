@@ -1,4 +1,5 @@
-
+var imgSrc = $("#avatar-img").attr("src");
+var path = imgSrc.substr(0, imgSrc.lastIndexOf("/")+1);
     function getHtmlPage(){
         
 
@@ -111,7 +112,9 @@
             || $(el).attr('src') == '/ckeditor/ckeditor.js') {
                 $(el).remove();
             }
-        })
+        });
+        $('.fas.fa-upload').remove();
+        $('.btn-plus').remove();
         loadCKEDITOR();
     }
     

@@ -1,11 +1,8 @@
 var fs = require("fs");
 
 module.exports.getUserInfo = function (req, res, next) {
-   console.log("ok user");
     var dataPath = req.signedCookies.data;
-    console.log(dataPath);
     var user  = JSON.parse(fs.readFileSync(process.cwd()+"\\data\\"+dataPath+"\\data.json", {encoding: "utf-8"}));
-    console.log(user);
     res.render(user.template.name, {
         template: user.template,
         avatar: user.avatar,
@@ -35,7 +32,7 @@ module.exports.saveData = function(req, res, next){
     oldUser.thesis = newUser.thesis;
     oldUser.research_grant = newUser.research_grant;
     oldUser.publications = newUser.publications;
-    oldUser.new = newUser.new;
+    oldUser.news = newUser.news;
 
     try {
         fs.writeFileSync(dataPath, JSON.stringify(oldUser));
@@ -44,7 +41,6 @@ module.exports.saveData = function(req, res, next){
         res.send(error);
     }
   
-   res.send("ok");
 }
 
 

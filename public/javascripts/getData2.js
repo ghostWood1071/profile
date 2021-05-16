@@ -1,24 +1,22 @@
+
 var getTemplateName  = function(){ 
     return $('#template').text()
   };
   var getBackGroundColor = function(){
-    return $('html').css('--primary-background');
+    return $('html').css('--primary-background')==undefined? $('html').css('--primaryColor'):$('html').css('--primary-background');
   }
   
   var getColor = function(){
-    return $('html').css('--primary-color');
+    return $('html').css('--primary-color') == undefined? $('html').css('--primaryColor'): $('html').css('--primary-color'); 
   }
   var getAvatar = function(){
     if($("#file-img").val() === ""){
         var attr = $('#avatar-img').attr('src');
         attr = attr.substr(attr.lastIndexOf("/")+1);
-        console.log(attr);
         return attr;
     }
     else {
-        
-        var atts = getFileName($("#file").val());
-        console.log(atts)
+        var atts = getFileName($("#file-img").val());
         return atts;
     }
   }
@@ -38,7 +36,9 @@ var getTemplateName  = function(){
     var phone = $(contactTag).find('.list-group-item')[1].textContent.trim()
     var fax = $(contactTag).find('.list-group-item')[2].textContent.trim()
     var mail = $(contactTag).find('.list-group-item')[3].textContent.trim().split(';');
-  
+    for(var i = 0; i<mail.length; i++){
+      mail[i] = mail[i].replaceAll("\n","").trim();
+    }
     return {
         'name': name,
         'level': position,
@@ -158,7 +158,6 @@ var getTemplateName  = function(){
   }
   
   var getPublication = function(){
-    var publications=[];
     var bookTag = $('.publication-book .list-group .hover');
     var books = []
     for(var i = 0; i<bookTag.length; i++){
@@ -195,16 +194,19 @@ var getTemplateName  = function(){
         });
       }
       
-    publications.push({
-        'book': books,
-        'paper': papers
-    })
-    return publications;
+      return {
+          'book': books,
+          'paper': papers
+      }  
   }
 
-  
-  function Save(){
-  
+async function Save(){
+        if($("#avatar-img").attr("src") !== imgSrc){
+            var fakepath = $("#file-img").val();
+            fakepath =  fakepath.substr(fakepath.lastIndexOf("\\")+1);
+            path = path+fakepath;
+            $("#avatar-img").attr("src", path);
+        }
         var data ={ 
             'template':{
                 'name': getTemplateName(),
@@ -223,32 +225,38 @@ var getTemplateName  = function(){
         };
     
     console.log(data);
-    // $.post("users", {'content': JSON.stringify(data)},
-    //     function (dt, textStatus, jqXHR) {
-    //         alert(dt);
-    //         window.location.reload();
-    //         console.log(dt);
-    //     }
+    await $.post("users", {'content': JSON.stringify(data)},
+        function (dt, textStatus, jqXHR) {
+            alert(dt);
+            console.log(dt);
+        }
   
-    // );
+    );
     var data = new FormData();
   
     $.each($("input[type = 'file']"), function (i, fileInput) { 
          data.append('file-'+i,  $(fileInput).get(0).files[0])
-         console.log($(fileInput).val())
     });
   
-    // $.ajax({
-    //     url: '/users/upfile',
-    //     data: data,
-    //     cache: false,
-    //     contentType: false,
-    //     processData: false,
-    //     method: 'POST',
-    //     type: 'POST', // For jQuery < 1.9
-    //     success: function(data){
-    //         alert(data);
-    //     }
-    // });
-    console.log(getGuessHtml());
-  }
+   await $.ajax({
+        url: '/users/upfile',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'POST',
+        type: 'POST', 
+        success: function(data){
+            console.log(data);
+        }
+    });
+
+    var guesspage = getGuessHtml();
+    console.log(guesspage);
+    await $.post("/users/createguess", {data: guesspage.toString()},
+      function (data, textStatus, jqXHR) {
+          console.log(data.data);
+      }
+    );
+    window.location.reload();
+}
