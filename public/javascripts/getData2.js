@@ -60,6 +60,7 @@ var getTemplateName  = function(){
     return research_interest;
   }
   
+
   var getAcademic = function(){
     var academicTag = $('.academic-item');
     var academic_record = [];
@@ -77,6 +78,26 @@ var getTemplateName  = function(){
     return academic_record;
   }
   
+  var getNew = function(){
+      var name="";
+      var content = []
+      if($('#new').length=0){}
+      else{
+        var newTag = $('#new');
+        var name = newTag.find('.title').text().trim();
+        var contentNewTag=newTag.find('.hover');
+        for (let i = 0; i < contentNewTag.length; i++) {
+            const element = contentNewTag[i];
+            content.push(element.textContent.trim());
+        }
+      }
+      var newObj = {
+          'name':name,
+          'content':content
+      }
+      return newObj;
+    } 
+    console.log(getNew())
   var getTeaching = function(){
     var teachingTag = $('.teaching .list-group');
     var academicYear =  $(teachingTag).find(".list-group-item.teaching-year").text().trim();
