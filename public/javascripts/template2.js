@@ -146,7 +146,7 @@ $('.themes-item').each(function() {
     });
 
     $('.btn-apply').click(function() {
-      $('#template').html(`Template ${templateName}`);
+      $('#template').html(`template${templateName}`);
 
       $('.modal-themes').fadeOut(() => {
         $('.modal-themes').css('display', 'none');
@@ -154,6 +154,7 @@ $('.themes-item').each(function() {
       $('.modal-successful').fadeIn(() => {
         $('.modal-successful').css('display', 'block');
       });
+      Save();
     })
   })
 })

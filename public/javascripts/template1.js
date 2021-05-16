@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     //
     $('.navbar-toggler').click(function() {
@@ -425,6 +426,7 @@ $(document).ready(function () {
                 var number = $(el).text();
                 $('.btn-confirm-interface').click(function() {
                     $('#template').text(`template` + number);
+                    Save();
                 })
             })
         })

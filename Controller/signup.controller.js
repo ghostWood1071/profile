@@ -64,7 +64,7 @@ module.exports.validate = function(req,res,next) {
     }
 
     var userId = Date.now();
-    fs.mkdir( process.cwd()+"/data/"+userId.toString(), function(err){
+    fs.mkdir( process.cwd()+"/data/"+newAccount.account, function(err){
         if(err){
           res.send("create account fail");
           return;
@@ -73,11 +73,11 @@ module.exports.validate = function(req,res,next) {
           id: userId.toString(),
           account: newAccount.account,
           password: newAccount.password,
-          data_path: userId.toString()
+          data_path: newAccount.account
         });
         fs.writeFileSync(process.cwd()+"/data/login.json", JSON.stringify(data), {encoding: "utf-8"});
-        fs.writeFileSync(process.cwd()+"/data/"+userId.toString()+"/data.json", JSON.stringify(newUser), {encoding:"utf-8"});
-        fs.mkdirSync(process.cwd()+"/public/user_public/"+userId.toString());
+        fs.writeFileSync(process.cwd()+"/data/"+newAccount.account+"/data.json", JSON.stringify(newUser), {encoding:"utf-8"});
+        fs.mkdirSync(process.cwd()+"/public/user_public/"+newAccount.account);
         res.redirect('/login');
     });
 
