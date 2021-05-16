@@ -102,8 +102,9 @@
     }
     
     removeEditTools = () => {
-        $('[contentEditable = "true"]').attr('contentEditable', 'false');
-        $('[draggable = "true"]').attr('draggable', 'false');
+        $('body').removeAttr('id');
+        $('[contentEditable = "true"]').removeAttr('contentEditable');
+        $('[draggable = "true"]').removeAttr('draggable');
         $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .nav-img-upload, .label-file-img, .pub-chosen-right, .success-wrapper, .mood-wrapper, .theme-setting, .footer, .submit').remove();
         $('script').each(function(ind, el) {
             if($(el).attr('src') == 'https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js'
