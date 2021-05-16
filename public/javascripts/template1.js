@@ -420,20 +420,20 @@ $(document).ready(function () {
     })
     
     // Remove edit tool
-    removeEditTools = () => {
-        $('[contentEditable = "true"]').attr('contentEditable', 'false');
-        $('[draggable = "true"]').attr('draggable', 'false');
-        $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .nav-img-upload, .label-file-img, .pub-chosen-right, .success-wrapper, .mood-wrapper, .theme-setting, .footer, .submit').remove();
-        $('script').each(function(ind, el) {
-            if($(el).attr('src') == 'https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js'
-            || $(el).attr('src') == 'https://unpkg.com/sortablejs-make/Sortable.min.js'
-            || $(el).attr('src') == '/ckeditor/ckeditor.js') {
-                $(el).remove();
-            }
-        })
-        loadCKEDITOR();
-    }
+    // removeEditTools = () => {
+    //     $('[contentEditable = "true"]').attr('contentEditable', 'false');
+    //     $('[draggable = "true"]').attr('draggable', 'false');
+    //     $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .nav-img-upload, .label-file-img, .pub-chosen-right, .success-wrapper, .mood-wrapper, .theme-setting, .footer, .submit').remove();
+    //     $('script').each(function(ind, el) {
+    //         if($(el).attr('src') == 'https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js'
+    //         || $(el).attr('src') == 'https://unpkg.com/sortablejs-make/Sortable.min.js'
+    //         || $(el).attr('src') == '/ckeditor/ckeditor.js') {
+    //             $(el).remove();
+    //         }
+    //     })
+    //     loadCKEDITOR();
+    // }
 
-    if($('body').attr('id') != 'admin') removeEditTools();
+    // if($('body').attr('id') != 'admin') removeEditTools();
 });
 
