@@ -104,7 +104,7 @@ $(document).ready(function () {
     btn_remove();
 
     // Add ckEditable
-    if(document.querySelector("#admin")){
+    if($("body").attr('id') == 'admin'){
         // Edit content
         $('.list-group-item').each(function (index, element) {
             // element == this
@@ -419,19 +419,22 @@ $(document).ready(function () {
             })
         });
     })
-
-    // Save = () => {
-    //     $('.alert-success').addClass('active');
-    //     setTimeout(function() {
-    //         $('.alert-success').removeClass('active'); 
-    //     }, 2000)
-    // }
     
     // Remove edit tool
-    removeEdit = () => {
+    removeEditTool = () => {
         $('[contentEditable = "true"]').attr('contentEditable', 'false');
         $('[draggable = "true"]').attr('draggable', 'false');
-        $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .chosen-file, .label-file, .pub-chosen-right').remove();
+        $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .chosen-file, .label-file, .pub-chosen-right, .success-wrapper, .mood-wrapper, .theme-setting, .footer, .submit').remove();
+        $('script').each(function(ind, el) {
+            if($(el).attr('src') == 'https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js'
+            || $(el).attr('src') == 'https://unpkg.com/sortablejs-make/Sortable.min.js'
+            || $(el).attr('src') == '/ckeditor/ckeditor.js') {
+                $(el).remove();
+            }
+        })
+        loadCKEDITOR();
     }
+
+    if($('body').attr('id') != 'admin') removeEditTool();
 });
 
