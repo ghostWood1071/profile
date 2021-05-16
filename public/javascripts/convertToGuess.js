@@ -1,9 +1,8 @@
 
     function getHtmlPage(){
-        $("i.fas.fa-upload").remove();
-        $(".label-file-img.btn.btn-danger").remove();
+        
 
-        $("body").removeAttr("id");
+        
         //check research-interest element
         if (Check_Element_Empty($('.research'))){
             $('.research').remove()
@@ -101,10 +100,15 @@
         }
     }
     
-    removeEditTools = () => {
-        $('[contentEditable = "true"]').attr('contentEditable', 'false');
-        $('[draggable = "true"]').attr('draggable', 'false');
-        $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .nav-img-upload, .label-file-img, .pub-chosen-right, .success-wrapper, .mood-wrapper, .theme-setting, .footer, .submit').remove();
+    var removeEditTools = () => {
+        $("body").removeAttr("id");
+        $("[contenteditable = 'true']").removeAttr('contenteditable');
+        $('[draggable = "true"]').removeAttr('draggable');
+        $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .chosen-file, .label-file, .pub-chosen-right, .success-wrapper, .mood-wrapper, .theme-setting, .footer, .submit').remove();
+        $('.btn-plus').remove();
+        $("i.fas.fa-upload").remove();
+        $(".label-file-img.btn.btn-danger").remove();
+        $(".theme-setting").remove();
         $('script').each(function(ind, el) {
             if($(el).attr('src') == 'https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js'
             || $(el).attr('src') == 'https://unpkg.com/sortablejs-make/Sortable.min.js'

@@ -9,8 +9,8 @@ var getTemplateName  = function(){
     return $('html').css('--primary-color');
   }
   var getAvatar = function(){
-    if($("#file").val() === ""){
-        var attr = $('.avatar img').attr('src');
+    if($("#file-img").val() === ""){
+        var attr = $('#avatar-img').attr('src');
         attr = attr.substr(attr.lastIndexOf("/")+1);
         console.log(attr);
         return attr;
@@ -239,7 +239,7 @@ var getTemplateName  = function(){
     // );
     var data = new FormData();
   
-    $.each($("input"), function (i, fileInput) { 
+    $.each($("input[type = 'file']"), function (i, fileInput) { 
          data.append('file-'+i,  $(fileInput).get(0).files[0])
          console.log($(fileInput).val())
     });
