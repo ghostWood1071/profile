@@ -139,10 +139,10 @@ $(document).ready(function () {
         });
 
         // Popup alert
-        $('.submit .btn').click(function() {
+        $('.footer .btn').click(function() {
             $('.success-wrapper').addClass('active');
         })
-        $('.list-theme li[data-theme="theme2"]').click(function() {
+        $('.list-theme li:not([data-theme="theme1"])').click(function() {
             $('.mood-wrapper').addClass('active');
         })
         //
@@ -418,6 +418,18 @@ $(document).ready(function () {
             })
         });
     })
+
+    confirmTemplate = () => {
+        $('.list-theme li').each(function(ind, el) {
+            $(el).click(function() {
+                var number = $(el).text();
+                $('.btn-confirm-interface').click(function() {
+                    $('#template').text(`template` + number);
+                })
+            })
+        })
+    }
+    confirmTemplate();
     
     // Remove edit tool
     // removeEditTools = () => {
