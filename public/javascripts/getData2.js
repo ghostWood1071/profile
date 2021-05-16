@@ -162,7 +162,7 @@ var getTemplateName  = function(){
         var contents = [];
         for(var j = 0; j<contentTag.length; j++){
             content=$(contentTag[j]).find(".list-group-item").text().trim()
-            if(contentTag.find('input')[j].value.length=0)
+            if(contentTag.find('input')[j]== null)
                 link="";
             else{
                 var fakePath = contentTag.find('input')[j].value;
@@ -180,7 +180,7 @@ var getTemplateName  = function(){
             'contents': contents
         });
       }
-  
+      
     publications.push({
         'book': books,
         'paper': papers
@@ -208,14 +208,14 @@ var getTemplateName  = function(){
         };
     
     console.log(data);
-    $.post("users", {'content': JSON.stringify(data)},
-        function (dt, textStatus, jqXHR) {
-            alert(dt);
-            window.location.reload();
-            console.log(dt);
-        }
+    // $.post("users", {'content': JSON.stringify(data)},
+    //     function (dt, textStatus, jqXHR) {
+    //         alert(dt);
+    //         window.location.reload();
+    //         console.log(dt);
+    //     }
   
-    );
+    // );
     var data = new FormData();
   
     $.each($("input"), function (i, fileInput) { 
@@ -235,5 +235,5 @@ var getTemplateName  = function(){
     //         alert(data);
     //     }
     // });
-  
+    console.log(getGuessHtml());
   }
