@@ -162,7 +162,7 @@ var getTemplateName  = function(){
         var contents = [];
         for(var j = 0; j<contentTag.length; j++){
             content=$(contentTag[j]).find(".list-group-item").text().trim()
-            if(contentTag.find('input').length=0)
+            if(contentTag.find('input')[j].value.length=0)
                 link="";
             else{
                 var fakePath = contentTag.find('input')[j].value;
