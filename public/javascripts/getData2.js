@@ -227,7 +227,7 @@ async function Save(){
     console.log(data);
     await $.post("users", {'content': JSON.stringify(data)},
         function (dt, textStatus, jqXHR) {
-            alert(dt);
+            // alert(dt);
             console.log(dt);
         }
   
@@ -258,5 +258,13 @@ async function Save(){
           console.log(data.data);
       }
     );
-    window.location.reload();
+
+    $('.alert-success').addClass('active');
+    setTimeout(function() {
+        $('.alert-success').removeClass('active'); 
+    }, 5000);
+
+    setTimeout(function() {
+        window.location.reload();
+    }, 1000)
 }

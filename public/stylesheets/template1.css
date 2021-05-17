@@ -36,13 +36,15 @@ nav {
   border-top-right-radius: 15px;
   transition: 0.4s;
   background-color: #fff;
-  border-radius: 15px !important;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   width: calc(100% + 40px);
   transform: translateX(-20px);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 nav.sticky {
-  background-color: #fff;
+  background-color: var(--primary-color);
   border-radius: 0;
 }
 
@@ -57,7 +59,6 @@ nav.sticky {
 .nav-link {
   font-size: 18px;
   font-weight: 500;
-  text-transform: uppercase;
 }
 
 .nav-link:hover {
@@ -66,6 +67,22 @@ nav.sticky {
 
 .nav-item.active .nav-link {
   color: var(--primary-color) !important;
+}
+
+nav.sticky a:not(.navbar-brand) {
+  color: #f1f1f1af !important;
+}
+
+nav.sticky .navbar-brand {
+  color: #fff !important;
+}
+
+nav.sticky .nav-link:hover {
+  color: #fff !important;
+}
+
+nav.sticky .nav-item.active .nav-link {
+  color: #fff !important;
 }
 
 .main {
@@ -236,6 +253,7 @@ nav.sticky {
 
 .list-group-item {
   background-color: transparent !important;
+  text-align: justify;
 }
 
 .contact-group {
@@ -477,29 +495,77 @@ p {
 
 /* Theme */
 
-.theme-setting{
+.theme-setting,
+.user-wrapper {
   position: fixed;
   top: 10%;
-  right: 0;
   background-color: #fff;
-  width: 152px;
-  transform: translateX(100%);
   transition: 0.4s;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+  rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
   border-radius: .5rem;
   z-index: 999;
 }
 
-.btn-cogs{
+.theme-setting {
+  width: 152px;
+  transform: translateX(100%);
+  right: 0;
+}
+
+.user-wrapper {
+  left: 0;
+  transform: translateX(-100%);
+  min-width: 190px;
+  max-width: 220px;
+}
+
+.btn-cogs,
+.btn-user {
   position: absolute;
   height: 40px;
   width: 40px;
-  left: -40px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+  rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.btn-cogs {
+  left: -40px;
+}
+
+.user-content-item {
+  font-weight: 500;
+  padding: .5rem 1rem;
+  transition: .4s;
+}
+
+.user-content-item:not(.user-content-item:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.user-content-item:first-child:hover {
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+
+.user-content-item:not(.user-content-item:first-child):hover {
+  padding-left: 1.5rem;
+  padding-right: 0;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.user-content-item img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.btn-user {
+  right: -40px;
 }
 
 .content-theme h5{
@@ -616,7 +682,8 @@ p {
 
 /* Alert */
 .mood-wrapper,
-.success-wrapper {
+.success-wrapper,
+.change-password-wrapper {
   position: fixed;
   top: 0;
   left: 0;
@@ -627,19 +694,22 @@ p {
 }
 
 .mood-wrapper.active,
-.success-wrapper.active {
+.success-wrapper.active,
+.change-password-wrapper.active {
   display: block;
 }
 
 .mood,
-.success {
+.success,
+.change-password-content {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, .4);
 }
 
 .main-mood,
-.main-success {
+.main-success,
+.form-group-change-password {
   position: absolute;
   border-radius: .5rem;
   background-color: #fff;
@@ -650,6 +720,20 @@ p {
   transform-origin: 0;
   transform: translate(-50%, -50%);
   animation: showAlert .6s;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.form-group-change-password {
+  width: 30%;
+}
+
+.form-group-change-password label {
+  margin-top: 1rem;
+  margin-bottom: .125rem;
+}
+
+.btn-confirm-changePass {
+  margin-top: 1rem;
 }
 
 .main-success {
@@ -691,6 +775,7 @@ p {
 .alert-danger.active,
 .alert-success.active {
   display: block;
+  z-index: 999;
 }
 
 .alert {

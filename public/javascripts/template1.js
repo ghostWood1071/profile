@@ -21,11 +21,15 @@ $(document).ready(function () {
     navItem[0].classList.add('active');
     
     // Active sticky when scroll
+    if(scrollY > 0) document.getElementsByTagName('nav')[0].classList.add('sticky');
     window.addEventListener('scroll', function(){
         var nav = document.getElementsByTagName('nav')[0];
         var y = scrollY;
         if(y > 0 ){
-            nav.classList.add('sticky')
+            nav.classList.add('sticky');
+        }
+        else {
+            nav.classList.remove('sticky');
         }
     })
     
@@ -55,14 +59,26 @@ $(document).ready(function () {
     // Set color
     const rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`;
     
-    $('.btn-cogs').click(function(){
-        if($(this).hasClass('active')){
-            $(this).removeClass('active');
-            $(this).parent().css('transform', 'translateX(100%)');
+    $('.btn-cogs, .btn-user').click(function(){
+        if($(this).hasClass('btn-cogs')) {
+            if($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                $(this).parent().css('transform', 'translateX(100%)');
+            }
+            else {
+                $(this).addClass('active');
+                $(this).parent().css('transform', 'translateX(0)');
+            }
         }
-        else{
-            $(this).addClass('active');
-            $(this).parent().css('transform', 'translateX(0)');
+        else {
+            if($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                $(this).parent().css('transform', 'translateX(-100%)');
+            }
+            else {
+                $(this).addClass('active');
+                $(this).parent().css('transform', 'translateX(0)');
+            }
         }
     })
     
@@ -146,9 +162,12 @@ $(document).ready(function () {
         $('.list-theme li:not([data-theme="theme1"])').click(function() {
             $('.mood-wrapper').addClass('active');
         })
+        $('.user-change-password').click(function() {
+            $('.change-password-wrapper').addClass('active');
+        })
         //
         $('.btn-close').click(function() {
-                $('.mood-wrapper, .success-wrapper').removeClass('active');
+                $('.mood-wrapper, .success-wrapper, .change-password-wrapper').removeClass('active');
         })
     }
     
@@ -432,22 +451,7 @@ $(document).ready(function () {
         })
     }
     confirmTemplate();
-    
-    // Remove edit tool
-    // removeEditTools = () => {
-    //     $('[contentEditable = "true"]').attr('contentEditable', 'false');
-    //     $('[draggable = "true"]').attr('draggable', 'false');
-    //     $('.fa-arrows-alt, .fa-trash-alt, .fa-plus, .nav-img-upload, .label-file-img, .pub-chosen-right, .success-wrapper, .mood-wrapper, .theme-setting, .footer, .submit').remove();
-    //     $('script').each(function(ind, el) {
-    //         if($(el).attr('src') == 'https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js'
-    //         || $(el).attr('src') == 'https://unpkg.com/sortablejs-make/Sortable.min.js'
-    //         || $(el).attr('src') == '/ckeditor/ckeditor.js') {
-    //             $(el).remove();
-    //         }
-    //     })
-    //     loadCKEDITOR();
-    // }
 
-    // if($('body').attr('id') != 'admin') removeEditTools();
+
 });
 
