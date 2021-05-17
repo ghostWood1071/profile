@@ -83,6 +83,7 @@ nav.sticky {
 .wrap-about {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .about-right{
@@ -98,12 +99,13 @@ nav.sticky {
 }
 
 .nav-img-overlay {
-  height: 100%;
+  height: 40px;
   width: 100%;
   position: absolute;
-  top: 0;
+  transform: translateY(100%);
+  bottom: 0;
   left: 0;
-  transition: .4s;
+  transition: .3s;
   background: transparent;
 }
 
@@ -119,20 +121,30 @@ nav.sticky {
 .avatar label {
   position: absolute;
   opacity: 0;
-  transition: 0.6s;
-  top: 50%;
+  transition: 0.3s;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 100%);
   margin: 0;
+  height: 40px;
+  width: 40px;
+  color: #f1f1f1;
+}
+
+.label-file-img .fa-camera {
+  font-size: 40px;
+  position: absolute;
 }
 
 .avatar:hover .nav-img-overlay {
   z-index: 5;
+  transform: translateY(0);
   background-color: rgba(0, 0, 0, .4);
 }
 
 .avatar:hover .label-file-img {
-  opacity: 1;
+  opacity: .8;
+  transform: translate(-50%, 0);
   z-index: 6;
 }
 
@@ -467,7 +479,7 @@ p {
 
 .theme-setting{
   position: fixed;
-  top: 20%;
+  top: 10%;
   right: 0;
   background-color: #fff;
   width: 152px;
@@ -540,7 +552,7 @@ p {
 }
 
 [data-color="color4"]{
-  background-color: var(--warning);
+  background-color: #bd5d38;
 }
 
 [data-color="color5"]{
