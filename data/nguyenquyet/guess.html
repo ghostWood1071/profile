@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" style="--primary-color:  #c74a73; --primary-background:linear-gradient(to top, rgb(11, 163, 96) 0%, rgb(60, 186, 146) 100%)"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Văn Quyết</title>
+    <!-- Font roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- CkEditable -->
+    <style>.cke{visibility:hidden;}</style>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/stylesheets/template1.css">
+  <script type="text/javascript" src="http://localhost:3000/ckeditor/config.js?t=L0QD"></script><link rel="stylesheet" type="text/css" href="http://localhost:3000/ckeditor/skins/moono-lisa/editor.css?t=L0QD"><script type="text/javascript" src="http://localhost:3000/ckeditor/lang/vi.js?t=L0QD"></script><script type="text/javascript" src="http://localhost:3000/ckeditor/styles.js?t=L0QD"></script><link rel="stylesheet" type="text/css" href="http://localhost:3000/ckeditor/plugins/dialog/styles/dialog.css"></head>
+  <body>
+    <div style="display:none" id="template">template2</div>
+    <div class="container main">
+      <nav class="navbar navbar-expand-custom navbar-light nav sticky">
+        <a href="#" class="navbar-brand">HOME</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-list">
+            <li class="nav-item about active" data-page="about">
+              <a class="nav-link about" href="#about">about</a>
+            </li>
+            <li class="nav-item research" data-page="research">
+              <a href="#research" class="nav-link research">Research Interests</a>
+            </li>
+            <li class="nav-item academic" data-page="academic">
+              <a class="academic nav-link" href="#academic">Academic</a>
+            </li>
+            
+            <li class="nav-item teaching" data-page="teaching">
+              <a class="nav-link teaching" href="#teaching">teaching</a>
+            </li>
+            
+            
+            <li class="nav-item publication" data-page="publication">
+              <a class="nav-link publication" href="#publication">publications</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="content wrap-about" id="about">
+        <div class="avatar col-12 col-sm-12 col-md-5 col-lg-4">
+          <div class="nav-img-overlay"></div>
+          <img id="avatar-img" src="/user_public/nguyenquyet/quyet.jpg" alt="avatar">
+          
+          
+        </div>
+        <div class="about-right col-12 col-sm-12 col-md-7 col-lg-8">
+          <h3>
+            <div class="name list-group-item"><p>Nguyễn Văn Quyết</p></div>
+          </h3>
+          <div class="title">
+            <h5><div class="position list-group-item"><p>Data Scientist, PhD in Computer Science</p></div></h5>
+            
+          </div>
+          
+          <!-- university container -->
+          <div class="list-group education" id="group1">
+            
+              <div class="hover">
+                
+                
+                <div class="list-group-item"><p>Department of Software Engineering</p></div>
+              </div>
+            
+              <div class="hover">
+                
+                
+                <div class="list-group-item"><p>Hung Yen University of Education and technology</p></div>
+              </div>
+            
+            <!-- -------------------------------------------------------------------- -->
+          </div>
+        </div>
+      </div>
+
+      <!-- contact container -->
+      <div class="content wrap-address">
+        <div class="title">
+          <h2>Contact Information</h2>
+        </div>
+        <div class="list-group contact">
+
+          <div class="contact-group">
+            <i class="fa fa-address-card icon" aria-hidden="true"></i>
+            <div class="list-group-item about_address"><p>Tien Thinh, Me Linh, Ha Noi, Viet Nam</p></div>
+          </div>
+
+          <div class="contact-group">
+            <i class="fa fa-phone-square icon" aria-hidden="true"></i>
+            <div class="list-group-item"><p>(+84) 912.188.636</p></div>
+          </div>
+
+          <div class="contact-group">
+            <i class="fa fa-fax icon" aria-hidden="true"></i>
+            <div class="list-group-item"><p>(+84) 912.188.636</p></div>
+          </div>
+
+          <!-- mail container -->
+          <div class="contact-group">
+            <i class="fa fa-envelope icon" aria-hidden="true"></i>
+            <div class="list-group-item"><p>quyetict@gmail.com</p></div>
+          </div>
+
+        </div>
+        <!-- ---------------------------------------------- -->
+      </div>
+
+      <!-- research interest container -->
+      <div class="content research" id="research">
+        <div class="title">
+          <h2>RESEARCH INTERESTS</h2>
+          
+        </div>
+        <div class="list-group" id="group2">
+          
+            <div class="hover">
+              
+              
+              <div class="list-group-item"><p>Having essential leadership skills with experience of project and organization management</p></div>
+            </div>
+          
+            <div class="hover">
+              
+              
+              <div class="list-group-item"><p>Strong team-work spirit with experience of working in an international environment for years</p></div>
+            </div>
+          
+            <div class="hover">
+              
+              
+              <div class="list-group-item"><p>Expert in exploring Big Data tools: Hadoop, Spark, Hive, Hbase, Kafka, Flume, Sqoop, Ambari</p></div>
+            </div>
+          
+            <div class="hover">
+              
+              
+              <div class="list-group-item"><p>Strong data analysis and programming skills especially with Hadoop/MapReduce and Java</p></div>
+            </div>
+          
+            <div class="hover">
+              
+              
+              <div class="list-group-item"><p>Over 6 years research and working experience in Big Data analytics and its applications</p></div>
+            </div>
+          
+        </div>
+      </div>
+       <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- academic container -->
+      <div class="content academic" id="academic">
+        <div class="title mb-3">
+          <h2>ACADEMIC</h2>
+          
+        </div>
+        <div class="list-group" id="group3">
+          
+            <div class="academic-item hover">
+              
+              
+              <div class="list-group-item academic-item-time"><p>September 2015 - August 2019</p></div>
+              <div class="list-group-item academic-item-name"><p><a data-cke-saved-href="#" href="#">Distributed Networks and Systems Laboratory, Chonnam National University (CNU),​​​​​​​</a></p></div>
+              <div class="list-group-item academic-item-location"><p>77 Yongbong-ro, Buk-gu, Gwangju 500-757, South Korea</p></div>
+              <div class="list-group-item academic-level"><p>Ph.d</p></div>
+              <div class="list-group-item academic-description text-secondary"><p>Personalized warning notification system based on geosocial big data;&nbsp;Supervisor: Associate Professor Kyungbaek Kim</p></div>
+            </div>
+          
+            <div class="academic-item hover">
+              
+              
+              <div class="list-group-item academic-item-time"><p>April 2011 - February 2013</p></div>
+              <div class="list-group-item academic-item-name"><p><a data-cke-saved-href="#" href="#">Hanoi University of Science and Technology (HUST)</a></p></div>
+              <div class="list-group-item academic-item-location"><p>Ha Noi, Viet Nam</p></div>
+              <div class="list-group-item academic-level"><p>Master</p></div>
+              <div class="list-group-item academic-description text-secondary"><p>Performance Evaluation of Parallel Software on a CPU-GPU System;&nbsp;Supervisor: Associate Professor Huynh Quyet Thang</p></div>
+            </div>
+          
+            <div class="academic-item hover">
+              
+              
+              <div class="list-group-item academic-item-time"><p>September 2005 – September 2009</p></div>
+              <div class="list-group-item academic-item-name"><p><a data-cke-saved-href="#" href="#">Hung Yen University of Technology and Education​​​​​​​</a></p></div>
+              <div class="list-group-item academic-item-location"><p>Hung Yen, Viet Nam</p></div>
+              <div class="list-group-item academic-level"><p>Bachelor</p></div>
+              <div class="list-group-item academic-description text-secondary"><p>TestPro Engine: Software for Recognition and Processing Exam Paper;&nbsp;Supervisor: Dr. Nguyen Minh Quy</p></div>
+            </div>
+          
+        </div>
+      </div>
+      <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- news container -->
+      
+      <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- teaching container -->
+      <div class="content teaching" id="teaching">
+        <div class="title">
+          <h2>TEACHING</h2>
+        </div>
+        <div class="list-group">
+          <div class="wrap-year d-flex">
+            <h4>ACADEMIC YEAR</h4>
+            <div class="list-group-item teaching-year" style="padding: 0; margin-left: 10px"><h4>2019/10 – now</h4></div>
+          </div>
+
+          
+
+          <div class="university undergraduate">
+            <div class="title">
+              <h5 class="text-secondary">UNDERGRADUATE COURSES</h5>
+              
+            </div>
+
+            <div class="list-group" name="same-text" id="group5">
+              
+                <div class="hover">
+                  
+                  
+                  <div class="list-group-item text-secondary"><p>Software Engineering</p></div>
+                </div>
+              
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- thesis container -->
+      
+      <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- research grant container -->
+      
+      <!-- ------------------------------------------------------------------------------------ -->
+
+      <!-- public container -->
+      <div class="content publication" id="publication">
+        <div class="title">
+          <h2 class="title">publications</h2>
+          
+        </div>
+        <div class="publications-wrapper list-group">
+          <!-- book container -->
+          
+
+          <!-- paper container -->
+          <div class="publication-detail">
+            <div class="publication-wrapper">
+
+              <div class="title">
+                <h5 class="subtitle list-group-item mr-2">PUBLISHED PAPERS (SELECTED)</h5>
+                
+                
+              </div>
+
+              <div class="publication-list list-group">
+                    <div class="publication-item" style="">
+                        <div class="title publication-name">
+                        <div class="list-group-item mr-2"><p><strong class="text-dark" style="opacity: 0.9; font-size: 17px">F) International Journals:</strong></p></div>
+                        
+                        
+                        
+                        </div>
+                        <div class="list-group" name="same-pdf">
+                            <div class="hover">
+                                
+                                
+                                <div class="list-group-item text-secondary"><p>Empty</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                
+                    
+                
+                    <div class="publication-item" style="">
+                      <div class="title publication-name">
+                        <div class="list-group-item mr-2"><p><strong class="text-dark" style="opacity: 0.9; font-size: 17px">International Journals (SCI/SCIE) </strong></p></div>
+                        
+                        
+                        
+                      </div>
+                      <div class="list-group" name="same-pdf" id="group12">
+                        
+                          <div class="hover">
+                            
+                            
+                            <div class="list-group-item text-secondary"><p>Tiep Vu Duc, Quyet Nguyen-Van, Kyungbaek Kim, "Design and Implementation of Geo-Social information based Personalized Warning Notification system", Smart Media Journal Vol.5 No.2 pp. 42-50, June 30, 2016.</p></div>
+                          </div>
+                        
+                          <div class="hover">
+                            
+                            
+                            <div class="list-group-item text-secondary"><p>Sinh Ngoc Nguyen, Van-Quyet Nguyen, Kyungbaek Kim, "Analysis of Legacy Middlebox Driven Security Threats of Software Defined Network", KNOM Review Vol.19 No.2 pp. 13-25, December 31, 2016.</p></div>
+                          </div>
+                        
+                          <div class="hover">
+                            
+                            
+                            <div class="list-group-item text-secondary"><p>Van-Quyet Nguyen, Sinh Ngoc Nguyen, Kyungbaek Kim, "Design of a Platform for Collecting and Analyzing Agricultural BigData", Journal of Digital Contents Society Vol.18 No.1 pp. 149-158, Feburary 28, 2017.</p></div>
+                          </div>
+                        
+                          <div class="hover">
+                            
+                            
+                            <div class="list-group-item text-secondary"><p>Van-Quyet Nguyen, Sinh-Ngoc Nguyen, Kyungbaek Kim, "Leveraging Social Media for Enriching Disaster related Location Trustiness", Journal of Digital Contents Society. Journal of Digital Contents Society Vol.18 No.3 pp. 567-575, June , 2017.</p></div>
+                          </div>
+                        
+                          <div class="hover">
+                            
+                            
+                            <div class="list-group-item text-secondary"><p>Giang-Truong Nguyen, Van-Quyet Nguyen, Sinh-Ngoc Nguyen, and Kyungbaek Kim, "Efficient Association Rule Mining based SON Algorithm for a Bigdata Platform", Journal of Digital Contents Society Vol.18 No.8 pp. 1593-1601, December 25, 2017.</p></div>
+                          </div>
+                        
+                      </div>
+                    </div>
+                
+              <div class="publication-item" draggable="false" style="">
+                      <div class="title publication-name">
+                        <div class="list-group-item mr-2"><p><strong class="text-dark" style="opacity: 0.9; font-size: 17px">Domestic Journals (Korea) </strong></p></div>
+                        
+                        
+                        
+                      </div>
+                      <div class="list-group" name="same-pdf" id="group12">
+                        
+                          <div class="hover">
+                            
+                            
+                            <div class="list-group-item text-secondary"><p>Tiep Vu Duc, Quyet Nguyen-Van, Kyungbaek Kim, "Design and Implementation of Geo-Social information based Personalized Warning Notification system", Smart Media Journal Vol.5 No.2 pp. 42-50, June 30, 2016.</p></div>
+                          </div>
+                        
+                          <div class="hover">
+                            
+                            
+                            <div class="list-group-item text-secondary"><p>Sinh Ngoc Nguyen, Van-Quyet Nguyen, Kyungbaek Kim, "Analysis of Legacy Middlebox Driven Security Threats of Software Defined Network", KNOM Review Vol.19 No.2 pp. 13-25, December 31, 2016.</p></div>
+                          </div>
+                        
+                          <div class="hover">
+                            
+                            
+                            <div class="list-group-item text-secondary"><p>Van-Quyet Nguyen, Sinh Ngoc Nguyen, Kyungbaek Kim, "Design of a Platform for Collecting and Analyzing Agricultural BigData", Journal of Digital Contents Society Vol.18 No.1 pp. 149-158, Feburary 28, 2017.</p></div>
+                          </div>
+                        
+                          <div class="hover">
+                            
+                            
+                            <div class="list-group-item text-secondary"><p>Van-Quyet Nguyen, Sinh-Ngoc Nguyen, Kyungbaek Kim, "Leveraging Social Media for Enriching Disaster related Location Trustiness", Journal of Digital Contents Society. Journal of Digital Contents Society Vol.18 No.3 pp. 567-575, June , 2017.</p></div>
+                          </div>
+                        
+                          <div class="hover">
+                            
+                            
+                            <div class="list-group-item text-secondary"><p>Giang-Truong Nguyen, Van-Quyet Nguyen, Sinh-Ngoc Nguyen, and Kyungbaek Kim, "Efficient Association Rule Mining based SON Algorithm for a Bigdata Platform", Journal of Digital Contents Society Vol.18 No.8 pp. 1593-1601, December 25, 2017.</p></div>
+                          </div>
+                        
+                      </div>
+                    </div></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+    </div>
+    <!-- JS -->
+    <script src="/javascripts/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="/javascripts/convertToGuess.js"></script>
+    <script src="/javascripts/getData2.js"></script>
+    <script src="/javascripts/template1.js"></script>
+  
+
+</body></html>

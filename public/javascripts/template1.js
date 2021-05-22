@@ -274,7 +274,7 @@ $(document).ready(function () {
                 $(this).parent().siblings('.publication-list').prepend(
                     `
                     <div class="publication-item">
-                        <div class="title">
+                        <div class="title publication-name">
                         <div class="list-group-item mr-2">
                             <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
                             >F) International Journals:</strong
