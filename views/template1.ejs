@@ -36,7 +36,7 @@
       <nav class="navbar navbar-expand-custom navbar-light nav">
         <a href="#" class="navbar-brand">HOME</a>
         <button
-          class="navbar-toggler d-lg-none"
+          class="navbar-toggler d-lg-none bg-light"
           type="button"
           data-toggle="collapse"
           data-target="#collapsibleNavId"
@@ -58,7 +58,7 @@
               <a class="academic nav-link" href="#academic">Academic</a>
             </li>
             <li class="nav-item new" data-page="new">
-              <a class="nav-link new" href="#new">new</a>
+              <a class="nav-link new" href="#new">news</a>
             </li>
             <li class="nav-item teaching" data-page="teaching">
               <a class="nav-link teaching" href="#teaching">teaching</a>
@@ -81,10 +81,9 @@
         <div class="avatar col-12 col-sm-12 col-md-5 col-lg-4">
           <div class="nav-img-overlay"></div>
           <img id="avatar-img" src="<%=path+avatar%>" alt="avatar" />
-          <input type="file" id="file-img" class="chosen-file nav-img-upload" hidden />
-          <label for="file-img" class="label-file-img btn btn-danger"
-            ><i class="fas fa-upload"></i
-          ></label>
+          <input type="file" accept="image/png, image/jpeg" id="file-img" class="chosen-file nav-img-upload" hidden />
+          <label for="file-img" class="label-file-img"
+            ><i class="fas fa-camera"></i></label>
         </div>
         <div class="about-right col-12 col-sm-12 col-md-7 col-lg-8">
           <h3>
@@ -420,7 +419,7 @@
         <button type="submit" onclick="Save()" class="btn btn-danger btn-submit">Save</button>
       </div>
       <div class="theme-setting">
-        <button class="btn btn-light btn-cogs">
+        <button class="btn btn-light btn-cogs btn-custom">
           <i class="fas fa-cogs"></i>
         </button>
         <div class="content-theme">
@@ -457,6 +456,31 @@
           </ul>
         </div>
       </div>
+      <!-- ---------------------------------------------------------------------- -->
+      <div class="user-wrapper">
+        <button class="btn btn-light btn-user btn-custom">
+          <i class="far fa-user"></i>
+        </button>
+        <div class="user-content">
+          <div class="user-content-item">
+            <img src="<%=path+avatar%>" alt="avatar">
+            Hello, Minh
+          </div>
+          <div class="user-content-item">
+            <div class="user-change-password">
+              <i class="fas fa-key" style="color: var(--primary-color);"></i>
+              Change Password
+            </div>
+          </div>
+          <div class="user-content-item">
+            <div class="user-sign-out">
+              <i class="fas fa-power-off" style="color: var(--primary-color);"></i>
+              Sign Out
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ---------------------------------------------------------------------- -->
       <div class="mood-wrapper">
         <div class="mood">
           <div class="main-mood">
@@ -471,7 +495,24 @@
           </div>
         </div>
       </div>
-      <div class="success-wrapper">
+      <!-- ---------------------------------------------------------------------- -->
+      <div class="change-password-wrapper">
+        <div class="change-password-content">
+          <div class="form-group form-group-change-password">
+            <button type="button" class="close btn-close" data-dismiss="alert">&times;</button> 
+            <h2>Change Your Password</h2>
+            <label for="oldPass">Old password:</label>
+            <input type="password" class="form-control" name="changePass" id="oldPass" aria-describedby="helpId" placeholder="Old Password..." required>
+            <label for="newPass">New password:</label>
+            <input type="password" class="form-control" name="changePass" id="newPass" aria-describedby="helpId" placeholder="New Password..." required>
+            <label for="confirmNewPass">Confirm new password:</label>
+            <input type="password" class="form-control" name="changePass" id="confirmNewPass" aria-describedby="helpId" placeholder="Confirm New Password..." required>
+            <button type="submit" name="changePass" class="btn btn-danger btn-confirm-changePass">Confirm</button>
+          </div>
+        </div>
+      </div>
+      <!-- ---------------------------------------------------------------------- -->
+      <!-- <div class="success-wrapper">
         <div class="success">
           <div class="main-success">
               <button type="button" class="close btn-close" data-dismiss="alert">&times;</button>
@@ -483,6 +524,14 @@
               </div>
           </div>
         </div>
+      </div> -->
+      <div class="alert alert-success">
+        <button type="button" class="close btn-close" data-dismiss="alert" style="margin-left: 1rem">&times;</button>
+        Your data was saved
+      </div>
+      <div class="alert alert-danger">
+        <button type="button" class="close btn-close" data-dismiss="alert" style="margin-left: 1rem">&times;</button>
+        Your data was not saved
       </div>
     </div>
     <!-- JS -->
