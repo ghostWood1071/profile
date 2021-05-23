@@ -201,6 +201,7 @@ var getTemplateName  = function(){
   }
 
 async function Save(){
+        var serverResult = [];
         if($("#avatar-img").attr("src") !== imgSrc){
             var fakepath = $("#file-img").val();
             fakepath =  fakepath.substr(fakepath.lastIndexOf("\\")+1);
@@ -227,8 +228,9 @@ async function Save(){
     console.log(data);
     await $.post("users", {'content': JSON.stringify(data)},
         function (dt, textStatus, jqXHR) {
-            // alert(dt);
-            console.log(dt);
+            if(dt.head)
+                serverResult.push(dt.head);
+
         }
   
     );
@@ -248,6 +250,7 @@ async function Save(){
         type: 'POST', 
         success: function(data){
             console.log(data);
+            serverResult.push(data.head);
         }
     });
 
@@ -255,16 +258,34 @@ async function Save(){
     console.log(guesspage);
     await $.post("/users/createguess", {data: guesspage.toString()},
       function (data, textStatus, jqXHR) {
-          console.log(data.data);
+          console.log(data.message);
+          serverResult.push(data.head);
       }
     );
 
+    if(serverResult.findIndex(x=>x==false)<0){
+        showSucess();
+    }
+    else{
+        showErr();
+    }
+}
+
+
+var showSucess =  function(){
     $('.alert-success').addClass('active');
     setTimeout(function() {
         $('.alert-success').removeClass('active'); 
     }, 5000);
-
     setTimeout(function() {
         window.location.reload();
     }, 1000)
 }
+
+var showErr = function () { 
+    $('.alert-danger').addClass('active');
+    setTimeout(function() {
+        $('.alert-danger').removeClass('active'); 
+    }, 5000);
+ }
+

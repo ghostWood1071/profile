@@ -31,9 +31,9 @@ btn[0].onclick = function() {
             showValidate(input[i]);
             check = false;
         }
-        else if (validate_password(input[3],input[4]) == false){
+        else if (validate_password(input[4],input[5]) == false){
             inputgroup[2].dataset.validate = "Mật khẩu không khớp"
-            showValidate(input[3])
+            showValidate(input[5])
             check = false;
         }
     }   
@@ -43,18 +43,20 @@ btn[0].onclick = function() {
     var first_name = $(input[0]).val();
     var last_name = $(input[1]).val();
     var account = $(input[2]).val();
-    var password = $(input[3]).val();
+    var email = $(input[3]).val();
+    var password = $(input[4]).val();
 
     $.post("signup",
     {
         first_name:first_name,
         last_name:last_name,
         account:account,
-        password:password
+        password:password,
+        email: email
     },
     function(data,Status,xhr){
         if(data.head){
-            alert(data.content);
+            alert(data.message);
             return;
         }
         window.location.replace("/login");
