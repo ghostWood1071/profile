@@ -795,6 +795,40 @@ ol {
   margin: 0;
 }
 
+.icon-check {
+  position: absolute;
+  right: .5rem;
+  bottom: 0.75rem;
+  display: none;
+}
+
+.icon-check-success {
+  color: var(--success);
+}
+
+.icon-check-error {
+  color: var(--danger);
+}
+
+.confirm-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.confirm-wrapper .btn-confirm-changePass {
+  margin-top: 0;
+  margin-right: 1rem;
+}
+
+.confirm-wrapper .alert-error {
+  display: none;
+  color: var(--danger);
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
 @keyframes showAlert {
 	from {
     opacity: 0;

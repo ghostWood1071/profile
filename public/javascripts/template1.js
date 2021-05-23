@@ -169,12 +169,68 @@ $(document).ready(function () {
         $('.btn-close').click(function() {
                 $('.mood-wrapper, .success-wrapper, .change-password-wrapper').removeClass('active');
         })
+        // Changed input of form change password
+        $('#newPass').change(function() {
+            if($(this).val() == '') {
+                $('.icon-check-success').removeClass('active');
+                $(this).siblings('.icon-check-success').fadeOut();
+                $(this).siblings('.icon-check-error').fadeIn();
+            }
+            else if($(this).val() == $('#confirmNewPass').val()) {
+                $('.icon-check-success').addClass('active');
+                $(this).siblings('.icon-check-error').fadeOut();
+                $('#confirmNewPass').siblings('.icon-check-error').fadeOut();
+                $(this).siblings('.icon-check-success').fadeIn();
+                $('#confirmNewPass').siblings('.icon-check-success').fadeIn();
+            }
+            else {
+                $('.icon-check-success').removeClass('active');
+                $(this).siblings('.icon-check-error').fadeOut();
+                $(this).siblings('.icon-check-success').fadeIn();
+            }
+        })
+        $('#confirmNewPass').change(function() {
+            if($('#newPass').val() == $('#confirmNewPass').val()) {
+                $('.icon-check-success').addClass('active');
+                $(this).siblings('.icon-check-error').fadeOut();
+                $(this).siblings('.icon-check-success').fadeIn();
+            }
+            else {
+                $('.icon-check-success').removeClass('active');
+                $(this).siblings('.icon-check-success').fadeOut();
+                $(this).siblings('.icon-check-error').fadeIn();
+            }
+        })
+        // Check form change password
+        checkFormPassword = () => {
+            var check = true;
+            // $('.icon-check-success').fadeIn();
+            $('.icon-check-success').each(function(ind, el) {
+                if(!$(this).hasClass('active')) {
+                    check = false;
+                    return;
+                } 
+            })
+            if(check) {
+                return $('#oldPass').val().trim() == '' ? false : true;
+            }
+            else
+                return false;
+        }
+
+        $('.btn-confirm-changePass').click(function() {
+            if(!checkFormPassword()) $('.alert-error').fadeIn();
+            else {
+                $('.alert-error').fadeOut();
+                // Do something
+            }
+        })
     }
     
     // Show button plus
     showBtn = () => {
         $('.title').hover(function () {
-                $(this).find('.fa-plus, .fa-trash-alt').css('opacity', '1');
+            $(this).find('.fa-plus, .fa-trash-alt').css('opacity', '1');
             }, function () {
                 // out
                 $(this).find('.fa-plus, .fa-trash-alt').css('opacity', '0');

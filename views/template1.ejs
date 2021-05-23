@@ -503,11 +503,22 @@
             <h2>Change Your Password</h2>
             <label for="oldPass">Old password:</label>
             <input type="password" class="form-control" name="currentPass" id="oldPass" aria-describedby="helpId" placeholder="Old Password..." required>
-            <label for="newPass">New password:</label>
-            <input type="password" class="form-control" name="newPass" id="newPass" aria-describedby="helpId" placeholder="New Password..." required>
-            <label for="confirmNewPass">Confirm new password:</label>
-            <input type="password" class="form-control" name="confirmPass" id="confirmNewPass" aria-describedby="helpId" placeholder="Confirm New Password..." required>
-            <button type="submit" name="changePass" class="btn btn-danger btn-confirm-changePass">Confirm</button>
+            <div class="change-password-item" style="position: relative;">
+              <label for="newPass">New password:</label>
+              <input type="password" class="form-control" name="newPass" id="newPass" aria-describedby="helpId" placeholder="New Password..." required>
+              <i class="fas fa-check-circle icon-check icon-check-success"></i>
+              <i class="fas fa-times-circle icon-check icon-check-error"></i>
+            </div>
+            <div class="change-password-item" style="position: relative;">
+              <label for="confirmNewPass">Confirm new password:</label>
+              <input type="password" class="form-control" name="confirmPass" id="confirmNewPass" aria-describedby="helpId" placeholder="Confirm New Password..." required>
+              <i class="fas fa-check-circle icon-check icon-check-success"></i>
+              <i class="fas fa-times-circle icon-check icon-check-error"></i>
+            </div>
+            <div class="confirm-wrapper">
+              <button type="submit" name="changePass" class="btn btn-danger btn-confirm-changePass">Confirm</button>
+              <span class="alert-error">Data fail</span>
+            </div>
           </div>
         </div>
       </div>
