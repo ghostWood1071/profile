@@ -1,11 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var dataHelper = require('../middleware/data.midleware');
 var fs = require('fs');
 
 /* GET home page. */
 router.get('/g/:account',function (req,res, next) {
-    var path = process.cwd()+"/data/"+req.params.account+"/guess.html";
+    var path = process.cwd()+"/public/user_public/"+req.params.account+"/guess.html";
     res.sendFile(path);
 });
 

@@ -114,6 +114,8 @@ var path = imgSrc.substr(0, imgSrc.lastIndexOf("/")+1);
         });
         $('.fas.fa-upload').remove();
         $('.btn-plus').remove();
+        $('.password-form').remove();
+        $('.modal-successful').remove();
         loadCKEDITOR();
     }
     

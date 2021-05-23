@@ -59,8 +59,8 @@
                 password: password
             },
             function (data, textStatus, jqXHR) {
-                if(data.head){
-                    alert(data.err);
+                if(data.head === "error"){
+                    alert(data.message);
                     return;
                 }
                 window.location.replace("/users");
