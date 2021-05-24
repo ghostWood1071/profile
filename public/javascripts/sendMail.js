@@ -38,7 +38,7 @@ btn[0].onclick = function() {
     var email = $(input[0]).val();
 
     
-    $.post("/users/sendMail",
+    $.post("/users/emailVerify",
     {
         email: email
     },

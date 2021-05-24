@@ -1,14 +1,15 @@
 var jwt = require('jsonwebtoken');
+var dotenv = require('dotenv').config();
 class TokenHelper{
-    constructor(signature){
-        this.signature = signature;
+    constructor(){
+        
     }
 
     encode(data, life){
         return new Promise(function(resolve, reject){
             jwt.sign(
                 {data: data},
-                this.signature,
+                process.env.TOKE_SECRET,
                 {
                     algorithm: "HS256",
                     expiresIn: life
@@ -23,7 +24,7 @@ class TokenHelper{
 
     decode(token){
         return new Promise(function(resolve, reject){
-            jwt.verify(token, this.signature, function(err, decoded){
+            jwt.verify(token, process.env.TOKE_SECRET, function(err, decoded){
                 if(err)
                     reject(err);
                 else

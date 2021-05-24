@@ -2,7 +2,12 @@ var express = require('express');
 var router = express.Router();
 var dbHelper = require("../helper/DBHelper");
 var md5 = require('md5');
-var helper = new dbHelper('ADMIN', 'sa', '111', 'profiledb');
+var dotenv = require('dotenv').config();
+var crypto = require('crypto-js');
+var Encoder = require('../helper/Encoder');
+
+var helper = new dbHelper(process.env.DB_SERVER, process.env.DB_USER, process.env.DB_PASS, process.env.DB_NAME);
+var encoder = new Encoder(process.env.CRYPTO_SECRET);
 
 router.get("/", function(req, res, next){
         if(req.signedCookies.uid == undefined){
@@ -27,7 +32,6 @@ router.post("/", async function(req,res,next){
                         res.send("error");
                         return;
                 }
-                console.log(data);
                 var set = data.recordset;
                 if(set.length == 0){
                         res.send({ 
@@ -36,13 +40,11 @@ router.post("/", async function(req,res,next){
                         });
                         return;
                 }
-                res.cookie("uid", set[0].id, {
-                        signed: true
-                });
 
-                res.cookie("pubPath", set[0].account, {
-                        signed: true
-                });
+                var uid = encoder.encode(set[0].id);
+                res.cookie("uid", uid, {signed: true});
+
+                res.cookie("pubPath", set[0].account, {signed: true});
 
                 res.redirect("/users");  
 

@@ -3,8 +3,9 @@ var route = express.Router();
 var dbHelper = require('../helper/DBHelper');
 var md5 = require('md5');
 var fs  = require('fs');
+var User = require('../model/user.model');
 
-var helper = new dbHelper('ADMIN', 'sa', '111', 'profiledb');
+var helper = new dbHelper(process.env.DB_SERVER, process.env.DB_USER, process.env.DB_PASS, process.env.DB_NAME);
 
 route.get('/',function(req, res,next){
     res.clearCookie("pubPath");
@@ -23,11 +24,12 @@ route.post('/', async function(req, res, next){
     }
 
     try{
-        var result =  await helper.excuteQuerry(`select account 
-                                             from Account 
-                                             where account = '${newAccount.account}' or 
-                                                   email = '${newAccount.email}'`
-                                            );
+        var accountQuerry = `select account 
+                             from Account 
+                             where account = '${newAccount.account}' or 
+                             email = '${newAccount.email}'`;
+                             
+        var result =  await helper.excuteQuerry(accountQuerry);
         console.log(result);
         if(result.recordset.length>0){
             res.send({
@@ -47,49 +49,18 @@ route.post('/', async function(req, res, next){
 });
 
 
+
 async function createAccount(newAccount, res){
-    var newUser = {
-        "template": {
-          "name": "template1",
-          "color": "#c74a73",
-          "background_color": "linear-gradient(to top, rgb(11, 163, 96) 0%, rgb(60, 186, 146) 100%)"
-        },
-        "avatar": "",
-        "about": {
-          "name": newAccount.first_name+" "+newAccount.last_name,
-          "level": "Ph.D",
-          "university": [],
-          "address": "",
-          "phone": "",
-          "fax": "",
-          "mail": [] 
-        },
-        "research_interests": [],
-        "academic": [],
-        "news": [],
-        "teaching": {
-          "academic_year": "",
-          "graduate_course": [],
-          "undergraduate_courses": []
-        },
-        "thesis": {
-          "link": [],
-          "content": []
-        },
-        "research_grant":  [],
-        "publications": {
-          "book": [],
-          "paper": []
-        }
-    
-    }
+    var newUser = new User(newAccount.first_name, newAccount.last_name);
     try{
-        var createReq =  await helper.excuteQuerry(`insert into 
-                                                    Account(id, account, email, password) 
-                                                    values('${newAccount.ID}', 
-                                                            '${newAccount.account}', 
-                                                            '${newAccount.email}', 
-                                                            '${newAccount.password}')`);
+        var insertQuery =  `insert into 
+                            Account(id, account, email, password) 
+                            values('${newAccount.ID}', 
+                                    '${newAccount.account}', 
+                                    '${newAccount.email}', 
+                                    '${newAccount.password}')`;
+
+        var createReq =  await helper.excuteQuerry(insertQuery);
         if(createReq.rowsAffected[0] == 0){
             res.send({ 
                 head: "data base err",
@@ -113,5 +84,6 @@ async function createAccount(newAccount, res){
         return;
     }
 }
+
 
 module.exports = route;

@@ -5,9 +5,15 @@ var fs = require('fs');
 var DBHelper = require('../helper/DBHelper');
 var mailer = require('nodemailer');
 var TokenHelper = require('../helper/TokenHelper');
+var dotenv = require('dotenv').config();
+var Encoder = require('../helper/Encoder');
+var MailSender = require('../helper/MailSender');
 
-var helper = new DBHelper('ADMIN', 'sa','111', 'profiledb');
-var tokenHelper = new TokenHelper("profileproject@secret111");
+var helper = new DBHelper(process.env.DB_SERVER, process.env.DB_USER, process.env.DB_PASS, process.env.DB_NAME);
+var tokenHelper = new TokenHelper();
+var encoder = new Encoder(process.env.CRYPTO_SECRET);
+var mailSender = new MailSender();
+
 
 router.get('/', function(req,res,next){
     if(req.signedCookies.uid == undefined){
@@ -15,7 +21,7 @@ router.get('/', function(req,res,next){
         return;
     }
     var publicPath = req.signedCookies.pubPath;
-    var privatePath = req.signedCookies.uid;
+    var privatePath = encoder.decode(req.signedCookies.uid);
     var user  = JSON.parse(fs.readFileSync(process.cwd()+"\\data\\"+privatePath+"\\data.json", {encoding: "utf-8"}));
     res.render(user.template.name, {
         template: user.template,
@@ -34,8 +40,10 @@ router.get('/', function(req,res,next){
 });
 
 router.post('/',function(req, res, next){
+    
     var newUser = JSON.parse(req.body.content);
-    var dataPath = process.cwd()+"\\data\\"+req.signedCookies.uid+"\\data.json"
+    var uid = encoder.decode(req.signedCookies.uid);
+    var dataPath = process.cwd()+"\\data\\"+uid+"\\data.json"
     var oldUser  = JSON.parse(fs.readFileSync(dataPath, {encoding: "utf-8"}));
     
     oldUser.template = newUser.template;
@@ -103,7 +111,7 @@ router.post('/createguess', function(req, res, next){
 });
 
 router.post("/passverify", async function(req,res, next){
-    var uid = req.signedCookies.uid;
+    var uid = encoder.decode(req.signedCookies.uid);
     var pass = req.body.currentPass;
     var query = `select account from Account where id = '${uid}' and password = '${pass}'`;
     try{
@@ -128,22 +136,28 @@ router.post("/passverify", async function(req,res, next){
     }
 }); 
 
-router.get("/sendMail",function(req, res, next){
+router.get("/emailVerify",function(req, res, next){
     res.render("email");
 });
 
-router.post("/sendMail", async function(req, res, next){
+router.post("/emailVerify", async function(req, res, next){
     var email = req.body.email;
     try{
-        var result = await helper.excuteQuerry(`select account from Account where email = '${email}'`);
-        if(result.recordset.length==0){
+        var result = await helper.excuteQuerry(`select * from Account where email = '${email}'`);
+        if(result.recordset.length!=1){
             res.send({
                 head: false,
                 message: "your email not found"
             });
             return;
         }
-        
+        var token = await tokenHelper.encode(JSON.stringify({
+            ID: result.recordset[0].id,
+            pass: result.recordset[0].password
+        }), Date.now()+180000);
+
+        var result =  await mailSender.send(email, "Reset password", `localhost:3000/users/changePass/?user=${token}`);
+        res.send(result);
     } catch(err){
         console.log(err);
         res.send({
@@ -153,12 +167,19 @@ router.post("/sendMail", async function(req, res, next){
     }
 });
 
-router.get("/changePass",function(req,res, next){
-    
+router.get("/changePass", async function(req,res, next){
+    var token = await tokenHelper.decode(req.query.user);
+     var user = JSON.parse(token.data);
+     if(user.exp>=Date.now()){
+         res.send("your link expired");
+         return;
+    }
+    res.render("changePass");
 });
 
 router.post("/changePass",function(req, res, next){
-    
+    console.log(req.body.tok);
+    res.send(req.body.token);
 });
 
 
