@@ -8,6 +8,11 @@
     --titleColor: #343a40;
 }
 
+#template {
+    position: absolute;
+    z-index: 9999999;
+}
+
 .default { --primaryColor: #bd5d38; }
 
 .green { --primaryColor: #458966; }
@@ -18,10 +23,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-.mail{
-    display: flex;
 }
 
 html {
@@ -666,207 +667,6 @@ a:not(.nav-link) {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #E44D26;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #F16529, #E44D26);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #F16529, #E44D26); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    z-index: 99999999;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .3) ;
-}
-
-.options {
-    position: fixed;
-    left: 0;
-    bottom: -500px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    color: #fff;
-    font-weight: 500;
-    padding: 0 3rem;
-    /* background: #303d46;   */
-    border-top: 2px  solid #d6d6d6;
-    background: #fff;
-    height: 60px;
-    transition: .5s;
-}
-
-.options.active {
-    bottom: 0;
-}
-
-.options-topic {
-    margin-right: 20px;
-}
-
-.color {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 20px;
-    cursor: pointer;
-}
-
-.color:hover {
-    border: 2px solid black;
-    transform: scale(1.1);
-}
-
-.green { background: #458966;}
-.brown { background: #493d34;}
-.default { background: #bd5d38;}
-
-input[type=checkbox] {
-    border: 1px solid black;
-    transform: scale(1.2);
-    margin-right: 1rem;
-}
-
-.options-list {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    margin-left: auto;
-    margin-right: 8rem;
-}
-
-.options-item {
-    margin-left: 3rem;
-}
-
-.options-document > span {
-    display: inline-block;
-    font-size: 2.6rem;
-    cursor: pointer;
-}
-
-.categories,
-.themes {
-    position: absolute;
-    bottom: 140%;
-    right: -75px;
-    background: #fff;
-    border: 1px solid #d6d6d6;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    padding: 1rem 2rem .5rem 2rem;
-    border-radius: 20px;
-    width: 220px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    display: none;
-}
-
-.categories {
-    width: 310px;
-}
-
-.themes-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
-.themes > span,
-.categories > span {
-    display: block;
-    color: black;
-    margin-bottom: 1rem;
-}
-
-a.themes-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    background: black;
-    color: #fff !important;
-    text-decoration: none;
-}
-
-.lbl-categories {
-    color: black;
-}
-
-.btn-list-categories,
-.btn-list-themes {
-    font-size: 2.4rem;
-    color: var(--primaryColor);
-    cursor: pointer;
-}
-
-.show-categories {
-    display: block;
-}
-
-.show-themes {
-    display: grid;
-}
-
-/* Modal */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, .5);
-    display: none;
-    z-index: 999999;
-}
-
-.modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: block;
-    width: 320px;
-    min-height: 200px;
-    padding: 1rem 2rem;
-    background: #fff;
-    border-radius: 20px;
-}
-
-.ic-success {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    color: #fff;
-    background: #71c341;
-}
-
-.success-title {
-    margin: 1rem 0;
-    font-size: 2.4rem;
-}
-
-.btn-ok {
-    background: #71c341;
-/* Options */
-.circle {
-    position: fixed;
-    bottom: 5px;
-    right: 5px;
-    width: 50px;
-    height: 50px;
-    border: 3px solid var(--textGrayColor);
-    border-radius: 50%;
-    color: #fff;
-    font-weight: bold;
-    font-size: 2.3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background: var(--primaryColor);
     z-index: 99999999;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .3) ;
@@ -1159,6 +959,7 @@ a.themes-item {
     border: none;
     outline: none;
 }
+
 
 /* Tablet */
 @media (min-width: 740px) and (max-width: 1023px) {
