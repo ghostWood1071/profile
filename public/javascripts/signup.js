@@ -55,11 +55,11 @@ btn[0].onclick = function() {
         email: email
     },
     function(data,Status,xhr){
-        if(data.head){
-            alert(data.message);
+        if(data.head == false){
+            alert(data.content);
             return;
         }
-        window.location.replace("/login");
+        window.location.replace("/signup/account");
     })
 }
 
@@ -72,7 +72,7 @@ $('.input--style-5').each(function(){
 $('.input--style-5').each(function(){
     $(this).focusout(function(){
         if (validate(this) == false){
-            this.parentElement.dataset.validate = "Hãy nhập đầy đủ thông tin"
+            this.parentElement.dataset.validate = "not empty"
             showValidate(this);
         }
     });

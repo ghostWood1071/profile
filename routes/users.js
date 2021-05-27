@@ -94,9 +94,6 @@ router.post('/upfile', function (req,res,next) {
     });
 });
 
-
-
-
 router.post('/createguess', function(req, res, next){
     var data = req.body.data;
     fs.writeFile(process.cwd()+"/public/user_public/"+req.signedCookies.pubPath+"/guess.html", data, {encoding: 'utf-8'},function(err){
@@ -140,7 +137,24 @@ router.post("/passverify", async function(req,res, next){
             message: "password wrong"
         });
     }
-}); 
+});
+
+router.post("/changepassword", async function(req, res, next){
+    try{
+      var password = md5(req.body.password);
+      var uid = encoder.decode(req.signedCookies.uid);
+      var cahngeQuery = `update Account set password = '${password}' where id = '${uid}'`;
+      var result = await helper.excuteQuerry(cahngeQuery);
+      if(result.rowsAffected[0] != 1){
+          res.send({head: false, message: "cant't change your password"});
+          return;
+      }
+      res.send({head: true, message: "change password sucessfully"});
+    } catch(err){
+        console.log(err);
+        res.send({head: false, message: "cant't change your password"});
+    }   
+});
 
 router.get("/emailVerify",function(req, res, next){
     res.render("email");
@@ -164,8 +178,6 @@ router.post("/emailVerify", async function(req, res, next){
             pass: result.recordset[0].password
         }), '15m');
 
-        console.log(await tokenHelper.decode(token));
-
         //add pending token
         var insertToken = `insert into PendingToken(userId,token) values('${result.recordset[0].id}', '${token}')`;
         var insertTokenRessult = await helper.excuteQuerry(insertToken);
@@ -178,8 +190,8 @@ router.post("/emailVerify", async function(req, res, next){
         }
 
         // send email
-        var result =  await mailSender.send(email, "Reset password", `localhost:3000/users/changePass/?user=${token}`);
-        res.send({head: true, message: result});
+        mailSender.send(email, "Reset password", `<a href= ${req.headers.host}/users/changePass/?user=${token}>click the link to change password</a>`);
+        res.send({head: true, message: "we have sent you an email to change your password"});
 
     } catch(err){
         console.log(err);
@@ -199,7 +211,7 @@ router.get("/changePass", async function(req,res, next){
 
     } catch(err){
         console.log(err);
-        res.send({head: false, message: "your link expired"});
+        res.render("Message",{head: false, title: "Reset password",  message: "your link expired"});
     }
 });
 

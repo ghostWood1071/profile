@@ -10,6 +10,8 @@ var helper = new dbHelper(process.env.DB_SERVER, process.env.DB_USER, process.en
 var encoder = new Encoder(process.env.CRYPTO_SECRET);
 
 router.get("/", function(req, res, next){
+        res.clearCookie("tk");
+        res.clearCookie("message");
         if(req.signedCookies.uid == undefined){
                 res.render("login");
                 return;
@@ -40,7 +42,9 @@ router.post("/", async function(req,res,next){
                         });
                         return;
                 }
-
+                if(!set[0].active){
+                     res.redirect("/login/account");
+                }
                 var uid = encoder.encode(set[0].id);
                 res.cookie("uid", uid, {signed: true});
 
@@ -56,6 +60,11 @@ router.post("/", async function(req,res,next){
                 });
              return;
         }
+});
+
+
+router.get("/account", function(req, res, next){
+        res.render("Message", {title: "Acctivate account", message: "your account is not activate"});
 });
 
 module.exports = router;

@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Custom stylesheet -->
     <link rel="stylesheet" href="/stylesheets/template2.css">
-<style>.cke{visibility:hidden;}</style></head>
+<style>.cke{visibility:hidden;}</style><script type="text/javascript" src="http://localhost:3000/ckeditor/config.js?t=L0QD"></script><link rel="stylesheet" type="text/css" href="http://localhost:3000/ckeditor/skins/moono-lisa/editor.css?t=L0QD"><script type="text/javascript" src="http://localhost:3000/ckeditor/lang/vi.js?t=L0QD"></script><script type="text/javascript" src="http://localhost:3000/ckeditor/styles.js?t=L0QD"></script><link rel="stylesheet" type="text/css" href="http://localhost:3000/ckeditor/plugins/dialog/styles/dialog.css"></head>
 <body>
-    <div style="display:none" id="template">Template 1</div>
+    <div style="display:none" id="template">template2</div>
     <div class="wrapper">
         <div class="hamburger">
             <span></span>
@@ -30,26 +30,26 @@
             <div class="nav-img avatar">
                 <div class="nav-img-overlay"></div>
                 
-                <img id="avatar-img" src="/user_public/quyetthang/1.png  " alt="Avatar">
+                <img id="avatar-img" src="/user_public/quyetthang/186498622_808842783394204_4973921878626389350_n.jpg " alt="Avatar">
                 
             </div>
 
             <ul class="nav-list">
-                <li class="nav-item about"><a href="#about" class="nav-link about current-page">About</a></li>
+                <li class="nav-item about"><a href="#about" class="nav-link about">About</a></li>
                 <li class="nav-item research"><a href="#research" class="nav-link research">Research Interests</a></li>
                 <li class="nav-item academic"><a href="#academic" class="nav-link academic">Academic record</a></li>
                 
                 <li class="nav-item teaching"><a href="#teaching" class="nav-link teaching">Teaching</a></li>
                 <li class="nav-item thesis"><a href="#thesis" class="nav-link thesis">Thesis Advising</a></li>
                 <li class="nav-item grant"><a href="#grant" class="nav-link grant">Research Grant</a></li>
-                <li class="nav-item publication"><a href="#publication" class="nav-link publication">Publications</a></li>
+                <li class="nav-item publication"><a href="#publication" class="nav-link publication current-page">Publications</a></li>
             </ul>
         </nav>
 
         <div class="main">
 
             <section id="about">
-                <div class="list-group-item name">Đàm Quang Thịnh</div>
+                <div class="list-group-item name"><p>Huynh Quyet Thang</p></div>
                 <div class="list-group-item position">Ph.D Candidate</div>
 
                 <div class="work-list">
@@ -150,7 +150,7 @@
                             
                             
                             <i class="fas fa-graduation-cap ic-academic"></i>
-                            <div class="list-group-item academic-item-time text-primary">3/1991 - 12/1995 </div>
+                            <div class="list-group-item academic-item-time text-primary cke_focus"><p>3/1991 - 12/1995</p></div>
                             <div class="list-group-item academic-item-name text-primary">
                                 UNIVERSITY 
                             </div>
@@ -422,6 +422,24 @@
                                 
                                 <div class="list-group-item item-pdf">Huynh Quyet Thang. Software Engineering Economics. Bach Khoa Ha Noi Publishing Inc, 2016. ISBN ISBN 978-604-938-864-4</div>
                             </div>
+                            
+                                <div class="hover book-item">
+                                    
+                                    
+                                    <div class="list-group-item item-pdf">Huynh Quyet Thang. Software Engineering Economics. Bach Khoa Ha Noi Publishing Inc, 2016. ISBN ISBN 978-604-938-864-4</div>
+                                </div>
+                            
+                                <div class="hover book-item">
+                                    
+                                    
+                                    <div class="list-group-item item-pdf">Huynh Quyet Thang. Software Engineering Economics. Bach Khoa Ha Noi Publishing Inc, 2016. ISBN ISBN 978-604-938-864-4</div>
+                                </div>
+                            
+                                <div class="hover book-item">
+                                    
+                                    
+                                    <div class="list-group-item item-pdf">Huynh Quyet Thang. Software Engineering Economics. Bach Khoa Ha Noi Publishing Inc, 2016. ISBN ISBN 978-604-938-864-4</div>
+                                </div>
                             
                                 <div class="hover book-item">
                                     
@@ -867,7 +885,7 @@
 
         
 
-        <div class="options active">
+        <div class="options">
             <div class="color default"></div>
             <div class="color green"></div>
             <div class="color brown"></div>
@@ -949,7 +967,7 @@
         </div>
 
         <!-- Change theme -->
-        <div class="modal modal-themes" style="display: block; opacity: 0.989611;">
+        <div class="modal modal-themes">
             <div class="modal-content">
                 <div class="modal-close">
                     <span class="btn-close-modal"><i class="fas fa-times"></i></span>
@@ -962,7 +980,7 @@
 
                 <div class="modal-footer">
                     <button class="btn-cancel btn">Cancel</button>
-                    <button onclick="Save()" class="btn-apply btn">Apply</button>
+                    <button class="btn-apply btn">Apply</button>
                 </div>
             </div>
         </div>
@@ -1015,10 +1033,11 @@
     <!-- Jquery UI -->
     <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+    <script src="/javascripts/checkPass.js"></script>
     <script src="/javascripts/convertToGuess.js"></script>
     <script src="/javascripts/getData2.js"></script>
     <script src="/javascripts/template2.js"></script>
-    <script src="/javascripts/checkPass.js"></script>
+    
 
 
 </body></html>

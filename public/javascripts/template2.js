@@ -50,7 +50,8 @@ $('#confirmPass').change(function() {
         $('.modal-change').fadeOut(() => {
           $('.modal-change').css('display', 'none');
         });
-      })
+        change();
+      });
     }
   }
 })
@@ -210,12 +211,12 @@ $('.themes-item').each(function() {
     });
 
     $('.btn-apply').click(function() {
-      $('#template').html(`Template ${templateName}`);
-
+      $('#template').html(`template${templateName}`);
       $('.modal-themes').fadeOut(() => {
         $('.modal-themes').css('display', 'none');
       });
-    })
+      Save();
+    });
   })
 })
 

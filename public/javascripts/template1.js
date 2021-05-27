@@ -223,6 +223,7 @@ $(document).ready(function () {
             else {
                 $('.alert-error').fadeOut();
                 // Do something
+                change();
             }
         })
     }
