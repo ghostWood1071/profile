@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="--primary-color:#6f42c1; --primary-background:linear-gradient(rgb(72, 85, 99), rgb(41, 50, 60));"><head>
+<html lang="en" style="--primary-color: #6f42c1; --primary-background:linear-gradient(rgb(72, 85, 99), rgb(41, 50, 60))"><head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/stylesheets/template1.css">
   <script type="text/javascript" src="http://localhost:3000/ckeditor/config.js?t=L0QD"></script><link rel="stylesheet" type="text/css" href="http://localhost:3000/ckeditor/skins/moono-lisa/editor.css?t=L0QD"><script type="text/javascript" src="http://localhost:3000/ckeditor/lang/vi.js?t=L0QD"></script><script type="text/javascript" src="http://localhost:3000/ckeditor/styles.js?t=L0QD"></script><link rel="stylesheet" type="text/css" href="http://localhost:3000/ckeditor/plugins/dialog/styles/dialog.css"></head>
   <body>
-    <div style="display:none" id="template">template1</div>
+    <div style="display:none" id="template">template2</div>
     <div class="container main">
       <nav class="navbar navbar-expand-custom navbar-light nav sticky">
         <a href="#" class="navbar-brand">HOME</a>
@@ -27,7 +27,7 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-list">
-            <li class="nav-item about" data-page="about">
+            <li class="nav-item about active" data-page="about">
               <a class="nav-link about" href="#about">about</a>
             </li>
             <li class="nav-item research" data-page="research">
@@ -46,7 +46,7 @@
             <li class="nav-item grant" data-page="grant">
               <a class="nav-link grant" href="#grant">research grant</a>
             </li>
-            <li class="nav-item publication active" data-page="publication">
+            <li class="nav-item publication" data-page="publication">
               <a class="nav-link publication" href="#publication">publications</a>
             </li>
           </ul>
@@ -750,29 +750,7 @@
       
       
       <!-- ---------------------------------------------------------------------- -->
-      <div class="user-wrapper">
-        <button class="btn btn-light btn-user btn-custom">
-          <i class="far fa-user"></i>
-        </button>
-        <div class="user-content">
-          <div class="user-content-item">
-            <img src="/user_public/quyetthang/1.png" alt="avatar">
-            Hello, Minh
-          </div>
-          <div class="user-content-item">
-            <div class="user-change-password">
-              <i class="fas fa-key" style="color: var(--primary-color);"></i>
-              Change Password
-            </div>
-          </div>
-          <div class="user-content-item">
-            <div class="user-sign-out">
-              <i class="fas fa-power-off" style="color: var(--primary-color);"></i>
-              Sign Out
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <!-- ---------------------------------------------------------------------- -->
       
       <!-- ---------------------------------------------------------------------- -->
@@ -782,12 +760,23 @@
             <button type="button" class="close btn-close" data-dismiss="alert">×</button> 
             <h2>Change Your Password</h2>
             <label for="oldPass">Old password:</label>
-            <input type="password" class="form-control" name="changePass" id="oldPass" aria-describedby="helpId" placeholder="Old Password..." required="">
-            <label for="newPass">New password:</label>
-            <input type="password" class="form-control" name="changePass" id="newPass" aria-describedby="helpId" placeholder="New Password..." required="">
-            <label for="confirmNewPass">Confirm new password:</label>
-            <input type="password" class="form-control" name="changePass" id="confirmNewPass" aria-describedby="helpId" placeholder="Confirm New Password..." required="">
-            <button type="submit" name="changePass" class="btn btn-danger btn-confirm-changePass">Confirm</button>
+            <input type="password" class="form-control" name="currentPass" id="oldPass" aria-describedby="helpId" placeholder="Old Password..." required="" onfocusout="checkPassword()">
+            <div class="change-password-item" style="position: relative;">
+              <label for="newPass">New password:</label>
+              <input type="password" class="form-control" name="newPass" id="newPass" aria-describedby="helpId" placeholder="New Password..." required="">
+              <i class="fas fa-check-circle icon-check icon-check-success"></i>
+              <i class="fas fa-times-circle icon-check icon-check-error"></i>
+            </div>
+            <div class="change-password-item" style="position: relative;">
+              <label for="confirmNewPass">Confirm new password:</label>
+              <input type="password" class="form-control" name="confirmPass" id="confirmNewPass" aria-describedby="helpId" placeholder="Confirm New Password..." required="">
+              <i class="fas fa-check-circle icon-check icon-check-success"></i>
+              <i class="fas fa-times-circle icon-check icon-check-error"></i>
+            </div>
+            <div class="confirm-wrapper">
+              <button type="submit" name="changePass" class="btn btn-danger btn-confirm-changePass">Confirm</button>
+              <span class="alert-error">Data fail</span>
+            </div>
           </div>
         </div>
       </div>
@@ -822,6 +811,7 @@
     <script src="/javascripts/convertToGuess.js"></script>
     <script src="/javascripts/getData2.js"></script>
     <script src="/javascripts/template1.js"></script>
+    <script src="/javascripts/checkPass.js"></script>
   
 
 </body></html>

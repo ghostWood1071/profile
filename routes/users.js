@@ -8,6 +8,9 @@ var TokenHelper = require('../helper/TokenHelper');
 var dotenv = require('dotenv').config();
 var Encoder = require('../helper/Encoder');
 var MailSender = require('../helper/MailSender');
+var md5 = require('md5');
+
+
 
 var helper = new DBHelper(process.env.DB_SERVER, process.env.DB_USER, process.env.DB_PASS, process.env.DB_NAME);
 var tokenHelper = new TokenHelper();
@@ -85,12 +88,14 @@ router.post('/upfile', function (req,res,next) {
         console.log('Uploaded ' + file.name);
     });
 
-
     res.send({
         head: true,
         message: "upload file sucess"
     });
 });
+
+
+
 
 router.post('/createguess', function(req, res, next){
     var data = req.body.data;
@@ -113,13 +118,14 @@ router.post('/createguess', function(req, res, next){
 router.post("/passverify", async function(req,res, next){
     var uid = encoder.decode(req.signedCookies.uid);
     var pass = req.body.currentPass;
-    var query = `select account from Account where id = '${uid}' and password = '${pass}'`;
+    
     try{
+        var query = `select account from Account where id = '${uid}' and password = '${md5(pass)}'`;
         var result = await helper.excuteQuerry(query);
         if(result.recordset.length>0){
             res.send({
                 head: true,
-                message: "account existed"
+                message: "correct password"
             });
             return;
         }
@@ -151,13 +157,30 @@ router.post("/emailVerify", async function(req, res, next){
             });
             return;
         }
+
+        //create token
         var token = await tokenHelper.encode(JSON.stringify({
             ID: result.recordset[0].id,
             pass: result.recordset[0].password
-        }), Date.now()+180000);
+        }), '15m');
 
+        console.log(await tokenHelper.decode(token));
+
+        //add pending token
+        var insertToken = `insert into PendingToken(userId,token) values('${result.recordset[0].id}', '${token}')`;
+        var insertTokenRessult = await helper.excuteQuerry(insertToken);
+        if(insertTokenRessult.rowsAffected[0] == 0){
+            res.send({
+                head: false,
+                message: 'can not change password'
+            });
+            return;
+        }
+
+        // send email
         var result =  await mailSender.send(email, "Reset password", `localhost:3000/users/changePass/?user=${token}`);
-        res.send(result);
+        res.send({head: true, message: result});
+
     } catch(err){
         console.log(err);
         res.send({
@@ -168,19 +191,60 @@ router.post("/emailVerify", async function(req, res, next){
 });
 
 router.get("/changePass", async function(req,res, next){
-    var token = await tokenHelper.decode(req.query.user);
-     var user = JSON.parse(token.data);
-     if(user.exp>=Date.now()){
-         res.send("your link expired");
-         return;
+    try{
+        var token = await tokenHelper.decode(req.query.user);
+        //packaging data
+        res.cookie("tk", encoder.encode(JSON.stringify({data: token.data, token: req.query.user})), {signed: true});
+        res.render("changePass");
+
+    } catch(err){
+        console.log(err);
+        res.send({head: false, message: "your link expired"});
     }
-    res.render("changePass");
 });
 
-router.post("/changePass",function(req, res, next){
-    console.log(req.body.tok);
-    res.send(req.body.token);
+router.post("/changePass",async function(req, res, next){
+    var cookies = req.signedCookies.tk; //get cookies 
+
+    var jsonData = JSON.parse(encoder.decode(cookies));
+    var password = req.body.password;
+    console.log(jsonData);
+    try{
+       var token = jsonData.token;
+       var data = JSON.parse(jsonData.data);
+       //check token with token from data base
+       var query = `select * from PendingToken where userId = '${data.ID}' and token = '${token}'`;
+       var result = await helper.excuteQuerry(query);
+       if(result.recordset.length!=1){
+           res.send({head: false, message: "you can't change your password"});
+           return;
+       }
+       
+       //delete token from data base
+       var deleteQuery = `delete from PendingToken where id = ${result.recordset[0].id}`;
+       var deleteResult= await helper.excuteQuerry(deleteQuery);
+       if(deleteResult.rowsAffected[0]==0){
+           res.send({head: false, message: "can't change your password"});
+           return;
+       }
+       
+       //up date password
+       var updateQuery = `update Account set password = '${md5(password)}' where id = '${data.ID}'`;
+       var updateResult = await helper.excuteQuerry(updateQuery);
+       if(updateResult.rowsAffected[0] == 0){
+           res.send({head: false, message: "can't change your password"});
+           return;
+       }
+
+       res.clearCookie("tk");
+       res.send({head: true, message: "change password sucessfully"});
+
+    } catch(err){
+        console.log(err);
+        res.send({head: false, message: "can't change your password"});
+    }
 });
+
 
 
 module.exports = router;
