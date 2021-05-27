@@ -430,7 +430,7 @@
 
                 <div class="modal-footer">
                     <button class="btn-cancel btn">Cancel</button>
-                    <button class="btn-apply btn">Apply</button>
+                    <button onclick="Save()" class="btn-apply btn">Apply</button>
                 </div>
             </div>
         </div>
@@ -446,7 +446,7 @@
                 <div class="modal-body">
                     <form action="#">
                         <div class="form-item">
-                            <input id="oldPass" class="txt-user oldPassWord" type="text" placeholder="Old password" required>
+                            <input id="oldPass" class="txt-user oldPassWord" type="text" placeholder="Old password" required onfocusout="checkPassword()">
                             <i class="fas fa-key"></i>
                         </div>
                         <div class="form-item">
@@ -457,6 +457,7 @@
                             <input id="confirmPass" class="txt-user" type="password" placeholder="Confirm new password" required>
                             <i class="fas fa-lock"></i>
                             <div class="form-error" style="opacity: 0;">Confirm new password is not valid</div>
+                            <div class="form-error" style="opacity: 0;">incorrect password</div>
                         </div>
                         
                         <div class="modal-footer">
@@ -485,6 +486,6 @@
     <script src="/javascripts/convertToGuess.js"></script>
     <script src="/javascripts/getData2.js"></script>
     <script src="/javascripts/template2.js"></script>
-    
+    <script src="/javascripts/checkPass.js"></script>
 </body>
 </html>
