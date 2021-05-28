@@ -25,7 +25,7 @@ router.get('/', function(req,res,next){
     }
     var publicPath = req.signedCookies.pubPath;
     var privatePath = encoder.decode(req.signedCookies.uid);
-    var user  = JSON.parse(fs.readFileSync(process.cwd()+"\\data\\"+privatePath+"\\data.json", {encoding: "utf-8"}));
+    var user  = JSON.parse(fs.readFileSync(process.cwd()+"/data/"+privatePath+"/data.json", {encoding: "utf-8"}));
     res.render(user.template.name, {
         template: user.template,
         avatar: user.avatar,
@@ -46,7 +46,7 @@ router.post('/',function(req, res, next){
     
     var newUser = JSON.parse(req.body.content);
     var uid = encoder.decode(req.signedCookies.uid);
-    var dataPath = process.cwd()+"\\data\\"+uid+"\\data.json"
+    var dataPath = process.cwd()+"/data/"+uid+"/data.json"
     var oldUser  = JSON.parse(fs.readFileSync(dataPath, {encoding: "utf-8"}));
     
     oldUser.template = newUser.template;
