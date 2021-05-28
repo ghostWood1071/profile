@@ -86,7 +86,30 @@ route.get("/account.activate", async function(req, res, next){
     try{
         var tokenDecoded = await tokenHelper.decode(token);
         var newAccount = JSON.parse(tokenDecoded.data);
-        createPersonFolder(newAccount);
+       
+        //create folder and data file 
+        var newUser = new User(newAccount.first_name, newAccount.last_name);
+        fs.mkdir(process.cwd()+"/data/"+newAccount.ID+"/",{recursive: true} ,function(err){
+            if(err){
+                console.log(err);
+                res.render("Message", {title: "Error", message: "your activate link expired"});
+                return;
+            }
+            fs.writeFile(process.cwd()+"/data/"+newAccount.ID+"/data.json",JSON.stringify(newUser), {encoding:"utf-8"}, function(err){
+                console.log(err);
+                res.render("Message", {title: "Error", message: "your activate link expired"});
+                return;
+            });
+        });
+        
+        //create public folder
+        fs.mkdir(process.cwd()+"/public/user_public/"+newAccount.account+"/", {recursive:true}, function(err){
+            if(err){
+                console.log(err);
+                res.render("Message", {title: "Error", message: "your activate link expired"});
+                return;
+            }
+        });
 
         var updateQuerry = `update Account set active = 1 where id ='${newAccount.ID}'`;
         var updateResult =  await helper.excuteQuerry(updateQuerry);
@@ -105,14 +128,6 @@ route.get("/account.activate", async function(req, res, next){
 route.get("/account", function(req, res, next){
     res.render("Message", {title: 'Sucesss', message: 'we have sent you a mail to activate account. You can activate in 30 day'});
 })
-
-
-function createPersonFolder(newAccount){
-    var newUser = new User(newAccount.first_name, newAccount.last_name);
-    fs.mkdirSync(process.cwd()+"/data/"+newAccount.ID);
-    fs.writeFileSync(process.cwd()+"/data/"+newAccount.ID+"/data.json", JSON.stringify(newUser), {encoding:"utf-8"});
-    fs.mkdirSync(process.cwd()+"/public/user_public/"+newAccount.account);
-}
 
 
 module.exports = route;
