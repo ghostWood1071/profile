@@ -6,8 +6,7 @@ var fs  = require('fs');
 var User = require('../model/user.model');
 var TokenHelper = require("../helper/TokenHelper");
 var MailSender = require("../helper/MailSender");
-const router = require('./users');
-const { get } = require('http');
+var createFolder = require("../helper/createFolder");
 
 var helper = new dbHelper(process.env.DB_SERVER, process.env.DB_USER, process.env.DB_PASS, process.env.DB_NAME);
 var tokenHelper = new TokenHelper();
@@ -88,28 +87,24 @@ route.get("/account.activate", async function(req, res, next){
         var newAccount = JSON.parse(tokenDecoded.data);
        
         //create folder and data file 
-        var newUser = new User(newAccount.first_name, newAccount.last_name);
-        fs.mkdir(process.cwd()+"/data/"+newAccount.ID+"/",{recursive: true} ,function(err){
-            if(err){
-                console.log(err);
-                res.render("Message", {title: "Error", message: "your activate link expired"});
-                return;
-            }
-            fs.writeFile(process.cwd()+"/data/"+newAccount.ID+"/data.json",JSON.stringify(newUser), {encoding:"utf-8"}, function(err){
-                console.log(err);
-                res.render("Message", {title: "Error", message: "your activate link expired"});
-                return;
-            });
-        });
-        
-        //create public folder
-        fs.mkdir(process.cwd()+"/public/user_public/"+newAccount.account+"/", {recursive:true}, function(err){
-            if(err){
-                console.log(err);
-                res.render("Message", {title: "Error", message: "your activate link expired"});
-                return;
-            }
-        });
+        var createPrivate =  await createFolder.createPrivateDirectory(newAccount);
+        if(createPrivate==true)
+            console.log("sucess private");
+        else
+        {
+            res.render("Message", {title: "Error", message: "your activate link expired"});
+            return;
+        }
+
+        var createPublic = await createFolder.createPublic(newAccount);
+        if(createPublic==true)
+            console.log("sucess public");
+        else
+        {
+            res.render("Message", {title: "Error", message: "your activate link expired"});
+            return;
+        }
+
 
         var updateQuerry = `update Account set active = 1 where id ='${newAccount.ID}'`;
         var updateResult =  await helper.excuteQuerry(updateQuerry);
