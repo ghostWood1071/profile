@@ -9,7 +9,7 @@ router.get('/g/:account',function (req,res, next) {
 });
 
 router.get('/', function(req,res,next){
-    res.sendFile(process.cwd()+"/data/quyetthang/data.json");
+    res.render("index");
 });
 
 module.exports = router;
