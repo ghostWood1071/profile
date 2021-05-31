@@ -17,11 +17,26 @@ $(document).ready(function () {
             scrollTop: $(el).offset().top - 70
         })
     })
+
+    // Move footer 
+    if(scrollY >= $('#footer').offset().top) {
+        console.log(screenY, $('#footer').offset().top)
+        $('.move-footer-wrapper').fadeOut();
+    }
+    else {
+        $('.move-footer-wrapper').fadeIn();
+        $('.move-footer-wrapper button').click(function() {
+            $('html, body').animate({
+                scrollTop: $('#footer').offset().top - 100
+            })
+        })
+    }
     
     navItem[0].classList.add('active');
     
     // Active sticky when scroll
     if(scrollY > 0) document.getElementsByTagName('nav')[0].classList.add('sticky');
+
     window.addEventListener('scroll', function(){
         var nav = document.getElementsByTagName('nav')[0];
         var y = scrollY;
@@ -31,10 +46,22 @@ $(document).ready(function () {
         else {
             nav.classList.remove('sticky');
         }
+        
+        // console.log(y, $('#footer').offset().top)
+        if(y >= $('#footer').offset().top - 500) {
+            $('.move-footer-wrapper').fadeOut();
+        }
+        else {
+            $('.move-footer-wrapper').fadeIn();
+        }
     })
     
     // Active navbar when scroll
     window.addEventListener("scroll", () => {
+        activeNavScroll();
+    });
+    
+    activeNavScroll = () => {
         let current = sections[0].getAttribute('id');
       
         sections.forEach((section, index) => {
@@ -54,8 +81,10 @@ $(document).ready(function () {
             else
                 $(this).parent().removeClass('active');
         })
-    });
-    
+    }
+
+    activeNavScroll();
+
     // Set color
     const rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`;
     
@@ -161,6 +190,8 @@ $(document).ready(function () {
         })
         $('.list-theme li:not([data-theme="theme1"])').click(function() {
             $('.mood-wrapper').addClass('active');
+            $('.mood-wrapper .mood-content').text("Do you want to switch to interface 2?");
+            $('.mood-wrapper button:nth(1)').addClass("btn-confirm-interface");
         })
         $('.user-change-password').click(function() {
             $('.change-password-wrapper').addClass('active');
@@ -226,6 +257,31 @@ $(document).ready(function () {
                 change();
             }
         })
+
+        // Sign Out
+        $('.user-sign-out').click(function() {
+            $('.mood-wrapper').addClass('active');
+            $('.mood-wrapper .mood-content').text("Do you really want to log out?");
+            $('.mood-wrapper button:nth(1)').removeClass("btn-confirm-interface");
+            $('.mood-wrapper button:nth(1)').click(function() {
+                deleteAllCookies();
+                window.location.reload();
+            });
+        })
+        // Function remove cookies
+        function deleteAllCookies() {
+            var cookies = document.cookie.split(";");
+        
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i];
+                var eqPos = cookie.indexOf("=");
+                var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            }
+        }
+    }
+    else {
+        $('.nav-img-overlay, .move-footer-wrapper').remove();
     }
     
     // Show button plus
@@ -353,7 +409,7 @@ $(document).ready(function () {
                         <div class="title publication-name">
                         <div class="list-group-item mr-2">
                             <strong class="text-dark" style="opacity: 0.9; font-size: 17px"
-                            >F) International Journals:</strong
+                            >A) International Journals:</strong
                             >
                         </div>
                         <i class="fas fa-arrows-alt"></i>

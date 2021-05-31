@@ -80,7 +80,7 @@
       <div class="content wrap-about" id="about">
         <div class="avatar col-12 col-sm-12 col-md-5 col-lg-4">
           <div class="nav-img-overlay"></div>
-          <img id="avatar-img" src="<%=path+avatar%>" alt="avatar" />
+          <img id="avatar-img" src="<%=path+avatar%>" alt="avatar"/>
           <input type="file" accept="image/png, image/jpeg" id="file-img" class="chosen-file nav-img-upload" hidden />
           <label for="file-img" class="label-file-img"
             ><i class="fas fa-camera"></i></label>
@@ -118,25 +118,25 @@
         <div class="list-group contact">
 
           <div class="contact-group">
-            <i class="fa fa-address-card icon" aria-hidden="true"></i>
+            <i class="fa fa-address-card icon"  title="Address"></i>
             <div class="list-group-item about_address">
              <%-about.address %> 
             </div>
           </div>
 
           <div class="contact-group">
-            <i class="fa fa-phone-square icon" aria-hidden="true"></i>
+            <i class="fa fa-phone-square icon"  title="Phone Number"></i>
             <div class="list-group-item"><%-about.phone %></div>
           </div>
 
           <div class="contact-group">
-            <i class="fa fa-fax icon" aria-hidden="true"></i>
+            <i class="fa fa-fax icon" title="Fax Number"></i>
             <div class="list-group-item"><%-about.fax %></div>
           </div>
 
           <!-- mail container -->
           <div class="contact-group">
-            <i class="fa fa-envelope icon" aria-hidden="true"></i>
+            <i class="fa fa-envelope icon" title="Email Address"></i>
             <div class="list-group-item">
               <% for( let i = 0; i < about.mail.length-1; i++ ) { %>
                     <%-about.mail[i]%>; 
@@ -415,8 +415,19 @@
           </div>
         </div>
       </div>
-      <div class="footer">
+      <div class="footer" id="footer">
         <button type="submit" onclick="Save()" class="btn btn-danger btn-submit">Save</button>
+        <div class="my-link-address">
+          <div class="link-address">
+            Your profile: 
+            <a href="#">http:/utehy-profife.com/quyennv</a>
+          </div>
+        </div>
+        <div class="copyright">
+          Copyright 
+          <i class="far fa-copyright"></i>
+          2021 | UTEHY
+        </div>
       </div>
       <div class="theme-setting">
         <button class="btn btn-light btn-cogs btn-custom">
@@ -545,6 +556,14 @@
       <div class="alert alert-danger">
         <button type="button" class="close btn-close" data-dismiss="alert" style="margin-left: 1rem">&times;</button>
         Your data was not saved
+      </div>
+      <!-- ---------------------------------------------------------------------- -->
+      <div class="move-footer-wrapper" title="Move footer">
+        <div class="move-footer">
+          <button class="btn btn-light btn-move-footer">
+            <i class="fas fa-arrow-circle-down"></i>
+          </button>
+        </div>
       </div>
     </div>
     <!-- JS -->
