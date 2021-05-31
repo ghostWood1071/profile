@@ -4,6 +4,19 @@ const options = document.querySelector('.options')
 var navLinks = Array.from(document.querySelectorAll('.nav-link'));
 var sections = document.querySelectorAll('section');
 
+// Scroll top,bottom
+$('.nav-arrow').find('.fa-angle-down').click(function() {
+    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+    $(this).parent().css('display', 'none');
+    $('.fa-angle-up').parent().css('display', 'flex');
+})
+
+$('.nav-arrow').find('.fa-angle-up').click(function() {
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+  $(this).parent().css('display', 'none');
+  $('.fa-angle-down').parent().css('display', 'flex');
+})
+
 // Scroll navbar
 window.addEventListener("scroll", () => {
   let current = sections[0].getAttribute('id');
@@ -27,6 +40,30 @@ window.addEventListener("scroll", () => {
 });
 
 //Options
+// Log Out
+function deleteAllCookies() {
+  var cookies = document.cookie.split(";");
+
+  for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i];
+      var eqPos = cookie.indexOf("=");
+      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  }
+}
+
+$('.btn-apply-logout').click(function() {
+  deleteAllCookies();
+  window.location.reload();
+})
+
+$('.btn-logout').click(function() {
+  $('.modal-alert .modal-body h3').text('Are you sure you want to sign out?');
+  $('.modal-alert').fadeIn(() => {
+    $('.modal-alert').css('display', 'block');
+  });
+})
+
 //Password
 var check = false;
 $('#confirmPass').change(function() {

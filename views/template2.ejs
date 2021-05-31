@@ -330,10 +330,26 @@
                 </div>
             </section>
             
-            <footer class="footer"><button type="submit" class="btn-submit" onclick="Save()">Submit</button></footer>
+            <footer class="footer">
+                <button type="submit" class="btn-submit" onclick="Save()">Save</button>
+                <div class="my-link-address">
+                    <div class="link-address">
+                      Your profile: 
+                      <a href="#">http:/utehy-profife.com/quyennv</a>
+                    </div>
+                  </div>
+                  <div style="padding-top: .5rem;" class="copyright">
+                    Copyright 
+                    <i class="far fa-copyright"></i>
+                    2021 | UTEHY
+                </div>
+            </footer>
         </div>
 
         <div class="circle theme-setting" draggable="true"><i class="fas fa-cog"></i></div>
+        <div class="circle nav-arrow" draggable="true"><i class="fas fa-angle-up"></i></div>
+        <div class="circle nav-arrow" draggable="true"><i class="fas fa-angle-down"></i></div>
+
 
         <div class="options">
             <div class="color default"></div>
@@ -430,7 +446,7 @@
 
                 <div class="modal-footer">
                     <button class="btn-cancel btn">Cancel</button>
-                    <button class="btn-apply btn">Apply</button>
+                    <button class="btn-apply btn-apply-logout btn">Apply</button>
                 </div>
             </div>
         </div>
@@ -470,6 +486,14 @@
         </div>
 
         <!-- Alert success/fail -->
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success! </strong><span>Your data was saved.</span>
+        </div>
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Danger! </strong><span>Your data was not saved.</span>
+        </div>
         
     </div>
 
