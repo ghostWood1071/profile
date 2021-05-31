@@ -530,6 +530,7 @@ a:not(.nav-link) {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column; 
     margin-top: 3rem;
 }
 
@@ -539,6 +540,7 @@ a:not(.nav-link) {
     background: var(--primaryColor);
     color: var(--whiteColor);
     border-radius: 5px;
+    margin-bottom: 5rem; 
     border: 0;
     outline: none;
     cursor: pointer;
@@ -655,11 +657,11 @@ a:not(.nav-link) {
 /* Options */
 .circle {
     position: fixed;
-    bottom: 5px;
+    bottom: 8px; 
     right: 5px;
-    width: 50px;
-    height: 50px;
-    border: 3px solid var(--textGrayColor);
+    width: 35px; 
+    height: 35px; 
+    border: 2px solid var(--textGrayColor);
     border-radius: 50%;
     color: #fff;
     font-weight: bold;
@@ -669,8 +671,12 @@ a:not(.nav-link) {
     align-items: center;
     background: var(--primaryColor);
     z-index: 99999999;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .3) ;
+    cursor: pointer; 
 }
+
+.nav-arrow { bottom: 55px; }  
+
+.fa-cog { font-size: 1.4rem;} 
 
 .options {
     position: fixed;
@@ -683,10 +689,9 @@ a:not(.nav-link) {
     color: #fff;
     font-weight: 500;
     padding: 0 3rem;
-    /* background: #303d46;   */
     border-top: 2px  solid #d6d6d6;
     background: #fff;
-    height: 60px;
+    height: 55px;
     transition: .5s;
 }
 
