@@ -37,7 +37,8 @@ router.get('/', function(req,res,next){
         research_grant: user.research_grant,
         public: user.publications,
         path: "/user_public/"+publicPath+"/",
-        news: user.news
+        news: user.news,
+        cvpath: req.headers.host+"/"+publicPath
     });
         
 });
@@ -257,18 +258,7 @@ router.post("/changePass",async function(req, res, next){
     }
 });
 
-router.get("/g/:account", function(req, res, next){
-    try{
-        var path = process.cwd()+"/public/user_public/"+req.params.account+"/guess.html";
-        if(fs.existsSync(path)){
-            res.sendFile(path);
-            return;
-        }
-        res.render("error", {message: "profile not found", error:{status: "404", stack: "file not found"}});
-    } catch(err){
-        res.render("error", {message: "profile not found", error:{status: "404", stack: "file not found"}});
-    }
-});
+
 
 
 

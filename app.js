@@ -34,7 +34,7 @@ app.use(function(req, res, next) {
   var file = req.originalUrl.replace("/","");
   var path = process.cwd()+"/public/user_public/"+file+"/guess.html";
   if(fs.existsSync(path)){
-    console.log(ok);
+    console.log("ok");
     res.sendFile(path);
     return;
   }

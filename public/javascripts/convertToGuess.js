@@ -116,6 +116,9 @@ var path = imgSrc.substr(0, imgSrc.lastIndexOf("/")+1);
         $('.btn-plus').remove();
         $('.password-form').remove();
         $('.modal-successful').remove();
+        $('.move-footer-wrapper').remove();
+        $('.alert').remove();
+        $('.circle.nav-arrow').remove();
         loadCKEDITOR();
     }
     
