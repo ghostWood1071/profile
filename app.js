@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var dotenv = require('dotenv').config();
-
+var fs = require('fs');
 //resignter router 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -31,6 +31,13 @@ app.use('/signup', signupRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  var file = req.originalUrl.replace("/","");
+  var path = process.cwd()+"/public/user_public/"+file+"/guess.html";
+  if(fs.existsSync(path)){
+    console.log(ok);
+    res.sendFile(path);
+    return;
+  }
   next(createError(404));
 });
 

@@ -257,6 +257,19 @@ router.post("/changePass",async function(req, res, next){
     }
 });
 
+router.get("/g/:account", function(req, res, next){
+    try{
+        var path = process.cwd()+"/public/user_public/"+req.params.account+"/guess.html";
+        if(fs.existsSync(path)){
+            res.sendFile(path);
+            return;
+        }
+        res.render("error", {message: "profile not found", error:{status: "404", stack: "file not found"}});
+    } catch(err){
+        res.render("error", {message: "profile not found", error:{status: "404", stack: "file not found"}});
+    }
+});
+
 
 
 module.exports = router;
