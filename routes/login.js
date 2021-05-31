@@ -44,6 +44,7 @@ router.post("/", async function(req,res,next){
                 }
                 if(!set[0].active){
                      res.redirect("/login/account");
+                     return;
                 }
                 var uid = encoder.encode(set[0].id);
                 res.cookie("uid", uid, {signed: true});
