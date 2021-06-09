@@ -8,7 +8,7 @@ class DBHelper{
             password: password,
             database: dbName,
             options: {
-                encrypt: true,
+                encrypt: false,
                 trustServerCertificate: true
             }
         });
