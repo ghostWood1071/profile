@@ -100,7 +100,7 @@ $('.btn-change').click(function() {
 })
 
 //Color
-$('.circle').click(() => {
+$('.settings').click(() => {
   if(options.classList.contains('active')){
     options.classList.remove('active');
   }
