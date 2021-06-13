@@ -9,6 +9,7 @@ var dotenv = require('dotenv').config();
 var Encoder = require('../helper/Encoder');
 var MailSender = require('../helper/MailSender');
 var md5 = require('md5');
+const { cwd } = require('process');
 
 
 
@@ -258,6 +259,9 @@ router.post("/changePass",async function(req, res, next){
     }
 });
 
+router.get("/download/:id", function(req,res,next){
+    res.sendFile(process.cwd()+"/data/"+req.params.id+"/"+"data.json");
+});
 
 
 
